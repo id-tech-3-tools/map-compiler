@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\libs">
+      <UniqueIdentifier>{f986cc49-87c8-493f-bfaf-b6240241da15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\mathlib">
+      <UniqueIdentifier>{0789f14d-03af-4af6-b656-f9bacf4432e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\l_net">
+      <UniqueIdentifier>{51076cc8-5a1c-4262-a299-31c3b19119cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs">
+      <UniqueIdentifier>{029c2a32-67a4-4e26-97bf-108576ac2b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\games">
+      <UniqueIdentifier>{382f2e90-1d4f-4ba0-880f-de046814b638}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\inout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\polyset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\q3map2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\qfiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\qthreads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\surfaceflags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\trilib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\vfs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\bytebool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\globaldefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\picomodel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\bspfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\l_net.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\l_net_wins.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game__null.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_darkplaces.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_dq.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_ef.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_etut.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_ja.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_jk2.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_nexuiz.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_prophecy.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_qfusion.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_quake3.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_quakelive.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_reaction.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_sof2.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_tenebrae.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_tremulous.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_unvanquished.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_wolf.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_wolfet.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\game_xonotic.h">
+      <Filter>Header Files\games</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mathlib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\filematch.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\imagelib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\md5lib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\md4.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ddslib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\etclib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\cmdlib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\scriplib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\polylib.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\unzip.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="brush.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="brush_primit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_analyze.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_scale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_abstract.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_ibsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_rbsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_ase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_bsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_obj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exportents.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facebsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fixaas.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="help.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inout.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jpeg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leakfile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_bounce.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_ydnar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lightmaps_ydnar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minimap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="patch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="path_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="portals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prtfile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shaders.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_extra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_foliage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_fur.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_meta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="threads.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tjunction.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vis.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="visflow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writebsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmdlib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="etclib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="imagelib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="polylib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="trilib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="md5lib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="md4.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="vfs.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="filematch.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="unzip.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="ddslib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bbox.c">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="line.c">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="m4x4.c">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="mathlib.c">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="ray.c">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="l_net.c">
+      <Filter>Source Files\libs\l_net</Filter>
+    </ClCompile>
+    <ClCompile Include="l_net_wins.c">
+      <Filter>Source Files\libs\l_net</Filter>
+    </ClCompile>
+    <ClCompile Include="scriplib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

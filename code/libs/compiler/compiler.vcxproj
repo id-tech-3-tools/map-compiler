@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\picomodel\picomodel.vcxproj">
+      <Project>{6449bae4-448d-4bb0-bcc5-7df1b9300cea}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\bytebool.h" />
+    <ClInclude Include="..\common\compiler.h" />
+    <ClInclude Include="..\common\globaldefs.h" />
+    <ClInclude Include="..\common\picomodel.h" />
+    <ClInclude Include="includes\bspfile.h" />
+    <ClInclude Include="includes\cmdlib.h" />
+    <ClInclude Include="includes\ddslib.h" />
+    <ClInclude Include="includes\etclib.h" />
+    <ClInclude Include="includes\filematch.h" />
+    <ClInclude Include="includes\game_darkplaces.h" />
+    <ClInclude Include="includes\game_dq.h" />
+    <ClInclude Include="includes\game_ef.h" />
+    <ClInclude Include="includes\game_etut.h" />
+    <ClInclude Include="includes\game_ja.h" />
+    <ClInclude Include="includes\game_jk2.h" />
+    <ClInclude Include="includes\game_nexuiz.h" />
+    <ClInclude Include="includes\game_prophecy.h" />
+    <ClInclude Include="includes\game_qfusion.h" />
+    <ClInclude Include="includes\game_quake3.h" />
+    <ClInclude Include="includes\game_quakelive.h" />
+    <ClInclude Include="includes\game_reaction.h" />
+    <ClInclude Include="includes\game_sof2.h" />
+    <ClInclude Include="includes\game_tenebrae.h" />
+    <ClInclude Include="includes\game_tremulous.h" />
+    <ClInclude Include="includes\game_unvanquished.h" />
+    <ClInclude Include="includes\game_wolf.h" />
+    <ClInclude Include="includes\game_wolfet.h" />
+    <ClInclude Include="includes\game_xonotic.h" />
+    <ClInclude Include="includes\game__null.h" />
+    <ClInclude Include="includes\imagelib.h" />
+    <ClInclude Include="includes\inout.h" />
+    <ClInclude Include="includes\l_net.h" />
+    <ClInclude Include="includes\l_net_wins.h" />
+    <ClInclude Include="includes\mathlib.h" />
+    <ClInclude Include="includes\md4.h" />
+    <ClInclude Include="includes\md5lib.h" />
+    <ClInclude Include="includes\polylib.h" />
+    <ClInclude Include="includes\polyset.h" />
+    <ClInclude Include="includes\q3map2.h" />
+    <ClInclude Include="includes\qfiles.h" />
+    <ClInclude Include="includes\qthreads.h" />
+    <ClInclude Include="includes\scriplib.h" />
+    <ClInclude Include="includes\surfaceflags.h" />
+    <ClInclude Include="includes\trilib.h" />
+    <ClInclude Include="includes\unzip.h" />
+    <ClInclude Include="includes\vfs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bbox.c" />
+    <ClCompile Include="brush.c" />
+    <ClCompile Include="brush_primit.c" />
+    <ClCompile Include="bsp.c" />
+    <ClCompile Include="bspfile_abstract.c" />
+    <ClCompile Include="bspfile_ibsp.c" />
+    <ClCompile Include="bspfile_rbsp.c" />
+    <ClCompile Include="bsp_analyze.c" />
+    <ClCompile Include="bsp_info.c" />
+    <ClCompile Include="bsp_scale.c" />
+    <ClCompile Include="cmdlib.c" />
+    <ClCompile Include="convert_ase.c" />
+    <ClCompile Include="convert_bsp.c" />
+    <ClCompile Include="convert_map.c" />
+    <ClCompile Include="convert_obj.c" />
+    <ClCompile Include="ddslib.c" />
+    <ClCompile Include="decals.c" />
+    <ClCompile Include="etclib.c" />
+    <ClCompile Include="exportents.c" />
+    <ClCompile Include="facebsp.c" />
+    <ClCompile Include="filematch.c" />
+    <ClCompile Include="fixaas.c" />
+    <ClCompile Include="fog.c" />
+    <ClCompile Include="help.c" />
+    <ClCompile Include="image.c" />
+    <ClCompile Include="imagelib.c" />
+    <ClCompile Include="inout.c" />
+    <ClCompile Include="jpeg.c" />
+    <ClCompile Include="leakfile.c" />
+    <ClCompile Include="light.c" />
+    <ClCompile Include="lightmaps_ydnar.c" />
+    <ClCompile Include="light_bounce.c" />
+    <ClCompile Include="light_trace.c" />
+    <ClCompile Include="light_ydnar.c" />
+    <ClCompile Include="line.c" />
+    <ClCompile Include="l_net.c" />
+    <ClCompile Include="l_net_wins.c" />
+    <ClCompile Include="m4x4.c" />
+    <ClCompile Include="compiler.c" />
+    <ClCompile Include="map.c" />
+    <ClCompile Include="mathlib.c" />
+    <ClCompile Include="md4.c" />
+    <ClCompile Include="md5lib.c" />
+    <ClCompile Include="mesh.c" />
+    <ClCompile Include="minimap.c" />
+    <ClCompile Include="model.c" />
+    <ClCompile Include="patch.c" />
+    <ClCompile Include="path_init.c" />
+    <ClCompile Include="polylib.c" />
+    <ClCompile Include="portals.c" />
+    <ClCompile Include="prtfile.c" />
+    <ClCompile Include="ray.c" />
+    <ClCompile Include="scriplib.c" />
+    <ClCompile Include="shaders.c" />
+    <ClCompile Include="surface.c" />
+    <ClCompile Include="surface_extra.c" />
+    <ClCompile Include="surface_foliage.c" />
+    <ClCompile Include="surface_fur.c" />
+    <ClCompile Include="surface_meta.c" />
+    <ClCompile Include="threads.c" />
+    <ClCompile Include="tjunction.c" />
+    <ClCompile Include="tree.c" />
+    <ClCompile Include="trilib.c" />
+    <ClCompile Include="unzip.c" />
+    <ClCompile Include="vfs.c" />
+    <ClCompile Include="vis.c" />
+    <ClCompile Include="visflow.c" />
+    <ClCompile Include="writebsp.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0625EB54-41E0-4A37-845C-835BABB1A891}</ProjectGuid>
+    <RootNamespace>compiler</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\gtk-2.22.1_win64\include\glib-2.0;$(SolutionDir)ext\libxml2-2.9.2\include;$(SolutionDir)ext\gtk-2.22.1_win64\include\libpng14;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;$(SolutionDir)ext\zlib-1.2.11\contrib;$(SolutionDir)ext\gtk-2.22.1_win64\lib\glib-2.0\include;$(SolutionDir)ext\zlib-1.2.11;$(SolutionDir)ext\zlib-1.2.11\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\gtk-2.22.1_win64\include\glib-2.0;$(SolutionDir)ext\libxml2-2.9.2\include;$(SolutionDir)ext\gtk-2.22.1_win64\include\libpng14;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;$(SolutionDir)ext\zlib-1.2.11\contrib;$(SolutionDir)ext\gtk-2.22.1_win64\lib\glib-2.0\include;$(SolutionDir)ext\zlib-1.2.11;$(SolutionDir)ext\zlib-1.2.11\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

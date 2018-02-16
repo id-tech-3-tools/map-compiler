@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\lwo">
+      <UniqueIdentifier>{8cc5b138-bc72-4512-a5e4-1ca016e53b49}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lwo\clip.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\envelope.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\list.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\lwio.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\lwo2.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\lwob.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\pntspols.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\surface.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\vecmath.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\vmap.c">
+      <Filter>Source Files\lwo</Filter>
+    </ClCompile>
+    <ClCompile Include="picointernal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picomodel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picomodules.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_3ds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_ase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_fm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_lwo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_md2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_md3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_mdc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_ms3d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_obj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_terrain.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\picointernal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\pm_fm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\picomodel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lwo\includes\lwo2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
