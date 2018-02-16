@@ -94,8 +94,8 @@
       <DisableSpecificWarnings>4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)build\$(Configuration)\$(Platform);$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\gtk-2.22.1_win64\lib;$(SolutionDir)ext\jpeg-9\x64\Release;$(SolutionDir)ext\zlib-1.2.11\build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Ws2_32.lib;glib-2.0.lib;libpng.lib;jpeg.lib;zlibstatic.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\gtk-2.22.1_win64\lib;$(SolutionDir)ext\jpeg-9\x64\Release;$(SolutionDir)ext\zlib-1.2.11\build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Ws2_32.lib;libpng.lib;jpeg.lib;zlibstatic.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>

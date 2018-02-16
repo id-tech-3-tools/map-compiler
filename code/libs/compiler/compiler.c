@@ -35,7 +35,6 @@
 
 /* dependencies */
 #include "q3map2.h"
-#include <glib.h>
 #include "compiler.h"
 
 /*
@@ -77,7 +76,7 @@ char *Q_strncat( char *dst, size_t dlen, const char *src, size_t slen ) {
 		abort(); /* buffer overflow */
 	}
 
-	return Q_strncpyz( dst + n, src, MIN( slen, dlen - n ) );
+	return Q_strncpyz( dst + n, src, Q_min( slen, dlen - n ) );
 }
 
 /*

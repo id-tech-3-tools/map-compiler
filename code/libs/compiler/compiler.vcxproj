@@ -60,6 +60,7 @@
     <ClInclude Include="includes\mathlib.h" />
     <ClInclude Include="includes\md4.h" />
     <ClInclude Include="includes\md5lib.h" />
+    <ClInclude Include="includes\msdirent.h" />
     <ClInclude Include="includes\polylib.h" />
     <ClInclude Include="includes\polyset.h" />
     <ClInclude Include="includes\q3map2.h" />

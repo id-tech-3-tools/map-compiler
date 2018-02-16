@@ -35,8 +35,6 @@
 
 /* dependencies */
 #include "q3map2.h"
-#include <glib.h>
-
 
 
 /* -------------------------------------------------------------------------------
@@ -2121,8 +2119,8 @@ static void FindOutLightmaps( rawLightmap_t *lm, qboolean fastAllocate ){
 
 				/* if fast allocation, do not test allocation on every pixels, especially for large lightmaps */
 				if ( fastAllocate == qtrue ) {
-					xIncrement = MAX(1, lm->w / 15);
-					yIncrement = MAX(1, lm->h / 15);
+					xIncrement = Q_max(1, lm->w / 15);
+					yIncrement = Q_max(1, lm->h / 15);
 				}
 				else {
 					xIncrement = 1;

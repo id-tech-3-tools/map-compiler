@@ -168,6 +168,9 @@
     <ClInclude Include="includes\unzip.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
+    <ClInclude Include="includes\msdirent.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brush.c">

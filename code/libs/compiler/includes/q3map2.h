@@ -2576,5 +2576,8 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 #define Image_LinearFloatFromsRGBFloat( c ) ( ( ( c ) <= 0.04045f ) ? ( c ) * ( 1.0f / 12.92f ) : (float)pow( ( ( c ) + 0.055f ) * ( 1.0f / 1.055f ), 2.4f ) )
 #define Image_sRGBFloatFromLinearFloat( c ) ( ( ( c ) < 0.0031308f ) ? ( c ) * 12.92f : 1.055f * (float)pow( ( c ), 1.0f / 2.4f ) - 0.055f )
 
+#define Q_max( x, y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
+#define Q_min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
+
 /* end marker */
 #endif
