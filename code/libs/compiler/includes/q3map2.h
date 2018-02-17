@@ -2578,5 +2578,8 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 #define Q_max( x, y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
 #define Q_min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
 
+// this be gone
+unsigned char *decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size, int *width, int *height, int *actual_comps, int req_comps);
+
 /* end marker */
 #endif

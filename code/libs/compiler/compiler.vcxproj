@@ -55,6 +55,7 @@
     <ClInclude Include="includes\game__null.h" />
     <ClInclude Include="includes\imagelib.h" />
     <ClInclude Include="includes\inout.h" />
+    <ClInclude Include="includes\jpgd.h" />
     <ClInclude Include="includes\lodepng.h" />
     <ClInclude Include="includes\l_net.h" />
     <ClInclude Include="includes\l_net_wins.h" />
@@ -101,7 +102,7 @@
     <ClCompile Include="image.c" />
     <ClCompile Include="imagelib.c" />
     <ClCompile Include="inout.c" />
-    <ClCompile Include="jpeg.c" />
+    <ClCompile Include="jpgd.cpp" />
     <ClCompile Include="leakfile.c" />
     <ClCompile Include="light.c" />
     <ClCompile Include="lightmaps_ydnar.c" />
@@ -215,7 +216,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -251,7 +252,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>

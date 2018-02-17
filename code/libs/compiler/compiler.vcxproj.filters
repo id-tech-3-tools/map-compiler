@@ -174,6 +174,9 @@
     <ClInclude Include="includes\lodepng.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
+    <ClInclude Include="includes\jpgd.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brush.c">
@@ -237,9 +240,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="inout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="jpeg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="leakfile.c">
@@ -350,9 +350,6 @@
     <ClCompile Include="unzip.c">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
-    <ClCompile Include="ddslib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bbox.c">
       <Filter>Source Files\libs\mathlib</Filter>
     </ClCompile>
@@ -381,6 +378,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lodepng.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="ddslib.c">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="jpgd.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
   </ItemGroup>

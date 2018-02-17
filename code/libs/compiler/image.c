@@ -103,6 +103,23 @@ static void LoadPNGBuffer(byte *buffer, int size, byte **pixels, int *width, int
 }
 
 /*
+	LoadJPGBuff()
+	loads a jpg file buffer into a valid rgba image
+*/
+int LoadJPGBuff(void *src_buffer, int src_size, unsigned char **pic, int *width, int *height) {
+	int actual_comps = 0;
+	unsigned char *output = decompress_jpeg_image_from_memory(src_buffer, src_size, width, height, &actual_comps, 4);
+	if (output == NULL)
+	{
+		// TODO: handle actual error codes
+		*pic = "something went wrong while decoding the image";
+		return -1;
+	}
+	*pic = output;
+	return 1;
+}
+
+/*
    ImageInit()
    implicitly called by every function to set up image list
  */
