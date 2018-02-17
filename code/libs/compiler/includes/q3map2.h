@@ -82,7 +82,6 @@
 #include "qthreads.h"
 #include "inout.h"
 #include "vfs.h"
-#include "png.h"
 #include "md4.h"
 #include <stdlib.h>
 

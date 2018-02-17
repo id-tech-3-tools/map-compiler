@@ -55,6 +55,7 @@
     <ClInclude Include="includes\game__null.h" />
     <ClInclude Include="includes\imagelib.h" />
     <ClInclude Include="includes\inout.h" />
+    <ClInclude Include="includes\lodepng.h" />
     <ClInclude Include="includes\l_net.h" />
     <ClInclude Include="includes\l_net_wins.h" />
     <ClInclude Include="includes\mathlib.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="light_trace.c" />
     <ClCompile Include="light_ydnar.c" />
     <ClCompile Include="line.c" />
+    <ClCompile Include="lodepng.c" />
     <ClCompile Include="l_net.c" />
     <ClCompile Include="l_net_wins.c" />
     <ClCompile Include="m4x4.c" />
@@ -213,11 +215,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\gtk-2.22.1_win64\include\glib-2.0;$(SolutionDir)ext\libxml2-2.9.2\include;$(SolutionDir)ext\gtk-2.22.1_win64\include\libpng14;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;$(SolutionDir)ext\zlib-1.2.11\contrib;$(SolutionDir)ext\gtk-2.22.1_win64\lib\glib-2.0\include;$(SolutionDir)ext\zlib-1.2.11;$(SolutionDir)ext\zlib-1.2.11\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>
@@ -248,7 +251,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\gtk-2.22.1_win64\include\glib-2.0;$(SolutionDir)ext\libxml2-2.9.2\include;$(SolutionDir)ext\gtk-2.22.1_win64\include\libpng14;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;$(SolutionDir)ext\zlib-1.2.11\contrib;$(SolutionDir)ext\gtk-2.22.1_win64\lib\glib-2.0\include;$(SolutionDir)ext\zlib-1.2.11;$(SolutionDir)ext\zlib-1.2.11\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\libxml2-2.9.2\include;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\jpeg-9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>

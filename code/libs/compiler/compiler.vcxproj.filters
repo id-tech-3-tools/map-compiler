@@ -171,6 +171,9 @@
     <ClInclude Include="includes\msdirent.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
+    <ClInclude Include="includes\lodepng.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brush.c">
@@ -376,6 +379,9 @@
     </ClCompile>
     <ClCompile Include="compiler.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng.c">
+      <Filter>Source Files\libs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -72,6 +72,7 @@
     <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
     <TargetName>mapcompiler</TargetName>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
@@ -92,15 +93,16 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)code\libs\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\gtk-2.22.1_win64\lib;$(SolutionDir)ext\jpeg-9\x64\Release;$(SolutionDir)ext\zlib-1.2.11\build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Ws2_32.lib;libpng.lib;jpeg.lib;zlibstatic.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\jpeg-9\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Ws2_32.lib;jpeg.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <StackReserveSize>8000000</StackReserveSize>
@@ -135,10 +137,10 @@
       <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)build\$(Configuration)\$(Platform);$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\gtk-2.22.1_win64\lib;$(SolutionDir)ext\jpeg-9\x64\Release;$(SolutionDir)ext\zlib-1.2.11\build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Ws2_32.lib;glib-2.0.lib;libpng.lib;jpeg.lib;zlibstatic.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform);$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;$(SolutionDir)ext\jpeg-9\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Ws2_32.lib;jpeg.lib;libxml2_a.lib;picomodel.lib;compiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>
       </SubSystem>
       <StackReserveSize>8000000</StackReserveSize>
