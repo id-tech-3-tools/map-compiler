@@ -1626,7 +1626,7 @@ void                        MakeTreePortals( tree_t *tree );
 
 
 /* leakfile.c */
-xmlNodePtr                  LeakFile( tree_t *tree, const char *lineFilePath );
+void                  LeakFile( tree_t *tree, const char *lineFilePath );
 
 
 /* prtfile.c */

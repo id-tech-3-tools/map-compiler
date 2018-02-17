@@ -59,15 +59,15 @@
    TTimo: builds a polyline xml node
    =============
  */
-xmlNodePtr LeakFile( tree_t *tree, const char *filename ){
+void LeakFile( tree_t *tree, const char *filename ){
 	vec3_t mid;
 	FILE    *linefile;
 	node_t  *node;
 	int count;
-	xmlNodePtr xml_node, point;
+	//xmlNodePtr xml_node, point;
 
 	if ( !tree->outside_node.occupied ) {
-		return NULL;
+		return;
 	}
 
 	Sys_FPrintf( SYS_VRB,"--- LeakFile ---\n" );
@@ -80,7 +80,7 @@ xmlNodePtr LeakFile( tree_t *tree, const char *filename ){
 		Error( "Couldn't open %s\n", filename );
 	}
 
-	xml_node = xmlNewNode( NULL, (xmlChar*)"polyline" );
+	//xml_node = xmlNewNode( NULL, (xmlChar*)"polyline" );
 
 	count = 0;
 	node = &tree->outside_node;
@@ -106,19 +106,19 @@ xmlNodePtr LeakFile( tree_t *tree, const char *filename ){
 		node = nextnode;
 		WindingCenter( nextportal->winding, mid );
 		fprintf( linefile, "%f %f %f\n", mid[0], mid[1], mid[2] );
-		point = xml_NodeForVec( mid );
-		xmlAddChild( xml_node, point );
+		// point = xml_NodeForVec( mid );
+		// xmlAddChild( xml_node, point );
 		count++;
 	}
 	// add the occupant center
 	GetVectorForKey( node->occupant, "origin", mid );
 
 	fprintf( linefile, "%f %f %f\n", mid[0], mid[1], mid[2] );
-	point = xml_NodeForVec( mid );
-	xmlAddChild( xml_node, point );
+	//point = xml_NodeForVec( mid );
+	//xmlAddChild( xml_node, point );
 	Sys_FPrintf( SYS_VRB, "%9d point linefile\n", count + 1 );
 
 	fclose( linefile );
 
-	return xml_node;
+	// return xml_node;
 }
