@@ -18,74 +18,74 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lwo\clip.c">
+    <ClCompile Include="picointernal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picomodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picomodules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_3ds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_ase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_fm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_lwo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_md2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_md3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_mdc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_ms3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pm_terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lwo\clip.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\envelope.c">
+    <ClCompile Include="lwo\envelope.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\list.c">
+    <ClCompile Include="lwo\list.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\lwio.c">
+    <ClCompile Include="lwo\lwio.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\lwo2.c">
+    <ClCompile Include="lwo\lwo2.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\lwob.c">
+    <ClCompile Include="lwo\lwob.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\pntspols.c">
+    <ClCompile Include="lwo\pntspols.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\surface.c">
+    <ClCompile Include="lwo\surface.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\vecmath.c">
+    <ClCompile Include="lwo\vecmath.cpp">
       <Filter>Source Files\lwo</Filter>
     </ClCompile>
-    <ClCompile Include="lwo\vmap.c">
+    <ClCompile Include="lwo\vmap.cpp">
       <Filter>Source Files\lwo</Filter>
-    </ClCompile>
-    <ClCompile Include="picointernal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="picomodel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="picomodules.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_3ds.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_ase.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_fm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_lwo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_md2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_md3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_mdc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_ms3d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_obj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pm_terrain.c">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

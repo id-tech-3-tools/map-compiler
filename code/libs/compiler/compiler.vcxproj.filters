@@ -179,212 +179,212 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="brush.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="brush_primit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bsp_analyze.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bsp_info.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bsp_scale.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bspfile_abstract.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bspfile_ibsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bspfile_rbsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="convert_ase.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="convert_bsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="convert_map.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="convert_obj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="decals.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exportents.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="facebsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fixaas.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fog.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="help.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="image.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leakfile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="light.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="light_bounce.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="light_trace.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="light_ydnar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lightmaps_ydnar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="map.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="minimap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="model.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="patch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="path_init.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="portals.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prtfile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shaders.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_extra.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_foliage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_fur.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_meta.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="threads.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tjunction.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vis.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="visflow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="writebsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cmdlib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="etclib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="imagelib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="polylib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="trilib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="md5lib.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="md4.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="vfs.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="filematch.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="unzip.c">
-      <Filter>Source Files\libs</Filter>
-    </ClCompile>
-    <ClCompile Include="bbox.c">
-      <Filter>Source Files\libs\mathlib</Filter>
-    </ClCompile>
-    <ClCompile Include="line.c">
-      <Filter>Source Files\libs\mathlib</Filter>
-    </ClCompile>
-    <ClCompile Include="m4x4.c">
-      <Filter>Source Files\libs\mathlib</Filter>
-    </ClCompile>
-    <ClCompile Include="mathlib.c">
-      <Filter>Source Files\libs\mathlib</Filter>
-    </ClCompile>
-    <ClCompile Include="ray.c">
-      <Filter>Source Files\libs\mathlib</Filter>
-    </ClCompile>
-    <ClCompile Include="l_net.c">
+    <ClCompile Include="l_net.cpp">
       <Filter>Source Files\libs\l_net</Filter>
     </ClCompile>
-    <ClCompile Include="l_net_wins.c">
+    <ClCompile Include="l_net_wins.cpp">
       <Filter>Source Files\libs\l_net</Filter>
     </ClCompile>
-    <ClCompile Include="scriplib.c">
+    <ClCompile Include="line.cpp">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="m4x4.cpp">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="mathlib.cpp">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="ray.cpp">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="bbox.cpp">
+      <Filter>Source Files\libs\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="md4.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
-    <ClCompile Include="compiler.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lodepng.c">
+    <ClCompile Include="md5lib.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
-    <ClCompile Include="ddslib.c">
+    <ClCompile Include="polylib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="scriplib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="trilib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="unzip.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="vfs.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="cmdlib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="ddslib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="etclib.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="filematch.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="imagelib.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
     <ClCompile Include="jpgd.cpp">
       <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng.cpp">
+      <Filter>Source Files\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minimap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="patch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="path_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="portals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prtfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_extra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_foliage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_fur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_meta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="threads.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tjunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="visflow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writebsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="brush.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="brush_primit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_analyze.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_info.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsp_scale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_abstract.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_ibsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bspfile_rbsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_ase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_bsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convert_obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exportents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="facebsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fixaas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="help.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leakfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_bounce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_trace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light_ydnar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lightmaps_ydnar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

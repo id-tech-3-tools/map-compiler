@@ -3170,11 +3170,3 @@ unsigned char *decompress_jpeg_image_from_file(const char *pSrc_filename, int *w
 }
 
 } // namespace jpgd
-
-// this be gone
-extern "C" {
-	unsigned char *decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size, int *width, int *height, int *actual_comps, int req_comps)
-	{
-		return jpgd::decompress_jpeg_image_from_memory(pSrc_data, src_data_size, width, height, actual_comps, req_comps);
-	}
-}

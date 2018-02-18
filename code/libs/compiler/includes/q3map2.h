@@ -1001,27 +1001,6 @@ typedef enum
 }
 surfaceType_t;
 
-char            *surfaceTypes[ NUM_SURFACE_TYPES ]
-#ifndef MAIN_C
-;
-#else
-	=
-	{
-	"SURFACE_BAD",
-	"SURFACE_FACE",
-	"SURFACE_PATCH",
-	"SURFACE_TRIANGLES",
-	"SURFACE_FLARE",
-	"SURFACE_FOLIAGE",
-	"SURFACE_FORCED_META",
-	"SURFACE_META",
-	"SURFACE_FOGHULL",
-	"SURFACE_DECAL",
-	"SURFACE_SHADER"
-	};
-#endif
-
-
 /* ydnar: this struct needs an overhaul (again, heh) */
 typedef struct mapDrawSurface_s
 {
@@ -2017,6 +1996,25 @@ Q_EXTERN qboolean warnImage Q_ASSIGN( qtrue );
 /* ydnar: sinusoid samples */
 Q_EXTERN float jitters[ MAX_JITTERS ];
 
+Q_EXTERN char *surfaceTypes[NUM_SURFACE_TYPES]
+#ifndef MAIN_C
+;
+#else
+=
+{
+	"SURFACE_BAD",
+	"SURFACE_FACE",
+	"SURFACE_PATCH",
+	"SURFACE_TRIANGLES",
+	"SURFACE_FLARE",
+	"SURFACE_FOLIAGE",
+	"SURFACE_FORCED_META",
+	"SURFACE_META",
+	"SURFACE_FOGHULL",
+	"SURFACE_DECAL",
+	"SURFACE_SHADER"
+};
+#endif
 
 /* commandline arguments */
 Q_EXTERN qboolean verbose;
@@ -2104,8 +2102,8 @@ Q_EXTERN char name[ 1024 ];
 Q_EXTERN char source[ 1024 ];
 Q_EXTERN char outbase[ 32 ];
 
-Q_EXTERN int sampleSize;                                    /* lightmap sample size in units */
-Q_EXTERN int minSampleSize;                                 /* minimum sample size to use at all */
+//Q_EXTERN int sampleSize;                                    /* lightmap sample size in units */
+//Q_EXTERN int minSampleSize;                                 /* minimum sample size to use at all */
 Q_EXTERN int sampleScale;                                   /* vortex: lightmap sample scale (ie quality)*/
 
 Q_EXTERN int mapEntityNum Q_ASSIGN( 0 );
@@ -2322,7 +2320,7 @@ Q_EXTERN float gridScale Q_ASSIGN( 1.0f );
 Q_EXTERN float gridAmbientScale Q_ASSIGN( 1.0f );
 Q_EXTERN float gridDirectionality Q_ASSIGN( 1.0f );
 Q_EXTERN float gridAmbientDirectionality Q_ASSIGN( 0.0f );
-Q_EXTERN qboolean inGrid Q_ASSIGN( 0 );
+Q_EXTERN qboolean inGrid Q_ASSIGN( qfalse );
 
 /* ydnar: lightmap gamma/compensation */
 Q_EXTERN float lightmapGamma Q_ASSIGN( 1.0f );
@@ -2550,7 +2548,7 @@ Q_EXTERN bspFog_t bspFogs[ MAX_MAP_FOGS ];
 Q_EXTERN int numBSPAds Q_ASSIGN( 0 );
 Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 
-#define AUTOEXPAND_BY_REALLOC( ptr, reqitem, allocated, def ) \
+#define AUTOEXPAND_BY_REALLOC( T, ptr, reqitem, allocated, def ) \
 	do \
 	{ \
 		if ( reqitem >= allocated )	\
@@ -2563,14 +2561,14 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 			{ \
 				Error( #ptr " over 2 GB" ); \
 			} \
-			ptr = realloc( ptr, sizeof( *ptr ) * allocated ); \
+			ptr = static_cast<T*>(realloc( ptr, sizeof( *ptr ) * allocated )); \
 			if ( !ptr ) { \
 				Error( #ptr " out of memory" ); } \
 		} \
 	} \
 	while ( 0 )
 
-#define AUTOEXPAND_BY_REALLOC_BSP( suffix, def ) AUTOEXPAND_BY_REALLOC( bsp##suffix, numBSP##suffix, allocatedBSP##suffix, def )
+#define AUTOEXPAND_BY_REALLOC_BSP( T, suffix, def ) AUTOEXPAND_BY_REALLOC( T, bsp##suffix, numBSP##suffix, allocatedBSP##suffix, def )
 
 #define Image_LinearFloatFromsRGBFloat( c ) ( ( ( c ) <= 0.04045f ) ? ( c ) * ( 1.0f / 12.92f ) : (float)pow( ( ( c ) + 0.055f ) * ( 1.0f / 1.055f ), 2.4f ) )
 #define Image_sRGBFloatFromLinearFloat( c ) ( ( ( c ) < 0.0031308f ) ? ( c ) * 12.92f : 1.055f * (float)pow( ( c ), 1.0f / 2.4f ) - 0.055f )

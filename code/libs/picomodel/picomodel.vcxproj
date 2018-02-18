@@ -124,29 +124,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lwo\clip.c" />
-    <ClCompile Include="lwo\envelope.c" />
-    <ClCompile Include="lwo\list.c" />
-    <ClCompile Include="lwo\lwio.c" />
-    <ClCompile Include="lwo\lwo2.c" />
-    <ClCompile Include="lwo\lwob.c" />
-    <ClCompile Include="lwo\pntspols.c" />
-    <ClCompile Include="lwo\surface.c" />
-    <ClCompile Include="lwo\vecmath.c" />
-    <ClCompile Include="lwo\vmap.c" />
-    <ClCompile Include="picointernal.c" />
-    <ClCompile Include="picomodel.c" />
-    <ClCompile Include="picomodules.c" />
-    <ClCompile Include="pm_3ds.c" />
-    <ClCompile Include="pm_ase.c" />
-    <ClCompile Include="pm_fm.c" />
-    <ClCompile Include="pm_lwo.c" />
-    <ClCompile Include="pm_md2.c" />
-    <ClCompile Include="pm_md3.c" />
-    <ClCompile Include="pm_mdc.c" />
-    <ClCompile Include="pm_ms3d.c" />
-    <ClCompile Include="pm_obj.c" />
-    <ClCompile Include="pm_terrain.c" />
+    <ClCompile Include="lwo\clip.cpp" />
+    <ClCompile Include="lwo\envelope.cpp" />
+    <ClCompile Include="lwo\list.cpp" />
+    <ClCompile Include="lwo\lwio.cpp" />
+    <ClCompile Include="lwo\lwo2.cpp" />
+    <ClCompile Include="lwo\lwob.cpp" />
+    <ClCompile Include="lwo\pntspols.cpp" />
+    <ClCompile Include="lwo\surface.cpp" />
+    <ClCompile Include="lwo\vecmath.cpp" />
+    <ClCompile Include="lwo\vmap.cpp" />
+    <ClCompile Include="picointernal.cpp" />
+    <ClCompile Include="picomodel.cpp" />
+    <ClCompile Include="picomodules.cpp" />
+    <ClCompile Include="pm_3ds.cpp" />
+    <ClCompile Include="pm_ase.cpp" />
+    <ClCompile Include="pm_fm.cpp" />
+    <ClCompile Include="pm_lwo.cpp" />
+    <ClCompile Include="pm_md2.cpp" />
+    <ClCompile Include="pm_md3.cpp" />
+    <ClCompile Include="pm_mdc.cpp" />
+    <ClCompile Include="pm_ms3d.cpp" />
+    <ClCompile Include="pm_obj.cpp" />
+    <ClCompile Include="pm_terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\picomodel.h" />

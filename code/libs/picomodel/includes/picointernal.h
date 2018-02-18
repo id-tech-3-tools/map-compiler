@@ -40,12 +40,6 @@
 
 #include "globaldefs.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-
 /* dependencies */
 #include <stdio.h>
 #include <stdlib.h>
@@ -200,9 +194,16 @@ long            _pico_memstream_tell( picoMemStream_t *s );
 #define         _pico_memstream_eof( _pico_memstream )      ( ( _pico_memstream )->flag & PICO_IOEOF )
 #define         _pico_memstream_error( _pico_memstream )    ( ( _pico_memstream )->flag & PICO_IOERR )
 
-/* end marker */
-#ifdef __cplusplus
-}
-#endif
+/* external modules */
+extern const picoModule_t picoModuleMD3;
+extern const picoModule_t picoModule3DS;
+extern const picoModule_t picoModuleASE;
+extern const picoModule_t picoModuleOBJ;
+extern const picoModule_t picoModuleMS3D;
+extern const picoModule_t picoModuleMDC;
+extern const picoModule_t picoModuleMD2;
+extern const picoModule_t picoModuleFM;
+extern const picoModule_t picoModuleLWO;
+extern const picoModule_t picoModuleTerrain;
 
 #endif
