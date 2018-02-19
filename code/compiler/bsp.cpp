@@ -355,6 +355,12 @@ void ProcessWorldModel( const char *portalFilePath, const char *lineFilePath ){
 			Sys_Printf( "--- MAP LEAKED, ABORTING LEAKTEST ---\n" );
 			exit( 0 );
 		}
+
+		if (leakStatus == FLOODENTITIES_EMPTY)
+		{
+			/* chop the sides to the convex hull of their visible fragments, giving us the smallest polygons */
+			ClipSidesIntoTree(e, tree);
+		}
 	}
 
 	if ( leakStatus != FLOODENTITIES_EMPTY ) { /* if no entities exist, this would accidentally the whole map, and that IS bad */
