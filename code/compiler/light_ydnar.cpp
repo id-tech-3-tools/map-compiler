@@ -2557,7 +2557,7 @@ void IlluminateRawLightmap( int rawLightmapNum ){
 	FreeTraceLights( &trace );
 
 	/* floodlight pass */
-	if ( floodlighty ) {
+	if ( g_floodlight ) {
 		FloodlightIlluminateLightmap( lm );
 	}
 
@@ -2881,7 +2881,7 @@ void IlluminateVertexes( int num ){
 					/* jal: floodlight */
 					floodLightAmount = 0.0f;
 					VectorClear( floodColor );
-					if ( floodlighty && !bouncing ) {
+					if ( g_floodlight && !bouncing ) {
 						floodLightAmount = floodlightIntensity * FloodLightForSample( &trace, floodlightDistance, floodlight_lowquality );
 						VectorScale( floodlightRGB, floodLightAmount, floodColor );
 					}
@@ -2946,7 +2946,7 @@ void IlluminateVertexes( int num ){
 								/* jal: floodlight */
 								floodLightAmount = 0.0f;
 								VectorClear( floodColor );
-								if ( floodlighty && !bouncing ) {
+								if ( g_floodlight && !bouncing ) {
 									floodLightAmount = floodlightIntensity * FloodLightForSample( &trace, floodlightDistance, floodlight_lowquality );
 									VectorScale( floodlightRGB, floodLightAmount, floodColor );
 								}
@@ -4160,7 +4160,7 @@ void SetupFloodLight( void ){
 		floodlightIntensity = v5;
 		floodlightDirectionScale = v6;
 
-		floodlighty = qtrue;
+		g_floodlight = qtrue;
 		Sys_Printf( "FloodLighting enabled via worldspawn _floodlight key.\n" );
 	}
 	else
@@ -4446,7 +4446,7 @@ void FloodLightRawLightmap( int rawLightmapNum ){
 	lm = &rawLightmaps[ rawLightmapNum ];
 
 	/* global pass */
-	if ( floodlighty && floodlightIntensity ) {
+	if ( g_floodlight && floodlightIntensity ) {
 		FloodLightRawLightmapPass( lm, floodlightRGB, floodlightIntensity, floodlightDistance, floodlight_lowquality, floodlightDirectionScale );
 	}
 
@@ -4458,6 +4458,11 @@ void FloodLightRawLightmap( int rawLightmapNum ){
 }
 
 void FloodlightRawLightmaps(){
+	if (g_noFloodLight)
+	{
+		return;
+	}
+
 	Sys_Printf( "--- FloodlightRawLightmap ---\n" );
 	numSurfacesFloodlighten = 0;
 	RunThreadsOnIndividual( numRawLightmaps, qtrue, FloodLightRawLightmap );
@@ -4474,6 +4479,13 @@ void FloodlightIlluminateLightmap( rawLightmap_t *lm ){
 	int                 *cluster;
 	float brightness;
 	int x, y, lightmapNum;
+	bool isStyleLight;
+	float len, falloff, strength = 0.8f;
+
+	if (g_noFloodLight)
+	{
+		return;
+	}
 
 	/* walk lightmaps */
 	for ( lightmapNum = 0; lightmapNum < MAX_LIGHTMAPS; lightmapNum++ )
@@ -4481,6 +4493,13 @@ void FloodlightIlluminateLightmap( rawLightmap_t *lm ){
 		/* early out */
 		if ( lm->superLuxels[ lightmapNum ] == NULL ) {
 			continue;
+		}
+
+		isStyleLight = (lm->styles[lightmapNum] != LS_NORMAL && lm->styles[lightmapNum] != LS_NONE);
+
+		if (isStyleLight && g_noFloodStyles)
+		{
+				continue;
 		}
 
 		/* apply floodlight to each luxel */
@@ -4505,6 +4524,13 @@ void FloodlightIlluminateLightmap( rawLightmap_t *lm ){
 				/* get particulars */
 				luxel = SUPER_LUXEL( lightmapNum, x, y );
 				deluxel = SUPER_DELUXEL( x, y );
+
+				if (isStyleLight)
+				{
+					len = VectorLength(luxel);
+					falloff = len > 0.f ? 1 - (len / (pow(len, 2) * strength)) : 0.f;
+					VectorScale(floodlight, falloff, floodlight);
+				}
 
 				/* add to lightmap */
 				luxel[0] += floodlight[0];
