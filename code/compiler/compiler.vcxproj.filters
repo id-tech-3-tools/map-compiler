@@ -168,13 +168,13 @@
     <ClInclude Include="includes\unzip.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
-    <ClInclude Include="includes\msdirent.h">
-      <Filter>Header Files\libs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\ext\jpeg-compressor\jpgd.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ext\lodepng\lodepng.h">
+      <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ext\msdirent\msdirent.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
   </ItemGroup>

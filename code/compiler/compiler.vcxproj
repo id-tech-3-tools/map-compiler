@@ -26,6 +26,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\ext\jpeg-compressor\jpgd.h" />
     <ClInclude Include="..\..\ext\lodepng\lodepng.h" />
+    <ClInclude Include="..\..\ext\msdirent\msdirent.h" />
     <ClInclude Include="..\common\bytebool.h" />
     <ClInclude Include="..\common\compiler.h" />
     <ClInclude Include="..\common\globaldefs.h" />
@@ -62,7 +63,6 @@
     <ClInclude Include="includes\mathlib.h" />
     <ClInclude Include="includes\md4.h" />
     <ClInclude Include="includes\md5lib.h" />
-    <ClInclude Include="includes\msdirent.h" />
     <ClInclude Include="includes\polylib.h" />
     <ClInclude Include="includes\polyset.h" />
     <ClInclude Include="includes\q3map2.h" />
@@ -216,7 +216,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -252,7 +252,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
