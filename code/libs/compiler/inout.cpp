@@ -41,7 +41,6 @@
 
 // network broadcasting
 #include "l_net.h"
-// #include "libxml/tree.h"
 
 #if GDEF_OS_WINDOWS
 HWND hwndOut = NULL;
@@ -51,8 +50,6 @@ UINT wm_BroadcastCommand = -1;
 
 socket_t *brdcst_socket;
 netmessage_t msg;
-
-static qboolean verbose = qfalse;
 
 // our main document
 // is streamed through the network to Radiant

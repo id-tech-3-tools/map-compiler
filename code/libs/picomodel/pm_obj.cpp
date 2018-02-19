@@ -383,27 +383,27 @@ static int _obj_mtl_load( picoModel_t *model ){
 
 			/* assume 0..2048 range */
 			if ( value > 1000 ) {
-				value = 128.0 * ( value / 2048.0 );
+				value = 128.0f * ( value / 2048.0f );
 			}
 			/* assume 0..1000 range */
 			else if ( value > 200 ) {
-				value = 128.0 * ( value / 1000.0 );
+				value = 128.0f * ( value / 1000.0f );
 			}
 			/* assume 0..200 range */
 			else if ( value > 100 ) {
-				value = 128.0 * ( value / 200.0 );
+				value = 128.0f * ( value / 200.0f );
 			}
 			/* assume 0..100 range */
 			else if ( value > 1 ) {
-				value = 128.0 * ( value / 100.0 );
+				value = 128.0f * ( value / 100.0f );
 			}
 			/* assume 0..1 range */
 			else {
-				value *= 128.0;
+				value *= 128.0f;
 			}
 			/* negative shininess is bad (yes, i have seen it...) */
-			if ( value < 0.0 ) {
-				value = 0.0;
+			if ( value < 0.0f ) {
+				value = 0.0f;
 			}
 
 			/* set the pico shininess value in range 0..127 */

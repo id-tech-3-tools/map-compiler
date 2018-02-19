@@ -18,21 +18,11 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-#ifndef __MATHLIB__
-#define __MATHLIB__
+#pragma once
 
 // mathlib.h
 #include <math.h>
 #include <float.h>
-
-#ifdef __cplusplus
-
-// start declarations of functions defined in C library.
-extern "C"
-{
-
-#endif
 
 #include "bytebool.h"
 
@@ -475,9 +465,3 @@ vec_accu_t Q_rintAccu( vec_accu_t val );
 void VectorCopyAccuToRegular( const vec3_accu_t in, vec3_t out );
 void VectorCopyRegularToAccu( const vec3_t in, vec3_accu_t out );
 vec_accu_t VectorNormalizeAccu( const vec3_accu_t in, vec3_accu_t out );
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __MATHLIB__ */

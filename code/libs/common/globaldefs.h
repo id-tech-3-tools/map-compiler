@@ -1,5 +1,4 @@
-#ifndef INCLUDED_LIBS_GLOBALDEFS
-#define INCLUDED_LIBS_GLOBALDEFS
+#pragma once
 
 // ARCH_ENDIAN
 
@@ -120,6 +119,4 @@
 #undef GDEF_DEBUG
 #define GDEF_DEBUG 1
 #endif
-#endif
-
 #endif

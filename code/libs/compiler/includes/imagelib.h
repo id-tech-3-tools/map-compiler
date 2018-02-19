@@ -18,9 +18,9 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#pragma once
 
 // piclib.h
-
 
 void LoadLBM( const char *filename, byte **picture, byte **palette );
 void WriteLBMfile( const char *filename, byte *data, int width, int height

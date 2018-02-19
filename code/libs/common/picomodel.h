@@ -31,21 +31,9 @@
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    ----------------------------------------------------------------------------- */
-
-
-
-/* marker */
-#ifndef PICOMODEL_H
-#define PICOMODEL_H
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
+#pragma once
 
 #include <stddef.h>
-
-
 
 /* version */
 #define PICOMODEL_VERSION       "0.8.20"
@@ -342,10 +330,3 @@ int                         PicoRemapModel( picoModel_t *model, char *remapFile 
 
 
 void PicoAddTriangleToModel( picoModel_t *model, picoVec3_t** xyz, picoVec3_t** normals, int numSTs, picoVec2_t **st, int numColors, picoColor_t **colors, picoShader_t* shader, const char *name, picoIndex_t* smoothingGroup );
-
-/* end marker */
-#ifdef __cplusplus
-}
-#endif
-
-#endif

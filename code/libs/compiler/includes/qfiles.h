@@ -18,9 +18,7 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-#ifndef __QFILES_H__
-#define __QFILES_H__
+#pragma once
 
 //
 // qfiles.h: quake file formats
@@ -484,6 +482,3 @@ typedef struct {
 	int patchWidth;
 	int patchHeight;
 } dsurface_t;
-
-
-#endif

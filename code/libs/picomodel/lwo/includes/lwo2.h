@@ -6,11 +6,10 @@
 
    Ernie Wright  17 Sep 00
    ====================================================================== */
-
-#ifndef LWO2_H
-#define LWO2_H
+#pragma once
 
 #include "globaldefs.h"
+#include "picointernal.h"
 
 /* chunk and subchunk IDs */
 
@@ -648,6 +647,4 @@ char *sgetS0( unsigned char **bp );
 void revbytes( void *bp, int elsize, int elcount );
 #else
   #define revbytes( b, s, c )
-#endif
-
 #endif

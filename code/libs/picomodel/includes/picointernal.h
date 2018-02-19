@@ -31,12 +31,7 @@
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    ----------------------------------------------------------------------------- */
-
-
-
-/* marker */
-#ifndef PICOINTERNAL_H
-#define PICOINTERNAL_H
+#pragma once
 
 #include "globaldefs.h"
 
@@ -205,5 +200,3 @@ extern const picoModule_t picoModuleMD2;
 extern const picoModule_t picoModuleFM;
 extern const picoModule_t picoModuleLWO;
 extern const picoModule_t picoModuleTerrain;
-
-#endif

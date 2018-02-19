@@ -18,15 +18,12 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#pragma once
 
 // scriplib.h
 
-#ifndef __CMDLIB__
-#include "../common/cmdlib.h"
-#endif
-#ifndef __MATHLIB__
+#include "cmdlib.h"
 #include "mathlib.h"
-#endif
 
 #define MAXTOKEN    1024
 

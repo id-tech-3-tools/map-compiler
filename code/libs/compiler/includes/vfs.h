@@ -27,9 +27,7 @@
    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#ifndef _VFS_H_
-#define _VFS_H_
+#pragma once
 
 #include "globaldefs.h"
 
@@ -54,5 +52,3 @@ int vfsLoadFile( const char *filename, void **buffer, int index );
 
 extern char g_strForbiddenDirs[VFS_MAXDIRS][PATH_MAX + 1];
 extern int g_numForbiddenDirs;
-
-#endif // _VFS_H_

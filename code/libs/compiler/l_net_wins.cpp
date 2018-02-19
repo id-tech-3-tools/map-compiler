@@ -290,7 +290,7 @@ void WINS_Shutdown( void ){
 // Changes Globals:		-
 //===========================================================================
 int WINS_OpenSocket( int port ){
-	int newsocket;
+	SOCKET newsocket;
 	struct sockaddr_in address;
 	u_long _true = 1;
 
@@ -315,7 +315,7 @@ int WINS_OpenSocket( int port ){
 		return -1;
 	} //end if
 
-	return newsocket;
+	return static_cast<int>(newsocket);
 } //end of the function WINS_OpenSocket
 //===========================================================================
 //
@@ -324,7 +324,7 @@ int WINS_OpenSocket( int port ){
 // Changes Globals:		-
 //===========================================================================
 int WINS_OpenReliableSocket( int port ){
-	int newsocket;
+	SOCKET newsocket;
 	struct sockaddr_in address;
 	BOOL _true = 0xFFFFFFFF;
 
@@ -351,7 +351,7 @@ int WINS_OpenReliableSocket( int port ){
 		WinPrint( "setsockopt error\n" );
 	} //end if
 
-	return newsocket;
+	return static_cast<int>(newsocket);
 } //end of the function WINS_OpenReliableSocket
 //===========================================================================
 //
@@ -380,7 +380,7 @@ int WINS_Listen( int socket ){
 //===========================================================================
 int WINS_Accept( int socket, struct sockaddr_s *addr ){
 	int addrlen = sizeof( struct sockaddr_s );
-	int newsocket;
+	SOCKET newsocket;
 	BOOL _true = 1;
 
 	newsocket = accept( socket, (struct sockaddr *)addr, &addrlen );
@@ -396,7 +396,7 @@ int WINS_Accept( int socket, struct sockaddr_s *addr ){
 		WinPrint( "WINS_Accept: %s\n", WINS_ErrorMessage( WSAGetLastError() ) );
 		WinPrint( "setsockopt error\n" );
 	} //end if
-	return newsocket;
+	return static_cast<int>(newsocket);
 } //end of the function WINS_Accept
 //===========================================================================
 //

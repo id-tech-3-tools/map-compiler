@@ -1265,7 +1265,7 @@ int _pico_memstream_read( picoMemStream_t *s, void *buffer, int len ){
 
 	if ( s->curPos + len > s->buffer + s->bufSize ) {
 		s->flag |= PICO_IOEOF;
-		len = s->buffer + s->bufSize - s->curPos;
+		len = static_cast<int>(s->buffer + s->bufSize - s->curPos);
 		ret = 0;
 	}
 
@@ -1307,7 +1307,7 @@ int _pico_memstream_seek( picoMemStream_t *s, long offset, int origin ){
 
 	if ( origin == PICO_SEEK_SET ) {
 		s->curPos = s->buffer + offset;
-		overflow = s->curPos - ( s->buffer + s->bufSize );
+		overflow = static_cast<int>(s->curPos - ( s->buffer + s->bufSize ));
 		if ( overflow > 0 ) {
 			s->curPos = s->buffer + s->bufSize;
 			return offset - overflow;
@@ -1316,7 +1316,7 @@ int _pico_memstream_seek( picoMemStream_t *s, long offset, int origin ){
 	}
 	else if ( origin == PICO_SEEK_CUR ) {
 		s->curPos += offset;
-		overflow = s->curPos - ( s->buffer + s->bufSize );
+		overflow = static_cast<int>(s->curPos - ( s->buffer + s->bufSize ));
 		if ( overflow > 0 ) {
 			s->curPos = s->buffer + s->bufSize;
 			return offset - overflow;
@@ -1325,7 +1325,7 @@ int _pico_memstream_seek( picoMemStream_t *s, long offset, int origin ){
 	}
 	else if ( origin == PICO_SEEK_END ) {
 		s->curPos = ( s->buffer + s->bufSize ) - offset;
-		overflow = s->buffer - s->curPos;
+		overflow = static_cast<int>(s->buffer - s->curPos);
 		if ( overflow > 0 ) {
 			s->curPos = s->buffer;
 			return offset - overflow;
@@ -1345,5 +1345,5 @@ long _pico_memstream_tell( picoMemStream_t *s ){
 		return -1;
 	}
 
-	return s->curPos - s->buffer;
+	return static_cast<long>(s->curPos - s->buffer);
 }

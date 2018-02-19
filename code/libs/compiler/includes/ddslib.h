@@ -34,28 +34,11 @@
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    ----------------------------------------------------------------------------- */
-
-
-
-/* marker */
-#ifndef DDSLIB_H
-#define DDSLIB_H
-
-
+#pragma once
 
 /* dependencies */
 #include <stdio.h>
 #include <memory.h>
-
-
-
-/* c++ marker */
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-
 
 /* dds definition */
 typedef enum
@@ -234,17 +217,6 @@ typedef struct ddsColor_s
 }
 ddsColor_t;
 
-
-
 /* public functions */
 int                     DDSGetInfo( ddsBuffer_t *dds, int *width, int *height, ddsPF_t *pf );
 int                     DDSDecompress( ddsBuffer_t *dds, unsigned char *pixels );
-
-
-
-/* end marker */
-#ifdef __cplusplus
-}
-#endif
-
-#endif

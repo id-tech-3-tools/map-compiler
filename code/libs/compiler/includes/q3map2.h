@@ -25,26 +25,13 @@
    several games based on the Quake III Arena engine, in the form of "Q3Map2."
 
    ------------------------------------------------------------------------------- */
-
-
-
-/* marker */
-#ifndef Q3MAP2_H
-#define Q3MAP2_H
+#pragma once
 
 /* version */
 #define Q3MAP_VERSION   "2.5.17ry"
-
-#include "globaldefs.h"
-
-/* version */
-#ifndef Q3MAP_VERSION
-#error no Q3MAP_VERSION defined
-#endif
 #define Q3MAP_MOTD      "Your map saw the pretty lights from q3map2's BFG"
 
-
-
+#include "globaldefs.h"
 
 /* -------------------------------------------------------------------------------
 
@@ -2578,6 +2565,3 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 
 // this be gone
 unsigned char *decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size, int *width, int *height, int *actual_comps, int req_comps);
-
-/* end marker */
-#endif

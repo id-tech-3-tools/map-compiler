@@ -18,7 +18,9 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#pragma once
 
+#include "bytebool.h"
 
 extern int numthreads;
 

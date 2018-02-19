@@ -40,12 +40,9 @@
     By Chris Burke
     serotonin@earthlink.net
  */
-
-#ifndef __PM_FM_H__
-#define __PM_FM_H__
+#pragma once
 
 #include "picointernal.h"
-
 
 //
 //	Absolute limits (from QData / QMView source)
@@ -363,5 +360,3 @@ float fm_normals[FM_NUMVERTEXNORMALS][3] = {
 	{-0.587785f, -0.425325f, -0.688191f},
 	{-0.688191f, -0.587785f, -0.425325f},
 };
-
-#endif

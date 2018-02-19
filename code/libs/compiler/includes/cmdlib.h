@@ -18,11 +18,9 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#pragma once
 
 // cmdlib.h
-
-#ifndef __CMDLIB__
-#define __CMDLIB__
 
 #include "bytebool.h"
 #include "globaldefs.h"
@@ -158,6 +156,3 @@ typedef struct
 	void    *data;
 	int count, width, height;
 } cblock_t;
-
-
-#endif

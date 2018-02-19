@@ -18,9 +18,9 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#pragma once
 
-#ifndef __POLYSET_H__
-#define __POLYSET_H__
+#include "mathlib.h"
 
 #define POLYSET_MAXTRIANGLES    4096
 #define POLYSET_MAXPOLYSETS     64
@@ -47,5 +47,3 @@ polyset_t *Polyset_CollapseSets( polyset_t *psets, int numpolysets );
 polyset_t *Polyset_SplitSets( polyset_t *psets, int numpolysets, int *pNumNewPolysets, int maxTris );
 void Polyset_SnapSets( polyset_t *psets, int numpolysets );
 void Polyset_ComputeNormals( polyset_t *psets, int numpolysets );
-
-#endif

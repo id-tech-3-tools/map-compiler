@@ -18,9 +18,7 @@
    along with GtkRadiant; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
-#ifndef __INOUT__
-#define __INOUT__
+#pragma once
 
 #include "globaldefs.h"
 // inout is the only stuff relying on xml, include the headers there
@@ -58,6 +56,4 @@ void Sys_FPrintf( int flag, const char *text, ... );
 
 #ifdef DBG_XML
 void DumpXML();
-#endif
-
 #endif

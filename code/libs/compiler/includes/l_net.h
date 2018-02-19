@@ -32,12 +32,10 @@
 //++timo FIXME: the l_net code understands that as the max size for the netmessage_s structure
 //  we have defined unsigned char data[MAX_NETMESSAGE] in netmessage_s but actually it cannot be filled completely
 //  we need to introduce a new #define and adapt to data[MAX_NETBUFFER]
+#pragma once
+
 #define MAX_NETMESSAGE      1024
 #define MAX_NETADDRESS      32
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include "bytebool.h"
 
@@ -117,7 +115,3 @@ char *NMSG_ReadString( netmessage_t *msg );
 
 //++timo FIXME: the WINS_ things are not necessary, they can be made portable arther easily
 const char *WINS_ErrorMessage( int error );
-
-#ifdef __cplusplus
-}
-#endif

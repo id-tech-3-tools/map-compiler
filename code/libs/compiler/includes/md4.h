@@ -24,25 +24,13 @@
         59 Temple Place - Suite 330
         Boston, MA  02111-1307, USA
  */
+#pragma once
 
-#ifndef _MDFOUR_H
-#define _MDFOUR_H
-
-#ifndef int32
-#define int32 int
-#endif
-
-#if SIZEOF_INT > 4
-#define LARGE_INT32
-#endif
-
-#ifndef uint32
-#define uint32 unsigned int32
-#endif
+#include "stdint.h"
 
 struct mdfour {
-	uint32 A, B, C, D;
-	uint32 totalN;
+	uint32_t A, B, C, D;
+	uint32_t totalN;
 };
 
 void mdfour_begin( struct mdfour *md ); // old: MD4Init
@@ -52,5 +40,3 @@ void mdfour( unsigned char *out, unsigned char *in, int n );
 
 unsigned Com_BlockChecksum( void *buffer, int length );
 void Com_BlockFullChecksum( void *buffer, int len, unsigned char *outbuf );
-
-#endif  // _MDFOUR_H

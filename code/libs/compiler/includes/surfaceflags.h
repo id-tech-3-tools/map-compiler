@@ -27,6 +27,7 @@
 // a given brush can contribute multiple content bits
 
 // these definitions also need to be in q_shared.h!
+#pragma once
 
 #define CONTENTS_SOLID          1       // an eye is never valid in a solid
 #define CONTENTS_LAVA           8

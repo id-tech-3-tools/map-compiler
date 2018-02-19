@@ -30,14 +30,6 @@
 //===========================================================================
 #pragma once
 
-#ifdef __cplusplus
-
-// start declarations of functions defined in C library.
-extern "C"
-{
-
-#endif
-
 #include "bytebool.h"
 
 int  WINS_Init( void );
@@ -61,7 +53,3 @@ int  WINS_GetAddrFromName( char *name, struct sockaddr_s *addr );
 int  WINS_AddrCompare( struct sockaddr_s *addr1, struct sockaddr_s *addr2 );
 int  WINS_GetSocketPort( struct sockaddr_s *addr );
 int  WINS_SetSocketPort( struct sockaddr_s *addr, int port );
-
-#ifdef __cplusplus
-}
-#endif
