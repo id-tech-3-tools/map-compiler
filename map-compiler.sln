@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "code\app\app.vcxproj", "{71314041-390B-4ABF-B765-F18BCF0E85D4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "compiler", "code\libs\compiler\compiler.vcxproj", "{0625EB54-41E0-4A37-845C-835BABB1A891}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "compiler", "code\compiler\compiler.vcxproj", "{0625EB54-41E0-4A37-845C-835BABB1A891}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "picomodel", "code\libs\picomodel\picomodel.vcxproj", "{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "picomodel", "code\picomodel\picomodel.vcxproj", "{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

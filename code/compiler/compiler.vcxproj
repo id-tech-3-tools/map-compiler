@@ -24,8 +24,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\ext\jpeg-compressor\jpgd.h" />
-    <ClInclude Include="..\..\..\ext\lodepng\lodepng.h" />
+    <ClInclude Include="..\..\ext\jpeg-compressor\jpgd.h" />
+    <ClInclude Include="..\..\ext\lodepng\lodepng.h" />
     <ClInclude Include="..\common\bytebool.h" />
     <ClInclude Include="..\common\compiler.h" />
     <ClInclude Include="..\common\globaldefs.h" />
@@ -75,8 +75,8 @@
     <ClInclude Include="includes\vfs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\ext\jpeg-compressor\jpgd.cpp" />
-    <ClCompile Include="..\..\..\ext\lodepng\lodepng.cpp" />
+    <ClCompile Include="..\..\ext\jpeg-compressor\jpgd.cpp" />
+    <ClCompile Include="..\..\ext\lodepng\lodepng.cpp" />
     <ClCompile Include="bbox.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="brush_primit.cpp" />

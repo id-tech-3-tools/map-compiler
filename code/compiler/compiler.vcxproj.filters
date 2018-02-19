@@ -171,10 +171,10 @@
     <ClInclude Include="includes\msdirent.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\ext\jpeg-compressor\jpgd.h">
+    <ClInclude Include="..\..\ext\jpeg-compressor\jpgd.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\ext\lodepng\lodepng.h">
+    <ClInclude Include="..\..\ext\lodepng\lodepng.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
   </ItemGroup>
@@ -380,10 +380,10 @@
     <ClCompile Include="map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ext\lodepng\lodepng.cpp">
+    <ClCompile Include="..\..\ext\jpeg-compressor\jpgd.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ext\jpeg-compressor\jpgd.cpp">
+    <ClCompile Include="..\..\ext\lodepng\lodepng.cpp">
       <Filter>Source Files\libs</Filter>
     </ClCompile>
   </ItemGroup>
