@@ -345,16 +345,23 @@ void CreateEntityLights( void ){
 
 		/* set origin */
 		GetVectorForKey( e, "origin", light->origin );
-		light->style = IntForKey( e, "_style" );
-		if ( light->style == LS_NORMAL ) {
-			light->style = IntForKey( e, "style" );
-		}
-		if ( light->style < LS_NORMAL || light->style >= LS_NONE ) {
-			Error( "Invalid lightstyle (%d) on entity %d", light->style, i );
-		}
+		if (noStyles == qfalse)
+		{
+			light->style = IntForKey(e, "_style");
+			if (light->style == LS_NORMAL) {
+				light->style = IntForKey(e, "style");
+			}
+			if (light->style < LS_NORMAL || light->style >= LS_NONE) {
+				Error("Invalid lightstyle (%d) on entity %d", light->style, i);
+			}
 
-		if ( light->style != LS_NORMAL ) {
-			Sys_FPrintf( SYS_WRN, "WARNING: Styled light found targeting %s\n **", target );
+			if (light->style != LS_NORMAL) {
+				Sys_FPrintf(SYS_WRN, "WARNING: Styled light found targeting %s\n **", target);
+			}
+		}
+		else
+		{
+			light->style = LS_NORMAL;
 		}
 
 		/* set light intensity */
