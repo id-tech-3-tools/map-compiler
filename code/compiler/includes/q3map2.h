@@ -116,7 +116,7 @@
 /* general */
 #define MAX_QPATH               64
 
-#define MAX_IMAGES              512
+#define MAX_IMAGES              2048
 #define DEFAULT_IMAGE           "*default"
 
 #define MAX_MODELS              512
