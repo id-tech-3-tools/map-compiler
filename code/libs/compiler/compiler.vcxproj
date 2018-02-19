@@ -24,6 +24,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\ext\jpeg-compressor\jpgd.h" />
+    <ClInclude Include="..\..\..\ext\lodepng\lodepng.h" />
     <ClInclude Include="..\common\bytebool.h" />
     <ClInclude Include="..\common\compiler.h" />
     <ClInclude Include="..\common\globaldefs.h" />
@@ -55,8 +57,6 @@
     <ClInclude Include="includes\game__null.h" />
     <ClInclude Include="includes\imagelib.h" />
     <ClInclude Include="includes\inout.h" />
-    <ClInclude Include="includes\jpgd.h" />
-    <ClInclude Include="includes\lodepng.h" />
     <ClInclude Include="includes\l_net.h" />
     <ClInclude Include="includes\l_net_wins.h" />
     <ClInclude Include="includes\mathlib.h" />
@@ -75,6 +75,8 @@
     <ClInclude Include="includes\vfs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\ext\jpeg-compressor\jpgd.cpp" />
+    <ClCompile Include="..\..\..\ext\lodepng\lodepng.cpp" />
     <ClCompile Include="bbox.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="brush_primit.cpp" />
@@ -103,7 +105,6 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imagelib.cpp" />
     <ClCompile Include="inout.cpp" />
-    <ClCompile Include="jpgd.cpp" />
     <ClCompile Include="leakfile.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="lightmaps_ydnar.cpp" />
@@ -111,7 +112,6 @@
     <ClCompile Include="light_trace.cpp" />
     <ClCompile Include="light_ydnar.cpp" />
     <ClCompile Include="line.cpp" />
-    <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="l_net.cpp" />
     <ClCompile Include="l_net_wins.cpp" />
     <ClCompile Include="m4x4.cpp" />
@@ -216,7 +216,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -252,7 +252,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
