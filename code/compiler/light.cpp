@@ -1636,7 +1636,7 @@ void TraceGrid( int num ){
 
 	/////// Floodlighting for point //////////////////
 	//do our floodlight ambient occlusion loop, and add a single contribution based on the brightest dir
-	if ( floodlighty ) {
+	if ( g_floodlight ) {
 		int k;
 		float addSize, f;
 		vec3_t dir = { 0, 0, 1 };
@@ -2044,7 +2044,7 @@ void LightWorld( const char *BSPFilePath, qboolean fastAllocate ){
 		/* flag bouncing */
 		bouncing = qtrue;
 		VectorClear( ambientColor );
-		floodlighty = qfalse;
+		g_floodlight = qfalse;
 
 		/* generate diffuse lights */
 		RadFreeLights();
@@ -2810,8 +2810,16 @@ int LightMain( int argc, char **argv ){
 			Sys_Printf( "Enabling Challenge Pro Mode Asstacular Vertex Lighting Mode (tm)\n" );
 		}
 		else if ( !strcmp( argv[ i ], "-floodlight" ) ) {
-			floodlighty = qtrue;
+			g_floodlight = qtrue;
 			Sys_Printf( "FloodLighting enabled\n" );
+		}
+		else if (!strcmp(argv[i], "-nofloodlight")) {
+			g_noFloodLight = qtrue;
+			Sys_Printf("FloodLighting disabled\n");
+		}
+		else if (!strcmp(argv[i], "-nofloodstyles")) {
+			g_noFloodStyles = qtrue;
+			Sys_Printf("Floodlights won't affect styled lightmaps\n");
 		}
 		else if ( !strcmp( argv[ i ], "-debugnormals" ) ) {
 			debugnormals = qtrue;
