@@ -1676,6 +1676,7 @@ mapDrawSurface_t            *DrawSurfaceForMesh( entity_t *e, parseMesh_t *p, me
 mapDrawSurface_t            *DrawSurfaceForFlare( int entNum, vec3_t origin, vec3_t normal, vec3_t color, const char *flareShader, int lightStyle );
 mapDrawSurface_t            *DrawSurfaceForShader( char *shader );
 void                        ClipSidesIntoTree( entity_t *e, tree_t *tree );
+void CullSides(entity_t *e);
 void                        MakeDebugPortalSurfs( tree_t *tree );
 void                        MakeFogHullSurfs( entity_t *e, tree_t *tree, char *shader );
 void                        SubdivideFaceSurfaces( entity_t *e, tree_t *tree );

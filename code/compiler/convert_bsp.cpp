@@ -90,6 +90,9 @@ void PseudoCompileBSP( qboolean need_tree, const char *BSPFilePath, const char *
 			tree->headnode = node;
 		}
 
+		/* cull brush sides */
+		CullSides(entity);
+
 		/* a minimized ClipSidesIntoTree */
 		for ( brush = entity->brushes; brush; brush = brush->next )
 		{
@@ -164,11 +167,11 @@ int ConvertBSPMain( int argc, char **argv ){
 			i++;
 			if ( !Q_stricmp( argv[ i ], "ase" ) ) {
 				convertFunc = ConvertBSPToASE;
-				map_allowed = qfalse;
+				map_allowed = qtrue;
 			}
 			else if ( !Q_stricmp( argv[ i ], "obj" ) ) {
 				convertFunc = ConvertBSPToOBJ;
-				map_allowed = qfalse;
+				map_allowed = qtrue;
 			}
 			else if ( !Q_stricmp( argv[ i ], "map_bp" ) ) {
 				convertFunc = ConvertBSPToMap_BP;
