@@ -1236,8 +1236,14 @@ static void ParseShaderFile( const char *filename ){
 			/* q3map_lightimage <image> */
 			else if ( !Q_stricmp( token, "q3map_lightImage" ) ) {
 				GetTokenAppend( shaderText, qfalse );
-				strcpy( si->lightImagePath, token );
-				DefaultExtension( si->lightImagePath, ".tga" );
+				if (!Q_stricmp(token, "$whiteimage") || !Q_stricmp(token, "*white"))
+				{
+					strcpy(si->lightImagePath, DEFAULT_IMAGE);
+				} else
+				{
+					strcpy(si->lightImagePath, token);
+					DefaultExtension(si->lightImagePath, ".tga");
+				}
 			}
 
 			/* ydnar: skyparms <outer image> <cloud height> <inner image> */
