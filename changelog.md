@@ -1,8 +1,9 @@
-# Version 0.0.2
+# Version 0.1.0
 
 ### Q3map2
 
 * Fixed `surfaceparm donotenterlarge` being misspelled as `surfaceparm nonotenterlarge`
+* Fixed `odd lump size in lump 17` error whilst trying to decompile a bsp
 
 # Version 0.0.1
 
