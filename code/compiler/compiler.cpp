@@ -186,8 +186,10 @@ int compilerMain(int argc, char **argv) {
 	/* we print out two versions, q3map's main version (since it evolves a bit out of GtkRadiant)
 	   and we put the GtkRadiant version to make it easy to track with what version of Radiant it was built with */
 
-	Sys_Printf( "Q3Map         - v1.0r (c) 1999 Id Software Inc.\n" );
-	Sys_Printf( "Q3Map (ydnar) - v" Q3MAP_VERSION  " " __DATE__ " " __TIME__ "\n");
+	Sys_Printf( "Q3Map              - v1.0r (c) 1999 Id Software Inc.\n" );
+	Sys_Printf( "Q3Map (ydnar)      - v2.5.17\n" );
+	Sys_Printf( "Q3Map (NetRadiant) - v2.5.17n\n" );
+	Sys_Printf( "Q3Map (ryven)      - v" Q3MAP_VERSION  " " __DATE__ " " __TIME__ "\n" );
 	Sys_Printf( "%s\n", Q3MAP_MOTD );
 
 	/* ydnar: new path initialization */

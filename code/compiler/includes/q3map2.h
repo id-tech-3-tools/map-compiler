@@ -797,6 +797,8 @@ typedef struct shaderInfo_s
 	char                *shaderText;                    /* ydnar */
 	qb_t custom;
 	qb_t finished;
+
+	bool hasOwnLightImage;
 }
 shaderInfo_t;
 
@@ -2397,6 +2399,8 @@ Q_EXTERN int lightsClusterCulled;
 Q_EXTERN float diffuseSubdivide Q_ASSIGN( 256.0f );
 Q_EXTERN float minDiffuseSubdivide Q_ASSIGN( 64.0f );
 Q_EXTERN int numDiffuseSurfaces Q_ASSIGN( 0 );
+Q_EXTERN vec3_t g_customBounceColor;
+Q_EXTERN bool g_hasCustomBounceColorSet Q_ASSIGN(false);
 
 /* ydnar: list of surface information necessary for lightmap calculation */
 Q_EXTERN surfaceInfo_t      *surfaceInfos Q_ASSIGN( NULL );
