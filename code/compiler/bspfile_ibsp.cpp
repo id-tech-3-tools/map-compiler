@@ -457,7 +457,7 @@ void LoadIBSPFile( const char *filename ){
 
 
 	/* load the file header */
-	LoadFile( filename, (void**) &header );
+	int bspLength = LoadFile( filename, (void**) &header );
 
 	/* swap the header (except the first 4 bytes) */
 	SwapBlock( (int*) ( (byte*) header + sizeof( int ) ), sizeof( *header ) - sizeof( int ) );
@@ -507,11 +507,15 @@ void LoadIBSPFile( const char *filename ){
 
 	CopyLightGridLumps( header );
 
+	bspLump_t *preLastLump = &header->lumps[LUMP_DRAWINDEXES];
+	int currentSize = preLastLump->offset + preLastLump->length;
+
 	/* advertisements */
-	if ( header->version == 47 ) { // quake live's bsp version
+	if ( currentSize < bspLength && header->version == 47 ) { // quake live's bsp version
 		numBSPAds = CopyLump( (bspHeader_t*) header, LUMP_ADVERTISEMENTS, bspAds, sizeof( bspAdvertisement_t ) );
 	}
-	else{
+	else 
+	{
 		numBSPAds = 0;
 	}
 
