@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "compiler", "code\compiler\c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "picomodel", "code\picomodel\picomodel.vcxproj", "{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "ext\lua\lua.vcxproj", "{43082637-0D8F-4ECE-A649-D3354D714950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}.Debug|x64.Build.0 = Debug|x64
 		{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}.Release|x64.ActiveCfg = Release|x64
 		{6449BAE4-448D-4BB0-BCC5-7DF1B9300CEA}.Release|x64.Build.0 = Release|x64
+		{43082637-0D8F-4ECE-A649-D3354D714950}.Debug|x64.ActiveCfg = Debug|x64
+		{43082637-0D8F-4ECE-A649-D3354D714950}.Debug|x64.Build.0 = Debug|x64
+		{43082637-0D8F-4ECE-A649-D3354D714950}.Release|x64.ActiveCfg = Release|x64
+		{43082637-0D8F-4ECE-A649-D3354D714950}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
