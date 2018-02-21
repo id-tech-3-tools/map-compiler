@@ -369,11 +369,20 @@ static void RadSample( int lightmapNum, bspDrawSurface_t *ds, rawLightmap_t *lm,
 						/* inc samples */
 						samples++;
 
-						/* multiply by texture color */
-						if ( !RadSampleImage( si->lightImage->pixels, si->lightImage->width, si->lightImage->height, st, textureColor ) ) {
-							VectorCopy( si->averageColor, textureColor );
-							textureColor[ 3 ] = 255;
+						if (!si->hasOwnLightImage && g_hasCustomBounceColorSet)
+						{
+							VectorCopy(g_customBounceColor, textureColor);
+							textureColor[3] = 255.f;
+						} 
+						else
+						{
+							/* multiply by texture color */
+							if (!RadSampleImage(si->lightImage->pixels, si->lightImage->width, si->lightImage->height, st, textureColor)) {
+								VectorCopy(si->averageColor, textureColor);
+								textureColor[3] = 255.f;
+							}
 						}
+						
 						for ( i = 0; i < 3; i++ )
 							color[ i ] = ( textureColor[ i ] / 255 ) * ( radLuxel[ i ] / 255 );
 

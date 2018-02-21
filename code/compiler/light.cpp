@@ -2996,6 +2996,20 @@ int LightMain( int argc, char **argv ){
 	/* inject command line parameters */
 	InjectCommandLine( argv, 0, argc - 1 );
 
+	if (GetVectorForKey(&entities[0], "_bounceColor", g_customBounceColor))
+	{
+		g_hasCustomBounceColorSet = true;
+
+		if (colorsRGB) {
+			g_customBounceColor[0] = Image_LinearFloatFromsRGBFloat(g_customBounceColor[0]);
+			g_customBounceColor[1] = Image_LinearFloatFromsRGBFloat(g_customBounceColor[1]);
+			g_customBounceColor[2] = Image_LinearFloatFromsRGBFloat(g_customBounceColor[2]);
+		}
+
+		ColorNormalize(g_customBounceColor, g_customBounceColor);
+		VectorScale(g_customBounceColor, 255.f, g_customBounceColor);
+	}
+
 	/* load map file */
 	value = ValueForKey( &entities[ 0 ], "_keepLights" );
 	if ( value[ 0 ] != '1' ) {
