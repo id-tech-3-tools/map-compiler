@@ -1,3 +1,9 @@
+# Version 0.0.2
+
+### Q3map2
+
+* Fixed `surfaceparm donotenterlarge` being misspelled as `surfaceparm nonotenterlarge`
+
 # Version 0.0.1
 
 ### Q3map2
