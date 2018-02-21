@@ -14,3 +14,4 @@
 * Added support for `$whiteimage` and `*white` values for `q3map_lightImage`
 * Added `_bounceColor` worldspawn key to set global color value used for radiosity lighting
   * Shaders with `q3map_lightImage` will ignore this and use the specified image for radiosity color instead
+* Disabled `-connect` functionality. XML broadcasting is disabled, and in future be either removed or replaced. This means, as of current version, you should not use compiler with Radiant, as it won't be able to print any output in logging window.
