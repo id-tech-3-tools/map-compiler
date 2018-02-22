@@ -4,6 +4,7 @@
 
 * Fixed `surfaceparm donotenterlarge` being misspelled as `surfaceparm nonotenterlarge`
 * Fixed `odd lump size in lump 17` error whilst trying to decompile a bsp
+* Added `-outfile <path>` flag to specify conversion operation output path
 
 # Version 0.0.1
 
