@@ -138,13 +138,13 @@ void PseudoCompileBSP( qboolean need_tree, const char *BSPFilePath, const char *
 
 int ConvertBSPMain( int argc, char **argv ){
 	int i;
-	int ( *convertFunc )( char * );
+	int ( *convertFunc )( const char *, const char* );
 	game_t  *convertGame;
 	char ext[1024];
 	char BSPFilePath [ 1024 ];
 	char surfaceFilePath [ 1024 ];
 	qboolean map_allowed, force_bsp, force_map;
-
+	char outputFilePath[1024];
 
 	/* set default */
 	convertFunc = ConvertBSPToASE;
@@ -152,10 +152,11 @@ int ConvertBSPMain( int argc, char **argv ){
 	map_allowed = qfalse;
 	force_bsp = qfalse;
 	force_map = qfalse;
+	outputFilePath[0] = '\0';
 
 	/* arg checking */
 	if ( argc < 1 ) {
-		Sys_Printf( "Usage: q3map -convert [-format <ase|obj|map_bp|map>] [-shadersasbitmap|-lightmapsastexcoord|-deluxemapsastexcoord] [-readbsp|-readmap [-meta|-patchmeta]] [-v] <mapname>\n" );
+		Sys_Printf( "Usage: q3map -convert [-format <ase|obj|map_bp|map>] [-shadersasbitmap|-lightmapsastexcoord|-deluxemapsastexcoord] [-readbsp|-readmap [-meta|-patchmeta]] [-outfile <path>] [-v] <mapname>\n" );
 		return 0;
 	}
 
@@ -223,6 +224,17 @@ int ConvertBSPMain( int argc, char **argv ){
 			meta = qtrue;
 			patchMeta = qtrue;
 		}
+		else if ( !strcmp(argv[i], "-outfile"))
+		{
+			if (i + 1 < argc - 1)
+			{
+				i++;
+				strcpy_s(outputFilePath, ExpandArg(argv[i]));
+			} else
+			{
+				Sys_Printf("WARNING: -outfile has no path argument\n");
+			}
+		}
 	}
 
 	LoadShaderInfo();
@@ -272,5 +284,5 @@ int ConvertBSPMain( int argc, char **argv ){
 	}
 
 	/* normal convert */
-	return convertFunc( source );
+	return convertFunc( source, outputFilePath );
 }

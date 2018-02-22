@@ -777,32 +777,33 @@ static void ConvertEPairs( FILE *f, entity_t *e, qboolean skip_origin ){
    exports an quake map file from the bsp
  */
 
-int ConvertBSPToMap_Ext( char *bspName, qboolean brushPrimitives ){
+int ConvertBSPToMap_Ext( const char *bspName, const char *outPath, qboolean brushPrimitives ){
 	int i, modelNum;
 	FILE            *f;
 	bspModel_t      *model;
 	entity_t        *e;
 	vec3_t origin;
 	const char      *value;
-	char name[ 1024 ], base[ 1024 ];
-
+	char name[1024], base[1024], nameBuffer[1024];
+	char *filePath = outPath ? nameBuffer : name;
+	strcpy_s(nameBuffer, outPath);
 
 	/* note it */
 	Sys_Printf( "--- Convert BSP to MAP ---\n" );
 
 	/* create the bsp filename from the bsp name */
 	strcpy( name, bspName );
-	StripExtension( name );
-	strcat( name, "_converted.map" );
-	Sys_Printf( "writing %s\n", name );
+	StripExtension(filePath);
+	strcat(filePath, "_converted.map" );
+	Sys_Printf( "writing %s\n", filePath );
 
 	ExtractFileBase( bspName, base );
 	strcat( base, ".bsp" );
 
 	/* open it */
-	f = fopen( name, "wb" );
+	f = fopen( filePath, "wb" );
 	if ( f == NULL ) {
-		Error( "Open failed on %s\n", name );
+		Error( "Open failed on %s\n", filePath );
 	}
 
 	/* print header */
@@ -866,10 +867,10 @@ int ConvertBSPToMap_Ext( char *bspName, qboolean brushPrimitives ){
 	return 0;
 }
 
-int ConvertBSPToMap( char *bspName ){
-	return ConvertBSPToMap_Ext( bspName, qfalse );
+int ConvertBSPToMap(const char *bspName, const char *outPath) {
+	return ConvertBSPToMap_Ext( bspName, outPath, qfalse );
 }
 
-int ConvertBSPToMap_BP( char *bspName ){
-	return ConvertBSPToMap_Ext( bspName, qtrue );
+int ConvertBSPToMap_BP(const char *bspName, const char *outPath) {
+	return ConvertBSPToMap_Ext( bspName, outPath, qtrue );
 }
