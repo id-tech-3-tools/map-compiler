@@ -325,7 +325,7 @@ static void ConvertLightmap( FILE *f, const char *base, int lightmapNum ){
    exports an 3d studio ase file from the bsp
  */
 
-int ConvertBSPToASE( char *bspName ){
+int ConvertBSPToASE(const char *bspName, const char* outPath) {
 	int i, modelNum;
 	FILE            *f;
 	bspShader_t     *shader;
@@ -334,25 +334,26 @@ int ConvertBSPToASE( char *bspName ){
 	vec3_t origin;
 	const char      *key;
 	char name[ 1024 ], base[ 1024 ], dirname[ 1024 ];
-
+	const char *filePath = outPath ? outPath : name;
 
 	/* note it */
 	Sys_Printf( "--- Convert BSP to ASE ---\n" );
 
 	/* create the ase filename from the bsp name */
+
 	strcpy( dirname, bspName );
 	StripExtension( dirname );
 	strcpy( name, bspName );
 	StripExtension( name );
 	strcat( name, ".ase" );
-	Sys_Printf( "writing %s\n", name );
+	Sys_Printf( "writing %s\n", filePath );
 
 	ExtractFileBase( bspName, base );
 
 	/* open it */
-	f = fopen( name, "wb" );
+	f = fopen( filePath, "wb" );
 	if ( f == NULL ) {
-		Error( "Open failed on %s\n", name );
+		Error( "Open failed on %s\n", filePath );
 	}
 
 	/* print header */

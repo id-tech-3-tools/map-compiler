@@ -210,7 +210,7 @@ static void ConvertLightmapToMTL( FILE *f, const char *base, int lightmapNum ){
    exports an 3d studio ase file from the bsp
  */
 
-int ConvertBSPToOBJ( char *bspName ){
+int ConvertBSPToOBJ(const char *bspName, const char* outPath){
 	int i, modelNum;
 	FILE            *f, *fmtl;
 	bspShader_t     *shader;
@@ -218,8 +218,11 @@ int ConvertBSPToOBJ( char *bspName ){
 	entity_t        *e;
 	vec3_t origin;
 	const char      *key;
-	char name[ 1024 ], base[ 1024 ], mtlname[ 1024 ], dirname[ 1024 ];
-
+	char name[ 1024 ], base[ 1024 ], mtlname[ 1024 ], dirname[ 1024 ], mtlPathBuffer[1024];
+	const char *filePath = outPath ? outPath : name;
+	char *mtlFilePath = outPath ? mtlPathBuffer : mtlname;
+	
+	strcpy_s(mtlPathBuffer, outPath);
 
 	/* note it */
 	Sys_Printf( "--- Convert BSP to OBJ ---\n" );
@@ -230,22 +233,22 @@ int ConvertBSPToOBJ( char *bspName ){
 	strcpy( name, bspName );
 	StripExtension( name );
 	strcat( name, ".obj" );
-	Sys_Printf( "writing %s\n", name );
+	Sys_Printf( "writing %s\n", filePath );
 	strcpy( mtlname, bspName );
-	StripExtension( mtlname );
-	strcat( mtlname, ".mtl" );
-	Sys_Printf( "writing %s\n", mtlname );
+	StripExtension(mtlFilePath);
+	strcat(mtlFilePath, ".mtl" );
+	Sys_Printf( "writing %s\n", mtlFilePath );
 
 	ExtractFileBase( bspName, base );
 
 	/* open it */
-	f = fopen( name, "wb" );
+	f = fopen( filePath, "wb" );
 	if ( f == NULL ) {
-		Error( "Open failed on %s\n", name );
+		Error( "Open failed on %s\n", filePath );
 	}
-	fmtl = fopen( mtlname, "wb" );
+	fmtl = fopen( mtlFilePath, "wb" );
 	if ( fmtl == NULL ) {
-		Error( "Open failed on %s\n", mtlname );
+		Error( "Open failed on %s\n", mtlFilePath );
 	}
 
 	/* print header */

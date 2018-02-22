@@ -1513,14 +1513,14 @@ int                         MiniMapBSPMain( int argc, char **argv );
 int                         ConvertBSPMain( int argc, char **argv );
 
 /* convert_map.c */
-int                         ConvertBSPToMap( char *bspName );
-int                         ConvertBSPToMap_BP( char *bspName );
+int                         ConvertBSPToMap( const char *bspName, const char *outPath );
+int                         ConvertBSPToMap_BP( const char *bspName, const char *outPath );
 
 /* convert_ase.c */
-int                         ConvertBSPToASE( char *bspName );
+int                         ConvertBSPToASE( const char *bspName, const  char* outPath );
 
 /* convert_obj.c */
-int                         ConvertBSPToOBJ( char *bspName );
+int                         ConvertBSPToOBJ( const char *bspName, const char* outPath );
 
 /* brush.c */
 sideRef_t                   *AllocSideRef( side_t *side, sideRef_t *next );
