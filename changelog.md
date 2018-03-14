@@ -5,6 +5,8 @@
 * Fixed `surfaceparm donotenterlarge` being misspelled as `surfaceparm nonotenterlarge`
 * Fixed `odd lump size in lump 17` error whilst trying to decompile a bsp
 * Added `-outfile <path>` flag to specify conversion operation output path
+* Added `-automapcoords` flag to injects automatically calculated map coordinates in a compiled map as `mapcoordsmins`/`mapcoordsmaxs` keys.
+* Added `-automapcoordspad` to set extra padding around automatically calculated map coords in a percentage form, expects normalized values. The final padding is calculated relatively to the map size. (eg. `0.05` -> 5% of the map bounding size)
 
 # Version 0.0.1
 
