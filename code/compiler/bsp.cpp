@@ -1016,6 +1016,17 @@ int BSPMain( int argc, char **argv ){
 		else if ( !strcmp( argv[ i ], "-bsp" ) ) {
 			Sys_Printf( "-bsp argument unnecessary\n" );
 		}
+		else if (!strcmp(argv[i], "-automapcoords"))
+		{
+			g_autoMapCoords = true;
+			Sys_Printf("Map coords will be set automatically\n");
+		}
+		else if (!strcmp(argv[i], "-automapcoordspad"))
+		{
+			g_autoMapCoordsPad = atof(argv[i + 1]);
+			i++;
+			Sys_Printf("Map coords padding is set to %.3f%%\n", g_autoMapCoordsPad * 100.f);
+		}
 		else{
 			Sys_FPrintf( SYS_WRN, "WARNING: Unknown option \"%s\"\n", argv[ i ] );
 		}

@@ -2462,7 +2462,8 @@ Q_EXTERN vec3_t gridSize
 	= { 64, 64, 128 };
 #endif
 
-
+Q_EXTERN bool g_autoMapCoords Q_ASSIGN(false);
+Q_EXTERN float g_autoMapCoordsPad Q_ASSIGN(0.0f);
 
 /* -------------------------------------------------------------------------------
 
