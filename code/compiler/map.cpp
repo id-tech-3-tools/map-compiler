@@ -1849,6 +1849,25 @@ static qboolean ParseMapEntity( qboolean onlyLights, qboolean noCollapseGroups )
 	return qtrue;
 }
 
+static void injectMapCoors(vec3_t mins, vec3_t maxs)
+{
+	vec3_t center, top, bot;
+	VectorMid(mins, maxs, center);
+	VectorSubtract(mins, maxs, top);
+	bool isWide = fabs(top[0]) > fabs(top[1]);
+	top[1] = isWide ? top[1] / fabs(top[1]) * fabs(top[0]) : top[1];
+	top[0] = isWide ? top[0] : top[0] / fabs(top[0]) * fabs(top[1]);
+	VectorScale(top, 0.5 + g_autoMapCoordsPad / 2.f, top);
+	VectorNegate(top, bot);
+	VectorAdd(center, top, top);
+	VectorAdd(center, bot, bot);
+
+	char buf[256];
+	sprintf_s(buf, "%0.f %0.f", top[0], top[1]);
+	SetKeyValue(&entities[0], "mapcoordsmins", buf);
+	sprintf_s(buf, "%0.f %0.f", bot[0], bot[1]);
+	SetKeyValue(&entities[0], "mapcoordsmaxs", buf);
+}
 
 
 /*
@@ -1925,6 +1944,13 @@ void LoadMapFile( char *filename, qboolean onlyLights, qboolean noCollapseGroups
 		Sys_Printf( "Size: %5.0f, %5.0f, %5.0f to %5.0f, %5.0f, %5.0f\n",
 					mapMins[ 0 ], mapMins[ 1 ], mapMins[ 2 ],
 					mapMaxs[ 0 ], mapMaxs[ 1 ], mapMaxs[ 2 ] );
+
+		if (g_autoMapCoords)
+		{
+			vec3_t ptMin { mapMins[0], mapMaxs[1] };
+			vec3_t ptMax { mapMaxs[0], mapMins[1] };
+			injectMapCoors(ptMin, ptMax);
+		}
 
 		/* write bogus map */
 		if ( fakemap ) {
