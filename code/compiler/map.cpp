@@ -1849,7 +1849,7 @@ static qboolean ParseMapEntity( qboolean onlyLights, qboolean noCollapseGroups )
 	return qtrue;
 }
 
-static void injectMapCoors(vec3_t mins, vec3_t maxs)
+static void injectMapCoords(vec3_t mins, vec3_t maxs)
 {
 	vec3_t center, top, bot;
 	VectorMid(mins, maxs, center);
@@ -1949,7 +1949,7 @@ void LoadMapFile( char *filename, qboolean onlyLights, qboolean noCollapseGroups
 		{
 			vec3_t ptMin { mapMins[0], mapMaxs[1] };
 			vec3_t ptMax { mapMaxs[0], mapMins[1] };
-			injectMapCoors(ptMin, ptMax);
+			injectMapCoords(ptMin, ptMax);
 		}
 
 		/* write bogus map */
