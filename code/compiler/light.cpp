@@ -1766,12 +1766,10 @@ void TraceGrid( int num ){
 	/* store off sample */
 	for ( i = 0; i < MAX_LIGHTMAPS; i++ )
 	{
-#if 0
 		/* do some fudging to keep the ambient from being too low (2003-07-05: 0.25 -> 0.125) */
 		if ( !bouncing ) {
 			VectorMA( gp->ambient[ i ], 0.125f, gp->directed[ i ], gp->ambient[ i ] );
 		}
-#endif
 
 		/* set minimum light and copy off to bytes */
 		VectorCopy( gp->ambient[ i ], color );
