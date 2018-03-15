@@ -1421,6 +1421,9 @@ static void ParseShaderFile( const char *filename ){
 				}
 
 				/* ydnar/sd: q3map_foliage <path to model> <scale> <density> <odds> <invert alpha (1 or 0)> */
+				/* Aciz: invert alpha 2 sets alpha to 1.0f. Invert alpha 1 calculates alpha from all vertices,
+				   then inverts it. Invert alpha 0 alculates alpha from all vertices without inverting.
+				   This is not a boolean :) */
 				else if ( !Q_stricmp( token, "q3map_foliage" ) ) {
 					foliage_t   *foliage;
 
@@ -1442,7 +1445,7 @@ static void ParseShaderFile( const char *filename ){
 					GetTokenAppend( shaderText, qfalse );
 					foliage->odds = atof( token );
 					GetTokenAppend( shaderText, qfalse );
-					foliage->inverseAlpha = atoi( token ) ? qtrue : qfalse;
+					foliage->inverseAlpha = atoi( token );
 				}
 
 				/* ydnar: q3map_bounce <value> (fraction of light to re-emit during radiosity passes) */
