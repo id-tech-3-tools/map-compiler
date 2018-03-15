@@ -248,9 +248,6 @@
 #define DEFAULT_LIGHTMAP_SAMPLE_OFFSET  1.0f
 #define DEFAULT_SUBDIVIDE_THRESHOLD     1.0f
 
-#define EXTRA_SCALE             2   /* -extrawide = -super 2 */
-#define EXTRAWIDE_SCALE         2   /* -extrawide = -super 2 -filter */
-
 #define CLUSTER_UNMAPPED        -1
 #define CLUSTER_OCCLUDED        -2
 #define CLUSTER_FLOODED         -3
