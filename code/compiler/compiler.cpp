@@ -230,13 +230,6 @@ int compilerMain(int argc, char **argv) {
 		r = LightMain( argc - 1, argv + 1 );
 	}
 
-	/* vlight */
-	else if ( !strcmp( argv[ 1 ], "-vlight" ) ) {
-		Sys_FPrintf( SYS_WRN, "WARNING: VLight is no longer supported, defaulting to -light -fast instead\n\n" );
-		argv[ 1 ] = "-fast";    /* eek a hack */
-		r = LightMain( argc, argv );
-	}
-
 	/* QBall: export entities */
 	else if ( !strcmp( argv[ 1 ], "-exportents" ) ) {
 		r = ExportEntitiesMain( argc - 1, argv + 1 );
