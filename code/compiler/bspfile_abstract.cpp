@@ -35,7 +35,8 @@
 
 /* dependencies */
 #include "q3map2.h"
-
+#include <set>
+#include <string>
 
 
 
@@ -582,6 +583,19 @@ void ParseEntities( void ){
 	numBSPEntities = numEntities;
 }
 
+std::set<std::string> excludedFlags {
+	"-bspfile", "-linfile", "-srffile", "-prtfile", "-tempname", "-lightmapdir"
+};
+
+static bool shouldSkipFlag(const char *flagName)
+{
+	auto search = excludedFlags.find(flagName);
+	if (search != excludedFlags.end()) {
+		return true;
+	}
+	return false;
+}
+
 /*
  * must be called before UnparseEntities
  */
@@ -608,13 +622,24 @@ void InjectCommandLine( char **argv, int beginArgs, int endArgs ){
 
 	for ( i = beginArgs; i < endArgs; ++i )
 	{
+		inpos = argv[i];
+
+		if (shouldSkipFlag(inpos)) {
+			i++;
+			continue;
+		}
+
 		if ( outpos != sentinel && i != beginArgs ) {
 			*outpos++ = ' ';
 		}
-		inpos = argv[i];
+		
 		while ( outpos != sentinel && *inpos )
 			if ( *inpos != '\\' && *inpos != '"' && *inpos != ';' && (unsigned char) *inpos >= ' ' ) {
 				*outpos++ = *inpos++;
+			} else
+			{
+				Sys_Printf("Warning! Arguments injection failed due to containing forbidden character.");
+				return;
 			}
 	}
 
