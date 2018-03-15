@@ -219,7 +219,6 @@ void HelpLight()
 		{"-nostyle, -nostyles", "Disable support for light styles"},
 		{"-nosurf", "Disable tracing against surfaces (only uses BSP nodes then)"},
 		{"-notrace", "Disable shadow occlusion"},
-		{"-novertex", "Disable vertex lighting"},
 		{"-patchshadows", "Cast shadows from patches"},
 		{"-pointscale <F, `-point` F>", "Scaling factor for point lights (light entities)"},
 		{"-q3", "Use nonlinear falloff curve by default (like Q3A)"},
