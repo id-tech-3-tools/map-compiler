@@ -7,6 +7,10 @@
 * Added `-outfile <path>` flag to specify conversion operation output path
 * Added `-automapcoords` flag to injects automatically calculated map coordinates in a compiled map as `mapcoordsmins`/`mapcoordsmaxs` keys.
 * Added `-automapcoordspad` to set extra padding around automatically calculated map coords in a percentage form, expects normalized values. The final padding is calculated relatively to the map size. (eg. `0.05` -> 5% of the map bounding size)
+* Fixed lightgrid calculation was working wrong (in compare to stock compiler), also making other lightgrid flags to work incorrectly(`-griddirectionality`, `-gridambientdirectionality`)
+* Removed `-novertex` flag due to not being implemented anywhere (even in stock)
+* Removed `-fastallocate` flag, fast allocation is now enabled by default
+* Changed `-lightanglehl` flag to not accept value anymore, was pretty useless anyways
 
 # Version 0.0.1
 
