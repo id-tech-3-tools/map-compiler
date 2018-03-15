@@ -2123,7 +2123,7 @@ int LightMain( int argc, char **argv ){
 	const char  *value;
 	int lightmapMergeSize = 0;
 	qboolean lightSamplesInsist = qfalse;
-	qboolean fastAllocate = qfalse;
+	qboolean fastAllocate = qtrue;
 
 	/* note it */
 	Sys_Printf( "--- Light ---\n" );
@@ -2643,11 +2643,6 @@ int LightMain( int argc, char **argv ){
 			Sys_Printf( "Faster mode enabled\n" );
 		}
 
-		else if ( !strcmp( argv[ i ], "-fastallocate" ) ) {
-			fastAllocate = qtrue;
-			Sys_Printf( "Fast allocation mode enabled\n" );
-		}
-
 		else if ( !strcmp( argv[ i ], "-fastgrid" ) ) {
 			fastgrid = qtrue;
 			Sys_Printf( "Fast grid lighting enabled\n" );
@@ -2787,16 +2782,8 @@ int LightMain( int argc, char **argv ){
 			Sys_Printf( "Default light subdivision set to %d\n", defaultLightSubdivide );
 		}
 		else if ( !strcmp( argv[ i ], "-lightanglehl" ) ) {
-			if ( ( atoi( argv[ i + 1 ] ) != 0 ) != lightAngleHL ) {
-				lightAngleHL = ( atoi( argv[ i + 1 ] ) != 0 ) ? qtrue : qfalse;
-				if ( lightAngleHL ) {
-					Sys_Printf( "Enabling half lambert light angle attenuation\n" );
-				}
-				else{
-					Sys_Printf( "Disabling half lambert light angle attenuation\n" );
-				}
-			}
-			i++;
+			Sys_Printf("Enabling half lambert light angle attenuation\n");
+			lightAngleHL = qtrue;
 		}
 		else if ( !strcmp( argv[ i ], "-nostyle" ) || !strcmp( argv[ i ], "-nostyles" ) ) {
 			noStyles = qtrue;
