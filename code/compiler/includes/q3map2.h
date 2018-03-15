@@ -2225,7 +2225,6 @@ Q_EXTERN qboolean keepLights Q_ASSIGN( qfalse );
 
 Q_EXTERN int sampleSize Q_ASSIGN( DEFAULT_LIGHTMAP_SAMPLE_SIZE );
 Q_EXTERN int minSampleSize Q_ASSIGN( DEFAULT_LIGHTMAP_MIN_SAMPLE_SIZE );
-Q_EXTERN qboolean noVertexLighting Q_ASSIGN( qfalse );
 Q_EXTERN qboolean noGridLighting Q_ASSIGN( qfalse );
 
 Q_EXTERN qboolean noTrace Q_ASSIGN( qfalse );

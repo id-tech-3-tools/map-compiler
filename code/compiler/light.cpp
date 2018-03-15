@@ -2760,10 +2760,6 @@ int LightMain( int argc, char **argv ){
 			i++;
 			Sys_Printf( "Lightmaps sample scale set to %d\n", sampleScale );
 		}
-		else if ( !strcmp( argv[ i ], "-novertex" ) ) {
-			noVertexLighting = qtrue;
-			Sys_Printf( "Disabling vertex lighting\n" );
-		}
 		else if ( !strcmp( argv[ i ], "-nogrid" ) ) {
 			noGridLighting = qtrue;
 			Sys_Printf( "Disabling grid lighting\n" );
