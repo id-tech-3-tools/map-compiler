@@ -1817,7 +1817,7 @@ int                         ImportLightmapsMain( int argc, char **argv );
 
 void                        SetupSurfaceLightmaps( void );
 void                        StitchSurfaceLightmaps( void );
-void                        StoreSurfaceLightmaps( qboolean fastAllocate );
+void                        StoreSurfaceLightmaps();
 
 
 /* exportents.c */
@@ -2463,6 +2463,7 @@ Q_EXTERN vec3_t gridSize
 
 Q_EXTERN bool g_autoMapCoords Q_ASSIGN(false);
 Q_EXTERN float g_autoMapCoordsPad Q_ASSIGN(0.0f);
+Q_EXTERN bool g_fastAllocate Q_ASSIGN(true);
 
 /* -------------------------------------------------------------------------------
 

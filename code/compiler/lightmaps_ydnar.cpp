@@ -1974,7 +1974,7 @@ static void SetupOutLightmap( rawLightmap_t *lm, outLightmap_t *olm ){
  */
 
 #define LIGHTMAP_RESERVE_COUNT 1
-static void FindOutLightmaps( rawLightmap_t *lm, qboolean fastAllocate ){
+static void FindOutLightmaps( rawLightmap_t *lm ){
 	int i, j, k, lightmapNum, xMax, yMax, x = -1, y = -1, sx, sy, ox, oy, offset;
 	outLightmap_t       *olm;
 	surfaceInfo_t       *info;
@@ -2094,7 +2094,7 @@ static void FindOutLightmaps( rawLightmap_t *lm, qboolean fastAllocate ){
 				}
 
 				/* if fast allocation, skip lightmap files that are more than 90% complete */
-				if ( fastAllocate == qtrue ) {
+				if ( g_fastAllocate == qtrue ) {
 					if (olm->freeLuxels < (olm->customWidth * olm->customHeight) / 10) {
 						continue;
 					}
@@ -2118,7 +2118,7 @@ static void FindOutLightmaps( rawLightmap_t *lm, qboolean fastAllocate ){
 				}
 
 				/* if fast allocation, do not test allocation on every pixels, especially for large lightmaps */
-				if ( fastAllocate == qtrue ) {
+				if ( g_fastAllocate == qtrue ) {
 					xIncrement = Q_max(1, lm->w / 15);
 					yIncrement = Q_max(1, lm->h / 15);
 				}
@@ -2457,7 +2457,8 @@ void FillOutLightmap( outLightmap_t *olm ){
    stores the surface lightmaps into the bsp as byte rgb triplets
  */
 
-void StoreSurfaceLightmaps( qboolean fastAllocate ){
+void StoreSurfaceLightmaps()
+{
 	int i, j, k, x, y, lx, ly, sx, sy, *cluster, mappedSamples;
 	int style, size, lightmapNum, lightmapNum2;
 	float               *normal, *luxel, *bspLuxel, *bspLuxel2, *radLuxel, samples, occludedSamples;
@@ -3075,7 +3076,7 @@ void StoreSurfaceLightmaps( qboolean fastAllocate ){
 	for ( i = 0; i < numRawLightmaps; i++ )
 	{
 		lm = &rawLightmaps[ sortLightmaps[ i ] ];
-		FindOutLightmaps( lm, fastAllocate );
+		FindOutLightmaps( lm );
 	}
 
 	/* set output numbers in twinned lightmaps */

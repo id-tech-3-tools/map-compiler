@@ -1895,7 +1895,7 @@ void SetupGrid( void ){
    does what it says...
  */
 
-void LightWorld( const char *BSPFilePath, qboolean fastAllocate ){
+void LightWorld( const char *BSPFilePath){
 	vec3_t color;
 	float f;
 	int b, bt;
@@ -2038,7 +2038,7 @@ void LightWorld( const char *BSPFilePath, qboolean fastAllocate ){
 	while ( bounce > 0 )
 	{
 		/* store off the bsp between bounces */
-		StoreSurfaceLightmaps( fastAllocate );
+		StoreSurfaceLightmaps();
 		UnparseEntities();
 		Sys_Printf( "Writing %s\n", BSPFilePath );
 		WriteBSPFile( BSPFilePath );
@@ -2103,7 +2103,7 @@ void LightWorld( const char *BSPFilePath, qboolean fastAllocate ){
 		b++;
 	}
 	/* ydnar: store off lightmaps */
-	StoreSurfaceLightmaps( fastAllocate );
+	StoreSurfaceLightmaps();
 }
 
 
@@ -2123,7 +2123,6 @@ int LightMain( int argc, char **argv ){
 	const char  *value;
 	int lightmapMergeSize = 0;
 	qboolean lightSamplesInsist = qfalse;
-	qboolean fastAllocate = qtrue;
 
 	/* note it */
 	Sys_Printf( "--- Light ---\n" );
@@ -3010,7 +3009,7 @@ int LightMain( int argc, char **argv ){
 	SetupTraceNodes();
 
 	/* light the world */
-	LightWorld( BSPFilePath, fastAllocate );
+	LightWorld( BSPFilePath );
 
 	/* write out the bsp */
 	UnparseEntities();
