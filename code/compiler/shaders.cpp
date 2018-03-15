@@ -1422,7 +1422,7 @@ static void ParseShaderFile( const char *filename ){
 
 				/* ydnar/sd: q3map_foliage <path to model> <scale> <density> <odds> <invert alpha (1 or 0)> */
 				/* Aciz: invert alpha 2 sets alpha to 1.0f. Invert alpha 1 calculates alpha from all vertices,
-				   then inverts it. Invert alpha 0 alculates alpha from all vertices without inverting.
+				   then inverts it. Invert alpha 0 calculates alpha from all vertices without inverting.
 				   This is not a boolean :) */
 				else if ( !Q_stricmp( token, "q3map_foliage" ) ) {
 					foliage_t   *foliage;
