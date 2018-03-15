@@ -11,6 +11,7 @@
 * Removed `-novertex` flag due to not being implemented anywhere (even in stock)
 * Removed `-fastallocate` flag, fast allocation is now enabled by default
 * Changed `-lightanglehl` flag to not accept value anymore, was pretty useless anyways
+* Fixed `q3map_foliage` not generating foliage correctly
 
 # Version 0.0.1
 
