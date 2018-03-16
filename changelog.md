@@ -13,6 +13,8 @@
 * Changed `-lightanglehl` flag to not accept value anymore, was pretty useless anyways [#39](https://github.com/isRyven/map-compiler/pull/39)
 * Fixed `q3map_foliage` not generating foliage correctly [#40](https://github.com/isRyven/map-compiler/pull/40)
 * Fixed infinite loop on compiler flags injection that contains forbidden characters [#42](https://github.com/isRyven/map-compiler/pull/42)
+* Removed deprecated light switches: `-smooth`, `-extra`, `-extrawide` and `-vlight` [#43](https://github.com/isRyven/map-compiler/pull/43)
+* Updated `-help` command to include all switches, along with some rewording and formatting fixes [#44](https://github.com/isRyven/map-compiler/pull/44)
 
 # Version 0.0.1
 
