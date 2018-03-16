@@ -2873,6 +2873,11 @@ int LightMain( int argc, char **argv ){
 			i++;
 			Sys_Printf("Use %s as surface file\n", surfaceFilePath);
 		}
+		else if (!_stricmp(argv[i], "-nolightmap"))
+		{
+			g_bakeLightmap = false;
+			Sys_Printf("Lightmap baking is disabled, map is lit by vertex lighting\n");
+		}
 		/* unhandled args */
 		else
 		{

@@ -2461,6 +2461,7 @@ Q_EXTERN vec3_t gridSize
 Q_EXTERN bool g_autoMapCoords Q_ASSIGN(false);
 Q_EXTERN float g_autoMapCoordsPad Q_ASSIGN(0.0f);
 Q_EXTERN bool g_fastAllocate Q_ASSIGN(true);
+Q_EXTERN bool g_bakeLightmap Q_ASSIGN(true);
 
 /* -------------------------------------------------------------------------------
 
