@@ -16,6 +16,7 @@
 * Removed deprecated light switches: `-smooth`, `-extra`, `-extrawide` and `-vlight` [#43](https://github.com/isRyven/map-compiler/pull/43)
 * Updated `-help` command to include all switches, along with some rewording and formatting fixes [#44](https://github.com/isRyven/map-compiler/pull/44)
 * Made all map compiler switches processing case insensitive [#46](https://github.com/isRyven/map-compiler/pull/46)
+* Added `-forceVertex` alias for `-cpma` [#47](https://github.com/isRyven/map-compiler/pull/47)
 
 # Version 0.0.1
 
