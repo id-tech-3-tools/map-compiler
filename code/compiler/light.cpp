@@ -2564,7 +2564,7 @@ int LightMain( int argc, char **argv ){
 			Sys_Printf("Enabling Quake 3 lighting model (nonlinear default)\n");
 		}
 
-		else if (!_stricmp(argv[i], "-extradist")) {
+		else if (!_stricmp(argv[i], "-extradist") || !_stricmp(argv[i], "-lightnudge")) {
 			extraDist = atof(argv[i + 1]);
 			if (extraDist < 0) {
 				extraDist = 0;
