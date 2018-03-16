@@ -1095,8 +1095,11 @@ void SetupSurfaceLightmaps( void ){
 			}
 			else
 			{
-				numSurfsLightmapped++;
-				info->hasLightmap = qtrue;
+				if (g_bakeLightmap)
+				{
+					numSurfsLightmapped++;
+					info->hasLightmap = qtrue;
+				}
 			}
 		}
 	}
