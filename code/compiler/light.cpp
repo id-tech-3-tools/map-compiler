@@ -2850,9 +2850,11 @@ int LightMain( int argc, char **argv ){
 			i++;
 		}
 		else if ( !strcmp( argv[ i ], "-trianglecheck" ) ) {
+			Sys_Printf("Luxel nudging to its original triangle enabled\n");
 			lightmapTriangleCheck = qtrue;
 		}
 		else if ( !strcmp( argv[ i ], "-extravisnudge" ) ) {
+			Sys_Printf("Luxel origin nudging to a better VIS cluster enabled\n");
 			lightmapExtraVisClusterNudge = qtrue;
 		}
 		else if ( !strcmp( argv[ i ], "-fill" ) ) {
