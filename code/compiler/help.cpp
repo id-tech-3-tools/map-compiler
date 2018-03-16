@@ -233,7 +233,7 @@ void HelpLight()
 		{"-notrace", "Disable shadow occlusion"},
 		{"-patchshadows", "Cast shadows from patches"},
 		{"-point <F>, -pointscale <F>", "Scaling factor for point lights (light entities)"},
-		{"-q3", "Use nonlinear falloff curve by default (like Q3A)"},
+		{"-q3, -invsqatten", "Use nonlinear falloff curve by default (like Q3A)"},
 		{"-randomsamples", "Use random luxels selection with `-samples`"},
 		{"-rawlightmapsizelimit <N>", "Limits raw lightmap size"},
 		{"-samples <N>", "Adaptive supersampling quality"},
@@ -257,7 +257,7 @@ void HelpLight()
 		{"-thresh <F>", "Triangle subdivision threshold"},
 		{"-trianglecheck", "Nudges luxels to their original triangle"},
 		{"-trisoup", "Convert brush faces to triangle soup"},
-		{"-wolf", "Use linear falloff curve by default (like W:ET)"},
+		{"-wolf, -linearatten", "Use linear falloff curve by default (like W:ET)"},
 	};
 
 	HelpOptions("Light Stage", 0, 100, light, sizeof(light)/sizeof(struct HelpOption));

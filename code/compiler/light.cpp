@@ -2552,13 +2552,13 @@ int LightMain( int argc, char **argv ){
 			useCustomInfoParms = qtrue;
 		}
 
-		else if (!_stricmp(argv[i], "-wolf")) {
+		else if (!_stricmp(argv[i], "-wolf") || !_stricmp(argv[i], "-linearatten")) {
 			/* -game should already be set */
 			wolfLight = qtrue;
 			Sys_Printf("Enabling Wolf lighting model (linear default)\n");
 		}
 
-		else if (!_stricmp(argv[i], "-q3")) {
+		else if (!_stricmp(argv[i], "-q3") || !_stricmp(argv[i], "-invsqatten")) {
 			/* -game should already be set */
 			wolfLight = qfalse;
 			Sys_Printf("Enabling Quake 3 lighting model (nonlinear default)\n");
