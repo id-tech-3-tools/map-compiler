@@ -193,7 +193,7 @@ void HelpLight()
 		{"-export", "Export lightmaps when compile finished (like `-export` mode)"},
 		{"-exposure <F>", "Lightmap exposure to better support overbright spots"},
 		{"-external", "Force external lightmaps even if at size of internal lightmaps"},
-		{"-extradist <F>", "Extra radius for entity lights to decrease overall contribution"},
+		{"-extradist <F>, -lightnudge <F>", "Moves light source from each sample or point by F to decrease overall contribution"},
 		{"-extravisnudge", "Nudge luxel origins to a better VIS cluster"},
 		{"-fast", "Ignore tiny light contributions"},
 		{"-fastbounce", "Use `-fast` style lighting for radiosity"},
