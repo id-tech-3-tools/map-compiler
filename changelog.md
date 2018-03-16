@@ -20,6 +20,7 @@
 * Added `-nolightmap` switch to disable lightmap generation for surfaces, forcing map to be vertex lit [#50](https://github.com/isRyven/map-compiler/pull/50)
 * Added `-invsqatten` and `-linearatten` aliases for `-q3` and `-wolf`, respectively [#51](https://github.com/isRyven/map-compiler/pull/51)
 * Added `-lightnudge` alias for `-extradist` [#52](https://github.com/isRyven/map-compiler/pull/52)
+* Added `_lightNudge` key for light entities as `_extraDist` alias [#53](https://github.com/isRyven/map-compiler/pull/53)
 
 # Version 0.0.1
 
