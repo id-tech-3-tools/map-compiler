@@ -2778,8 +2778,8 @@ int LightMain( int argc, char **argv ){
 			noStyles = qfalse;
 			Sys_Printf("Enabling lightstyles\n");
 		}
-		else if (!_stricmp(argv[i], "-cpma")) {
-			cpmaHack = qtrue;
+		else if (!_stricmp(argv[i], "-forcevertex") || !_stricmp(argv[i], "-cpma")) {
+			g_forceVertex = qtrue;
 			Sys_Printf("Enabling Challenge Pro Mode Asstacular Vertex Lighting Mode (tm)\n");
 		}
 		else if (!_stricmp(argv[i], "-floodlight")) {
