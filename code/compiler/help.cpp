@@ -172,7 +172,7 @@ void HelpLight()
 		{"-cheap", "Abort vertex light calculations when white is reached"},
 		{"-cheapgrid", "Use `-cheap` style lighting for lightgrid"},
 		{"-compensate <F>", "Lightmap compensate (darkening factor applied after everything else)"},
-		{"-cpma", "CPMA vertex lighting mode"},
+		{"-cpma, -forcevertex", "CPMA vertex lighting mode"},
 		{"-dark", "Darken lightmap seams"},
 		{"-debug", "Mark the lightmaps according to the cluster: unmapped clusters get yellow, occluded ones get pink, flooded ones get blue overlay color, otherwise red"},
 		{"-debugaxis", "Color the lightmaps according to the lightmap axis"},
