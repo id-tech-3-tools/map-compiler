@@ -427,7 +427,10 @@ void CreateEntityLights( void ){
 
 		light->extraDist = FloatForKey( e, "_extradist" );
 		if ( light->extraDist == 0.0f ) {
-			light->extraDist = extraDist;
+			light->extraDist = FloatForKey(e, "_lightNudge");
+			if (light->extraDist == 0.0f) {
+				light->extraDist = extraDist;
+			}
 		}
 
 		light->photons = intensity;
