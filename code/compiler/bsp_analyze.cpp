@@ -92,7 +92,7 @@ int AnalyzeBSPMain( int argc, char **argv ){
 	for ( i = 1; i < ( argc - 1 ); i++ )
 	{
 		/* -format map|ase|... */
-		if ( !strcmp( argv[ i ],  "-lumpswap" ) ) {
+		if ( !_stricmp( argv[ i ],  "-lumpswap" ) ) {
 			Sys_Printf( "Swapped lump structs enabled\n" );
 			lumpSwap = qtrue;
 		}
