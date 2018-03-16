@@ -37,7 +37,8 @@
 #include "q3map2.h"
 #include <set>
 #include <string>
-
+#include <algorithm>
+#include <cctype>
 
 
 /* -------------------------------------------------------------------------------
@@ -583,13 +584,22 @@ void ParseEntities( void ){
 	numBSPEntities = numEntities;
 }
 
+static std::string stringToLower(std::string s) {
+	std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c)
+	{
+		return std::tolower(c);
+	});
+	return s;
+}
+
 std::set<std::string> excludedFlags {
 	"-bspfile", "-linfile", "-srffile", "-prtfile", "-tempname", "-lightmapdir"
 };
 
 static bool shouldSkipFlag(const char *flagName)
 {
-	auto search = excludedFlags.find(flagName);
+	auto lowFlagName = stringToLower(flagName);
+	auto search = excludedFlags.find(lowFlagName);
 	return search != excludedFlags.end();
 }
 

@@ -507,97 +507,97 @@ int MiniMapBSPMain( int argc, char **argv ){
 	/* process arguments */
 	for ( i = 1; i < ( argc - 1 ); i++ )
 	{
-		if ( !strcmp( argv[ i ],  "-size" ) ) {
-			minimap.width = minimap.height = atoi( argv[i + 1] );
+		if (!_stricmp(argv[i], "-size")) {
+			minimap.width = minimap.height = atoi(argv[i + 1]);
 			i++;
-			Sys_Printf( "Image size set to %i\n", minimap.width );
+			Sys_Printf("Image size set to %i\n", minimap.width);
 		}
-		else if ( !strcmp( argv[ i ],  "-sharpen" ) ) {
-			minimapSharpen = atof( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-sharpen")) {
+			minimapSharpen = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Sharpening coefficient set to %f\n", minimapSharpen );
+			Sys_Printf("Sharpening coefficient set to %f\n", minimapSharpen);
 		}
-		else if ( !strcmp( argv[ i ],  "-samples" ) ) {
-			minimap.samples = atoi( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-samples")) {
+			minimap.samples = atoi(argv[i + 1]);
 			i++;
-			Sys_Printf( "Samples set to %i\n", minimap.samples );
-			if ( minimap.sample_offsets ) {
-				free( minimap.sample_offsets );
+			Sys_Printf("Samples set to %i\n", minimap.samples);
+			if (minimap.sample_offsets) {
+				free(minimap.sample_offsets);
 			}
 			minimap.sample_offsets = static_cast<float*>(malloc(2 * sizeof(*minimap.sample_offsets) * minimap.samples));
 			MiniMapMakeSampleOffsets();
 		}
-		else if ( !strcmp( argv[ i ],  "-random" ) ) {
-			minimap.samples = atoi( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-random")) {
+			minimap.samples = atoi(argv[i + 1]);
 			i++;
-			Sys_Printf( "Random samples set to %i\n", minimap.samples );
-			if ( minimap.sample_offsets ) {
-				free( minimap.sample_offsets );
+			Sys_Printf("Random samples set to %i\n", minimap.samples);
+			if (minimap.sample_offsets) {
+				free(minimap.sample_offsets);
 			}
 			minimap.sample_offsets = NULL;
 		}
-		else if ( !strcmp( argv[ i ],  "-border" ) ) {
-			border = atof( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-border")) {
+			border = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Border set to %f\n", border );
+			Sys_Printf("Border set to %f\n", border);
 		}
-		else if ( !strcmp( argv[ i ],  "-keepaspect" ) ) {
+		else if (!_stricmp(argv[i], "-keepaspect")) {
 			keepaspect = qtrue;
-			Sys_Printf( "Keeping aspect ratio by letterboxing\n", border );
+			Sys_Printf("Keeping aspect ratio by letterboxing\n", border);
 		}
-		else if ( !strcmp( argv[ i ],  "-nokeepaspect" ) ) {
+		else if (!_stricmp(argv[i], "-nokeepaspect")) {
 			keepaspect = qfalse;
-			Sys_Printf( "Not keeping aspect ratio\n", border );
+			Sys_Printf("Not keeping aspect ratio\n", border);
 		}
-		else if ( !strcmp( argv[ i ],  "-o" ) ) {
-			strcpy( minimapFilename, argv[i + 1] );
+		else if (!_stricmp(argv[i], "-o")) {
+			strcpy(minimapFilename, argv[i + 1]);
 			i++;
-			Sys_Printf( "Output file name set to %s\n", minimapFilename );
+			Sys_Printf("Output file name set to %s\n", minimapFilename);
 		}
-		else if ( !strcmp( argv[ i ],  "-minmax" ) && i < ( argc - 7 ) ) {
-			mins[0] = atof( argv[i + 1] );
-			mins[1] = atof( argv[i + 2] );
-			mins[2] = atof( argv[i + 3] );
-			maxs[0] = atof( argv[i + 4] );
-			maxs[1] = atof( argv[i + 5] );
-			maxs[2] = atof( argv[i + 6] );
+		else if (!_stricmp(argv[i], "-minmax") && i < (argc - 7)) {
+			mins[0] = atof(argv[i + 1]);
+			mins[1] = atof(argv[i + 2]);
+			mins[2] = atof(argv[i + 3]);
+			maxs[0] = atof(argv[i + 4]);
+			maxs[1] = atof(argv[i + 5]);
+			maxs[2] = atof(argv[i + 6]);
 			i += 6;
-			Sys_Printf( "Map mins/maxs overridden\n" );
+			Sys_Printf("Map mins/maxs overridden\n");
 		}
-		else if ( !strcmp( argv[ i ],  "-gray" ) ) {
+		else if (!_stricmp(argv[i], "-gray")) {
 			mode = MINIMAP_MODE_GRAY;
-			Sys_Printf( "Writing as white-on-black image\n" );
+			Sys_Printf("Writing as white-on-black image\n");
 		}
-		else if ( !strcmp( argv[ i ],  "-black" ) ) {
+		else if (!_stricmp(argv[i], "-black")) {
 			mode = MINIMAP_MODE_BLACK;
-			Sys_Printf( "Writing as black alpha image\n" );
+			Sys_Printf("Writing as black alpha image\n");
 		}
-		else if ( !strcmp( argv[ i ],  "-white" ) ) {
+		else if (!_stricmp(argv[i], "-white")) {
 			mode = MINIMAP_MODE_WHITE;
-			Sys_Printf( "Writing as white alpha image\n" );
+			Sys_Printf("Writing as white alpha image\n");
 		}
-		else if ( !strcmp( argv[ i ],  "-boost" ) && i < ( argc - 2 ) ) {
-			minimap.boost = atof( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-boost") && i < (argc - 2)) {
+			minimap.boost = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Contrast boost set to %f\n", minimap.boost );
+			Sys_Printf("Contrast boost set to %f\n", minimap.boost);
 		}
-		else if ( !strcmp( argv[ i ],  "-brightness" ) && i < ( argc - 2 ) ) {
-			minimap.brightness = atof( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-brightness") && i < (argc - 2)) {
+			minimap.brightness = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Brightness set to %f\n", minimap.brightness );
+			Sys_Printf("Brightness set to %f\n", minimap.brightness);
 		}
-		else if ( !strcmp( argv[ i ],  "-contrast" ) && i < ( argc - 2 ) ) {
-			minimap.contrast = atof( argv[i + 1] );
+		else if (!_stricmp(argv[i], "-contrast") && i < (argc - 2)) {
+			minimap.contrast = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Contrast set to %f\n", minimap.contrast );
+			Sys_Printf("Contrast set to %f\n", minimap.contrast);
 		}
-		else if ( !strcmp( argv[ i ],  "-autolevel" ) ) {
+		else if (!_stricmp(argv[i], "-autolevel")) {
 			autolevel = qtrue;
-			Sys_Printf( "Auto level enabled\n", border );
+			Sys_Printf("Auto level enabled\n", border);
 		}
-		else if ( !strcmp( argv[ i ],  "-noautolevel" ) ) {
+		else if (!_stricmp(argv[i], "-noautolevel")) {
 			autolevel = qfalse;
-			Sys_Printf( "Auto level disabled\n", border );
+			Sys_Printf("Auto level disabled\n", border);
 		}
 	}
 

@@ -736,292 +736,292 @@ int BSPMain( int argc, char **argv ){
 	/* process arguments */
 	for ( i = 1; i < ( argc - 1 ); i++ )
 	{
-		if ( !strcmp( argv[ i ], "-onlyents" ) ) {
-			Sys_Printf( "Running entity-only compile\n" );
+		if (!_stricmp(argv[i], "-onlyents")) {
+			Sys_Printf("Running entity-only compile\n");
 			onlyents = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-tempname" ) ) {
-			strcpy( tempSource, argv[ ++i ] );
+		else if (!_stricmp(argv[i], "-tempname")) {
+			strcpy(tempSource, argv[++i]);
 		}
-		else if ( !strcmp( argv[ i ], "-tmpout" ) ) {
-			strcpy( outbase, "/tmp" );
+		else if (!_stricmp(argv[i], "-tmpout")) {
+			strcpy(outbase, "/tmp");
 		}
-		else if ( !strcmp( argv[ i ],  "-nowater" ) ) {
-			Sys_Printf( "Disabling water\n" );
+		else if (!_stricmp(argv[i], "-nowater")) {
+			Sys_Printf("Disabling water\n");
 			nowater = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-keeplights" ) ) {
+		else if (!_stricmp(argv[i], "-keeplights")) {
 			keepLights = qtrue;
-			Sys_Printf( "Leaving light entities on map after compile\n" );
+			Sys_Printf("Leaving light entities on map after compile\n");
 		}
-		else if ( !strcmp( argv[ i ],  "-nodetail" ) ) {
-			Sys_Printf( "Ignoring detail brushes\n" ) ;
+		else if (!_stricmp(argv[i], "-nodetail")) {
+			Sys_Printf("Ignoring detail brushes\n");
 			nodetail = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-fulldetail" ) ) {
-			Sys_Printf( "Turning detail brushes into structural brushes\n" );
+		else if (!_stricmp(argv[i], "-fulldetail")) {
+			Sys_Printf("Turning detail brushes into structural brushes\n");
 			fulldetail = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-nofog" ) ) {
-			Sys_Printf( "Fog volumes disabled\n" );
+		else if (!_stricmp(argv[i], "-nofog")) {
+			Sys_Printf("Fog volumes disabled\n");
 			nofog = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-nosubdivide" ) ) {
-			Sys_Printf( "Disabling brush face subdivision\n" );
+		else if (!_stricmp(argv[i], "-nosubdivide")) {
+			Sys_Printf("Disabling brush face subdivision\n");
 			nosubdivide = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-leaktest" ) ) {
-			Sys_Printf( "Leaktest enabled\n" );
+		else if (!_stricmp(argv[i], "-leaktest")) {
+			Sys_Printf("Leaktest enabled\n");
 			leaktest = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-verboseentities" ) ) {
-			Sys_Printf( "Verbose entities enabled\n" );
+		else if (!_stricmp(argv[i], "-verboseentities")) {
+			Sys_Printf("Verbose entities enabled\n");
 			verboseEntities = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-nocurves" ) ) {
-			Sys_Printf( "Ignoring curved surfaces (patches)\n" );
+		else if (!_stricmp(argv[i], "-nocurves")) {
+			Sys_Printf("Ignoring curved surfaces (patches)\n");
 			noCurveBrushes = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-notjunc" ) ) {
-			Sys_Printf( "T-junction fixing disabled\n" );
+		else if (!_stricmp(argv[i], "-notjunc")) {
+			Sys_Printf("T-junction fixing disabled\n");
 			notjunc = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-fakemap" ) ) {
-			Sys_Printf( "Generating fakemap.map\n" );
+		else if (!_stricmp(argv[i], "-fakemap")) {
+			Sys_Printf("Generating fakemap.map\n");
 			fakemap = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-samplesize" ) ) {
-			sampleSize = atoi( argv[ i + 1 ] );
-			if ( sampleSize < 1 ) {
+		else if (!_stricmp(argv[i], "-samplesize")) {
+			sampleSize = atoi(argv[i + 1]);
+			if (sampleSize < 1) {
 				sampleSize = 1;
 			}
 			i++;
-			Sys_Printf( "Lightmap sample size set to %dx%d units\n", sampleSize, sampleSize );
+			Sys_Printf("Lightmap sample size set to %dx%d units\n", sampleSize, sampleSize);
 		}
-		else if ( !strcmp( argv[ i ], "-minsamplesize" ) ) {
-			minSampleSize = atoi( argv[ i + 1 ] );
-			if ( minSampleSize < 1 ) {
+		else if (!_stricmp(argv[i], "-minsamplesize")) {
+			minSampleSize = atoi(argv[i + 1]);
+			if (minSampleSize < 1) {
 				minSampleSize = 1;
 			}
 			i++;
-			Sys_Printf( "Minimum lightmap sample size set to %dx%d units\n", minSampleSize, minSampleSize );
+			Sys_Printf("Minimum lightmap sample size set to %dx%d units\n", minSampleSize, minSampleSize);
 		}
-		else if ( !strcmp( argv[ i ],  "-custinfoparms" ) ) {
-			Sys_Printf( "Custom info parms enabled\n" );
+		else if (!_stricmp(argv[i], "-custinfoparms")) {
+			Sys_Printf("Custom info parms enabled\n");
 			useCustomInfoParms = qtrue;
 		}
 
 		/* sof2 args */
-		else if ( !strcmp( argv[ i ], "-rename" ) ) {
-			Sys_Printf( "Appending _bsp suffix to misc_model shaders (SOF2)\n" );
+		else if (!_stricmp(argv[i], "-rename")) {
+			Sys_Printf("Appending _bsp suffix to misc_model shaders (SOF2)\n");
 			renameModelShaders = qtrue;
 		}
 
 		/* ydnar args */
-		else if ( !strcmp( argv[ i ],  "-ne" ) ) {
-			normalEpsilon = atof( argv[ i + 1 ] );
+		else if (!_stricmp(argv[i], "-ne")) {
+			normalEpsilon = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Normal epsilon set to %f\n", normalEpsilon );
+			Sys_Printf("Normal epsilon set to %f\n", normalEpsilon);
 		}
-		else if ( !strcmp( argv[ i ],  "-de" ) ) {
-			distanceEpsilon = atof( argv[ i + 1 ] );
+		else if (!_stricmp(argv[i], "-de")) {
+			distanceEpsilon = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Distance epsilon set to %f\n", distanceEpsilon );
+			Sys_Printf("Distance epsilon set to %f\n", distanceEpsilon);
 		}
-		else if ( !strcmp( argv[ i ],  "-mv" ) ) {
-			maxLMSurfaceVerts = atoi( argv[ i + 1 ] );
-			if ( maxLMSurfaceVerts < 3 ) {
+		else if (!_stricmp(argv[i], "-mv")) {
+			maxLMSurfaceVerts = atoi(argv[i + 1]);
+			if (maxLMSurfaceVerts < 3) {
 				maxLMSurfaceVerts = 3;
 			}
-			if ( maxLMSurfaceVerts > maxSurfaceVerts ) {
+			if (maxLMSurfaceVerts > maxSurfaceVerts) {
 				maxSurfaceVerts = maxLMSurfaceVerts;
 			}
 			i++;
-			Sys_Printf( "Maximum lightmapped surface vertex count set to %d\n", maxLMSurfaceVerts );
+			Sys_Printf("Maximum lightmapped surface vertex count set to %d\n", maxLMSurfaceVerts);
 		}
-		else if ( !strcmp( argv[ i ],  "-mi" ) ) {
-			maxSurfaceIndexes = atoi( argv[ i + 1 ] );
-			if ( maxSurfaceIndexes < 3 ) {
+		else if (!_stricmp(argv[i], "-mi")) {
+			maxSurfaceIndexes = atoi(argv[i + 1]);
+			if (maxSurfaceIndexes < 3) {
 				maxSurfaceIndexes = 3;
 			}
 			i++;
-			Sys_Printf( "Maximum per-surface index count set to %d\n", maxSurfaceIndexes );
+			Sys_Printf("Maximum per-surface index count set to %d\n", maxSurfaceIndexes);
 		}
-		else if ( !strcmp( argv[ i ], "-np" ) ) {
-			npDegrees = atof( argv[ i + 1 ] );
-			if ( npDegrees < 0.0f ) {
+		else if (!_stricmp(argv[i], "-np")) {
+			npDegrees = atof(argv[i + 1]);
+			if (npDegrees < 0.0f) {
 				npDegrees = 0.0f;
 			}
-			else if ( npDegrees > 0.0f ) {
-				Sys_Printf( "Forcing nonplanar surfaces with a breaking angle of %f degrees\n", npDegrees );
+			else if (npDegrees > 0.0f) {
+				Sys_Printf("Forcing nonplanar surfaces with a breaking angle of %f degrees\n", npDegrees);
 			}
 			i++;
 		}
-		else if ( !strcmp( argv[ i ],  "-snap" ) ) {
-			bevelSnap = atoi( argv[ i + 1 ] );
-			if ( bevelSnap < 0 ) {
+		else if (!_stricmp(argv[i], "-snap")) {
+			bevelSnap = atoi(argv[i + 1]);
+			if (bevelSnap < 0) {
 				bevelSnap = 0;
 			}
 			i++;
-			if ( bevelSnap > 0 ) {
-				Sys_Printf( "Snapping brush bevel planes to %d units\n", bevelSnap );
+			if (bevelSnap > 0) {
+				Sys_Printf("Snapping brush bevel planes to %d units\n", bevelSnap);
 			}
 		}
-		else if ( !strcmp( argv[ i ],  "-texrange" ) ) {
-			texRange = atoi( argv[ i + 1 ] );
-			if ( texRange < 0 ) {
+		else if (!_stricmp(argv[i], "-texrange")) {
+			texRange = atoi(argv[i + 1]);
+			if (texRange < 0) {
 				texRange = 0;
 			}
 			i++;
-			Sys_Printf( "Limiting per-surface texture range to %d texels\n", texRange );
+			Sys_Printf("Limiting per-surface texture range to %d texels\n", texRange);
 		}
-		else if ( !strcmp( argv[ i ], "-nohint" ) ) {
-			Sys_Printf( "Hint brushes disabled\n" );
+		else if (!_stricmp(argv[i], "-nohint")) {
+			Sys_Printf("Hint brushes disabled\n");
 			noHint = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-flat" ) ) {
-			Sys_Printf( "Flatshading enabled\n" );
+		else if (!_stricmp(argv[i], "-flat")) {
+			Sys_Printf("Flatshading enabled\n");
 			flat = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-celshader" ) ) {
+		else if (!_stricmp(argv[i], "-celshader")) {
 			++i;
-			if ( argv[i][0] ) {
-				sprintf( globalCelShader, "textures/%s", argv[ i ] );
+			if (argv[i][0]) {
+				sprintf(globalCelShader, "textures/%s", argv[i]);
 			}
-			else{
+			else {
 				*globalCelShader = 0;
 			}
-			Sys_Printf( "Global cel shader set to \"%s\"\n", globalCelShader );
+			Sys_Printf("Global cel shader set to \"%s\"\n", globalCelShader);
 		}
-		else if ( !strcmp( argv[ i ], "-meta" ) ) {
-			Sys_Printf( "Creating meta surfaces from brush faces\n" );
+		else if (!_stricmp(argv[i], "-meta")) {
+			Sys_Printf("Creating meta surfaces from brush faces\n");
 			meta = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-metaadequatescore" ) ) {
-			metaAdequateScore = atoi( argv[ i + 1 ] );
-			if ( metaAdequateScore < 0 ) {
+		else if (!_stricmp(argv[i], "-metaadequatescore")) {
+			metaAdequateScore = atoi(argv[i + 1]);
+			if (metaAdequateScore < 0) {
 				metaAdequateScore = -1;
 			}
 			i++;
-			if ( metaAdequateScore >= 0 ) {
-				Sys_Printf( "Setting ADEQUATE meta score to %d (see surface_meta.c)\n", metaAdequateScore );
+			if (metaAdequateScore >= 0) {
+				Sys_Printf("Setting ADEQUATE meta score to %d (see surface_meta.c)\n", metaAdequateScore);
 			}
 		}
-		else if ( !strcmp( argv[ i ], "-metagoodscore" ) ) {
-			metaGoodScore = atoi( argv[ i + 1 ] );
-			if ( metaGoodScore < 0 ) {
+		else if (!_stricmp(argv[i], "-metagoodscore")) {
+			metaGoodScore = atoi(argv[i + 1]);
+			if (metaGoodScore < 0) {
 				metaGoodScore = -1;
 			}
 			i++;
-			if ( metaGoodScore >= 0 ) {
-				Sys_Printf( "Setting GOOD meta score to %d (see surface_meta.c)\n", metaGoodScore );
+			if (metaGoodScore >= 0) {
+				Sys_Printf("Setting GOOD meta score to %d (see surface_meta.c)\n", metaGoodScore);
 			}
 		}
-		else if ( !strcmp( argv[ i ], "-metamaxbboxdistance" ) ) {
-			metaMaxBBoxDistance = atof( argv[ i + 1 ] );
-			if ( metaMaxBBoxDistance < 0 ) {
+		else if (!_stricmp(argv[i], "-metamaxbboxdistance")) {
+			metaMaxBBoxDistance = atof(argv[i + 1]);
+			if (metaMaxBBoxDistance < 0) {
 				metaMaxBBoxDistance = -1;
 			}
 			i++;
-			if ( metaMaxBBoxDistance >= 0 ) {
-				Sys_Printf( "Setting meta maximum bounding box distance to %f\n", metaMaxBBoxDistance );
+			if (metaMaxBBoxDistance >= 0) {
+				Sys_Printf("Setting meta maximum bounding box distance to %f\n", metaMaxBBoxDistance);
 			}
 		}
-		else if ( !strcmp( argv[ i ], "-patchmeta" ) ) {
-			Sys_Printf( "Creating meta surfaces from patches\n" );
+		else if (!_stricmp(argv[i], "-patchmeta")) {
+			Sys_Printf("Creating meta surfaces from patches\n");
 			patchMeta = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-flares" ) ) {
-			Sys_Printf( "Flare surfaces enabled\n" );
+		else if (!_stricmp(argv[i], "-flares")) {
+			Sys_Printf("Flare surfaces enabled\n");
 			emitFlares = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-noflares" ) ) {
-			Sys_Printf( "Flare surfaces disabled\n" );
+		else if (!_stricmp(argv[i], "-noflares")) {
+			Sys_Printf("Flare surfaces disabled\n");
 			emitFlares = qfalse;
 		}
-		else if ( !strcmp( argv[ i ], "-skyfix" ) ) {
-			Sys_Printf( "GL_CLAMP sky fix/hack/workaround enabled\n" );
+		else if (!_stricmp(argv[i], "-skyfix")) {
+			Sys_Printf("GL_CLAMP sky fix/hack/workaround enabled\n");
 			skyFixHack = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-debugsurfaces" ) ) {
-			Sys_Printf( "emitting debug surfaces\n" );
+		else if (!_stricmp(argv[i], "-debugsurfaces")) {
+			Sys_Printf("emitting debug surfaces\n");
 			debugSurfaces = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-debuginset" ) ) {
-			Sys_Printf( "Debug surface triangle insetting enabled\n" );
+		else if (!_stricmp(argv[i], "-debuginset")) {
+			Sys_Printf("Debug surface triangle insetting enabled\n");
 			debugInset = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-debugportals" ) ) {
-			Sys_Printf( "Debug portal surfaces enabled\n" );
+		else if (!_stricmp(argv[i], "-debugportals")) {
+			Sys_Printf("Debug portal surfaces enabled\n");
 			debugPortals = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-sRGBtex" ) ) {
+		else if (!_stricmp(argv[i], "-sRGBtex")) {
 			texturesRGB = qtrue;
-			Sys_Printf( "Textures are in sRGB\n" );
+			Sys_Printf("Textures are in sRGB\n");
 		}
-		else if ( !strcmp( argv[ i ], "-nosRGBtex" ) ) {
+		else if (!_stricmp(argv[i], "-nosRGBtex")) {
 			texturesRGB = qfalse;
-			Sys_Printf( "Textures are linear\n" );
+			Sys_Printf("Textures are linear\n");
 		}
-		else if ( !strcmp( argv[ i ], "-sRGBcolor" ) ) {
+		else if (!_stricmp(argv[i], "-sRGBcolor")) {
 			colorsRGB = qtrue;
-			Sys_Printf( "Colors are in sRGB\n" );
+			Sys_Printf("Colors are in sRGB\n");
 		}
-		else if ( !strcmp( argv[ i ], "-nosRGBcolor" ) ) {
+		else if (!_stricmp(argv[i], "-nosRGBcolor")) {
 			colorsRGB = qfalse;
-			Sys_Printf( "Colors are linear\n" );
+			Sys_Printf("Colors are linear\n");
 		}
-		else if ( !strcmp( argv[ i ], "-nosRGB" ) ) {
+		else if (!_stricmp(argv[i], "-nosRGB")) {
 			texturesRGB = qfalse;
-			Sys_Printf( "Textures are linear\n" );
+			Sys_Printf("Textures are linear\n");
 			colorsRGB = qfalse;
-			Sys_Printf( "Colors are linear\n" );
+			Sys_Printf("Colors are linear\n");
 		}
-		else if ( !strcmp( argv[ i ], "-altsplit" ) ) {
-			Sys_Printf( "Alternate BSP splitting (by 27) enabled\n" );
+		else if (!_stricmp(argv[i], "-altsplit")) {
+			Sys_Printf("Alternate BSP splitting (by 27) enabled\n");
 			bspAlternateSplitWeights = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-deep" ) ) {
-			Sys_Printf( "Deep BSP tree generation enabled\n" );
+		else if (!_stricmp(argv[i], "-deep")) {
+			Sys_Printf("Deep BSP tree generation enabled\n");
 			deepBSP = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-maxarea" ) ) {
-			Sys_Printf( "Max Area face surface generation enabled\n" );
+		else if (!_stricmp(argv[i], "-maxarea")) {
+			Sys_Printf("Max Area face surface generation enabled\n");
 			maxAreaFaceSurface = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-bspfile" ) )
+		else if (!_stricmp(argv[i], "-bspfile"))
 		{
-			strcpy( BSPFilePath, argv[i + 1] );
+			strcpy(BSPFilePath, argv[i + 1]);
 			i++;
-			Sys_Printf( "Use %s as bsp file\n", BSPFilePath );
+			Sys_Printf("Use %s as bsp file\n", BSPFilePath);
 		}
-		else if ( !strcmp( argv[ i ], "-linfile" ) )
+		else if (!_stricmp(argv[i], "-linfile"))
 		{
-			strcpy( lineFilePath, argv[i + 1] );
+			strcpy(lineFilePath, argv[i + 1]);
 			i++;
-			Sys_Printf( "Use %s as line file\n", lineFilePath );
+			Sys_Printf("Use %s as line file\n", lineFilePath);
 		}
-		else if ( !strcmp( argv[ i ], "-prtfile" ) )
+		else if (!_stricmp(argv[i], "-prtfile"))
 		{
-			strcpy( portalFilePath, argv[i + 1] );
+			strcpy(portalFilePath, argv[i + 1]);
 			i++;
-			Sys_Printf( "Use %s as portal file\n", portalFilePath );
+			Sys_Printf("Use %s as portal file\n", portalFilePath);
 		}
-		else if ( !strcmp( argv[ i ], "-srffile" ) )
+		else if (!_stricmp(argv[i], "-srffile"))
 		{
-			strcpy( surfaceFilePath, argv[i + 1] );
+			strcpy(surfaceFilePath, argv[i + 1]);
 			i++;
-			Sys_Printf( "Use %s as surface file\n", surfaceFilePath );
+			Sys_Printf("Use %s as surface file\n", surfaceFilePath);
 		}
-		else if ( !strcmp( argv[ i ], "-bsp" ) ) {
-			Sys_Printf( "-bsp argument unnecessary\n" );
+		else if (!_stricmp(argv[i], "-bsp")) {
+			Sys_Printf("-bsp argument unnecessary\n");
 		}
-		else if (!strcmp(argv[i], "-automapcoords"))
+		else if (!_stricmp(argv[i], "-automapcoords"))
 		{
 			g_autoMapCoords = true;
 			Sys_Printf("Map coords will be set automatically\n");
 		}
-		else if (!strcmp(argv[i], "-automapcoordspad"))
+		else if (!_stricmp(argv[i], "-automapcoordspad"))
 		{
 			g_autoMapCoordsPad = atof(argv[i + 1]);
 			i++;

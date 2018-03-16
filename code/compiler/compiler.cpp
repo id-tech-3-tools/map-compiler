@@ -117,51 +117,51 @@ int compilerMain(int argc, char **argv) {
 	for ( i = 1; i < argc; i++ )
 	{
 		/* -help */
-		if ( !strcmp( argv[ i ], "-h" ) || !strcmp( argv[ i ], "--help" )
-			|| !strcmp( argv[ i ], "-help" ) ) {
-			HelpMain(argv[i+1]);
+		if (!_stricmp(argv[i], "-h") || !_stricmp(argv[i], "--help")
+			|| !_stricmp(argv[i], "-help")) {
+			HelpMain(argv[i + 1]);
 			return 0;
 		}
 
 		/* -connect */
-		if ( !strcmp( argv[ i ], "-connect" ) ) {
-			argv[ i ] = NULL;
+		if (!_stricmp(argv[i], "-connect")) {
+			argv[i] = NULL;
 			i++;
-			Broadcast_Setup( argv[ i ] );
-			argv[ i ] = NULL;
+			Broadcast_Setup(argv[i]);
+			argv[i] = NULL;
 		}
 
 		/* verbose */
-		else if ( !strcmp( argv[ i ], "-v" ) ) {
-			if ( !verbose ) {
+		else if (!_stricmp(argv[i], "-v")) {
+			if (!verbose) {
 				verbose = qtrue;
-				argv[ i ] = NULL;
+				argv[i] = NULL;
 			}
 		}
 
 		/* force */
-		else if ( !strcmp( argv[ i ], "-force" ) ) {
+		else if (!_stricmp(argv[i], "-force")) {
 			force = qtrue;
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* patch subdivisions */
-		else if ( !strcmp( argv[ i ], "-subdivisions" ) ) {
-			argv[ i ] = NULL;
+		else if (!_stricmp(argv[i], "-subdivisions")) {
+			argv[i] = NULL;
 			i++;
-			patchSubdivisions = atoi( argv[ i ] );
-			argv[ i ] = NULL;
-			if ( patchSubdivisions <= 0 ) {
+			patchSubdivisions = atoi(argv[i]);
+			argv[i] = NULL;
+			if (patchSubdivisions <= 0) {
 				patchSubdivisions = 1;
 			}
 		}
 
 		/* threads */
-		else if ( !strcmp( argv[ i ], "-threads" ) ) {
-			argv[ i ] = NULL;
+		else if (!_stricmp(argv[i], "-threads")) {
+			argv[i] = NULL;
 			i++;
-			numthreads = atoi( argv[ i ] );
-			argv[ i ] = NULL;
+			numthreads = atoi(argv[i]);
+			argv[i] = NULL;
 		}
 	}
 
@@ -206,58 +206,58 @@ int compilerMain(int argc, char **argv) {
 	}
 
 	/* fixaas */
-	if ( !strcmp( argv[ 1 ], "-fixaas" ) ) {
-		r = FixAASMain( argc - 1, argv + 1 );
+	if (!_stricmp(argv[1], "-fixaas")) {
+		r = FixAASMain(argc - 1, argv + 1);
 	}
 
 	/* analyze */
-	else if ( !strcmp( argv[ 1 ], "-analyze" ) ) {
-		r = AnalyzeBSPMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-analyze")) {
+		r = AnalyzeBSPMain(argc - 1, argv + 1);
 	}
 
 	/* info */
-	else if ( !strcmp( argv[ 1 ], "-info" ) ) {
-		r = BSPInfoMain( argc - 2, argv + 2 );
+	else if (!_stricmp(argv[1], "-info")) {
+		r = BSPInfoMain(argc - 2, argv + 2);
 	}
 
 	/* vis */
-	else if ( !strcmp( argv[ 1 ], "-vis" ) ) {
-		r = VisMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-vis")) {
+		r = VisMain(argc - 1, argv + 1);
 	}
 
 	/* light */
-	else if ( !strcmp( argv[ 1 ], "-light" ) ) {
-		r = LightMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-light")) {
+		r = LightMain(argc - 1, argv + 1);
 	}
 
 	/* QBall: export entities */
-	else if ( !strcmp( argv[ 1 ], "-exportents" ) ) {
-		r = ExportEntitiesMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-exportents")) {
+		r = ExportEntitiesMain(argc - 1, argv + 1);
 	}
 
 	/* ydnar: lightmap export */
-	else if ( !strcmp( argv[ 1 ], "-export" ) ) {
-		r = ExportLightmapsMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-export")) {
+		r = ExportLightmapsMain(argc - 1, argv + 1);
 	}
 
 	/* ydnar: lightmap import */
-	else if ( !strcmp( argv[ 1 ], "-import" ) ) {
-		r = ImportLightmapsMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-import")) {
+		r = ImportLightmapsMain(argc - 1, argv + 1);
 	}
 
 	/* ydnar: bsp scaling */
-	else if ( !strcmp( argv[ 1 ], "-scale" ) ) {
-		r = ScaleBSPMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-scale")) {
+		r = ScaleBSPMain(argc - 1, argv + 1);
 	}
 
 	/* ydnar: bsp conversion */
-	else if ( !strcmp( argv[ 1 ], "-convert" ) ) {
-		r = ConvertBSPMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-convert")) {
+		r = ConvertBSPMain(argc - 1, argv + 1);
 	}
 
 	/* div0: minimap */
-	else if ( !strcmp( argv[ 1 ], "-minimap" ) ) {
-		r = MiniMapBSPMain( argc - 1, argv + 1 );
+	else if (!_stricmp(argv[1], "-minimap")) {
+		r = MiniMapBSPMain(argc - 1, argv + 1);
 	}
 
 	/* ydnar: otherwise create a bsp */

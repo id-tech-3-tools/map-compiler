@@ -164,73 +164,74 @@ int ConvertBSPMain( int argc, char **argv ){
 	for ( i = 1; i < ( argc - 1 ); i++ )
 	{
 		/* -format map|ase|... */
-		if ( !strcmp( argv[ i ],  "-format" ) ) {
+		if (!_stricmp(argv[i], "-format")) {
 			i++;
-			if ( !Q_stricmp( argv[ i ], "ase" ) ) {
+			if (!_stricmp(argv[i], "ase")) {
 				convertFunc = ConvertBSPToASE;
 				map_allowed = qtrue;
 			}
-			else if ( !Q_stricmp( argv[ i ], "obj" ) ) {
+			else if (!_stricmp(argv[i], "obj")) {
 				convertFunc = ConvertBSPToOBJ;
 				map_allowed = qtrue;
 			}
-			else if ( !Q_stricmp( argv[ i ], "map_bp" ) ) {
+			else if (!_stricmp(argv[i], "map_bp")) {
 				convertFunc = ConvertBSPToMap_BP;
 				map_allowed = qtrue;
 			}
-			else if ( !Q_stricmp( argv[ i ], "map" ) ) {
+			else if (!_stricmp(argv[i], "map")) {
 				convertFunc = ConvertBSPToMap;
 				map_allowed = qtrue;
 			}
 			else
 			{
-				convertGame = GetGame( argv[ i ] );
+				convertGame = GetGame(argv[i]);
 				map_allowed = qfalse;
-				if ( convertGame == NULL ) {
-					Sys_Printf( "Unknown conversion format \"%s\". Defaulting to ASE.\n", argv[ i ] );
+				if (convertGame == NULL) {
+					Sys_Printf("Unknown conversion format \"%s\". Defaulting to ASE.\n", argv[i]);
 				}
 			}
 		}
-		else if ( !strcmp( argv[ i ],  "-ne" ) ) {
-			normalEpsilon = atof( argv[ i + 1 ] );
+		else if (!_stricmp(argv[i], "-ne")) {
+			normalEpsilon = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Normal epsilon set to %f\n", normalEpsilon );
+			Sys_Printf("Normal epsilon set to %f\n", normalEpsilon);
 		}
-		else if ( !strcmp( argv[ i ],  "-de" ) ) {
-			distanceEpsilon = atof( argv[ i + 1 ] );
+		else if (!_stricmp(argv[i], "-de")) {
+			distanceEpsilon = atof(argv[i + 1]);
 			i++;
-			Sys_Printf( "Distance epsilon set to %f\n", distanceEpsilon );
+			Sys_Printf("Distance epsilon set to %f\n", distanceEpsilon);
 		}
-		else if ( !strcmp( argv[ i ],  "-shaderasbitmap" ) || !strcmp( argv[ i ],  "-shadersasbitmap" ) ) {
+		else if (!_stricmp(argv[i], "-shaderasbitmap") || !_stricmp(argv[i], "-shadersasbitmap")) {
 			shadersAsBitmap = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-lightmapastexcoord" ) || !strcmp( argv[ i ],  "-lightmapsastexcoord" ) ) {
+		else if (!_stricmp(argv[i], "-lightmapastexcoord") || !_stricmp(argv[i], "-lightmapsastexcoord")) {
 			lightmapsAsTexcoord = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-deluxemapastexcoord" ) || !strcmp( argv[ i ],  "-deluxemapsastexcoord" ) ) {
+		else if (!_stricmp(argv[i], "-deluxemapastexcoord") || !_stricmp(argv[i], "-deluxemapsastexcoord")) {
 			lightmapsAsTexcoord = qtrue;
 			deluxemap = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-readbsp" ) ) {
+		else if (!_stricmp(argv[i], "-readbsp")) {
 			force_bsp = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-readmap" ) ) {
+		else if (!_stricmp(argv[i], "-readmap")) {
 			force_map = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-meta" ) ) {
+		else if (!_stricmp(argv[i], "-meta")) {
 			meta = qtrue;
 		}
-		else if ( !strcmp( argv[ i ],  "-patchmeta" ) ) {
+		else if (!_stricmp(argv[i], "-patchmeta")) {
 			meta = qtrue;
 			patchMeta = qtrue;
 		}
-		else if ( !strcmp(argv[i], "-outfile"))
+		else if (!_stricmp(argv[i], "-outfile"))
 		{
 			if (i + 1 < argc - 1)
 			{
 				i++;
 				strcpy_s(outputFilePath, ExpandArg(argv[i]));
-			} else
+			}
+			else
 			{
 				Sys_Printf("WARNING: -outfile has no path argument\n");
 			}
