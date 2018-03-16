@@ -126,10 +126,10 @@ int ScaleBSPMain( int argc, char **argv ){
 	texscale = qfalse;
 	for ( i = 1; i < argc - 2; ++i )
 	{
-		if ( !strcmp( argv[i], "-tex" ) ) {
+		if ( !_stricmp( argv[i], "-tex" ) ) {
 			texscale = qtrue;
 		}
-		else if ( !strcmp( argv[i], "-spawn_ref" ) ) {
+		else if ( !_stricmp( argv[i], "-spawn_ref" ) ) {
 			spawn_ref = atof( argv[i + 1] );
 			++i;
 		}
