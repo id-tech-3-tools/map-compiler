@@ -1112,56 +1112,56 @@ int VisMain( int argc, char **argv ){
 	/* process arguments */
 	for ( i = 1 ; i < ( argc - 1 ) ; i++ )
 	{
-		if ( !strcmp( argv[i], "-fast" ) ) {
-			Sys_Printf( "fastvis = true\n" );
+		if (!_stricmp(argv[i], "-fast")) {
+			Sys_Printf("fastvis = true\n");
 			fastvis = qtrue;
 		}
-		else if ( !strcmp( argv[i], "-merge" ) ) {
-			Sys_Printf( "merge = true\n" );
+		else if (!_stricmp(argv[i], "-merge")) {
+			Sys_Printf("merge = true\n");
 			mergevis = qtrue;
 		}
-		else if ( !strcmp( argv[i], "-mergeportals" ) ) {
-			Sys_Printf( "mergeportals = true\n" );
+		else if (!_stricmp(argv[i], "-mergeportals")) {
+			Sys_Printf("mergeportals = true\n");
 			mergevisportals = qtrue;
 		}
-		else if ( !strcmp( argv[i], "-nopassage" ) ) {
-			Sys_Printf( "nopassage = true\n" );
+		else if (!_stricmp(argv[i], "-nopassage")) {
+			Sys_Printf("nopassage = true\n");
 			noPassageVis = qtrue;
 		}
-		else if ( !strcmp( argv[i], "-passageOnly" ) ) {
-			Sys_Printf( "passageOnly = true\n" );
+		else if (!_stricmp(argv[i], "-passageOnly")) {
+			Sys_Printf("passageOnly = true\n");
 			passageVisOnly = qtrue;
 		}
-		else if ( !strcmp( argv[i],"-nosort" ) ) {
-			Sys_Printf( "nosort = true\n" );
+		else if (!_stricmp(argv[i], "-nosort")) {
+			Sys_Printf("nosort = true\n");
 			nosort = qtrue;
 		}
-		else if ( !strcmp( argv[i],"-saveprt" ) ) {
-			Sys_Printf( "saveprt = true\n" );
+		else if (!_stricmp(argv[i], "-saveprt")) {
+			Sys_Printf("saveprt = true\n");
 			saveprt = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-v" ) ) {
+		else if (!_stricmp(argv[i], "-v")) {
 			debugCluster = qtrue;
-			Sys_Printf( "Extra verbous mode enabled\n" );
+			Sys_Printf("Extra verbous mode enabled\n");
 		}
-		else if ( !strcmp( argv[i],"-tmpin" ) ) {
-			strcpy( inbase, "/tmp" );
+		else if (!_stricmp(argv[i], "-tmpin")) {
+			strcpy(inbase, "/tmp");
 		}
-		else if ( !strcmp( argv[i],"-tmpout" ) ) {
-			strcpy( outbase, "/tmp" );
+		else if (!_stricmp(argv[i], "-tmpout")) {
+			strcpy(outbase, "/tmp");
 		}
 
 		/* ydnar: -hint to merge all but hint portals */
-		else if ( !strcmp( argv[ i ], "-hint" ) ) {
-			Sys_Printf( "hint = true\n" );
+		else if (!_stricmp(argv[i], "-hint")) {
+			Sys_Printf("hint = true\n");
 			hint = qtrue;
 			mergevis = qtrue;
 		}
-		else if ( !strcmp( argv[ i ], "-prtfile" ) )
+		else if (!_stricmp(argv[i], "-prtfile"))
 		{
-			strcpy( portalFilePath, argv[i + 1] );
+			strcpy(portalFilePath, argv[i + 1]);
 			i++;
-			Sys_Printf( "Use %s as portal file\n", portalFilePath );
+			Sys_Printf("Use %s as portal file\n", portalFilePath);
 		}
 
 		else{
