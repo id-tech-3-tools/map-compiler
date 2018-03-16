@@ -590,10 +590,7 @@ std::set<std::string> excludedFlags {
 static bool shouldSkipFlag(const char *flagName)
 {
 	auto search = excludedFlags.find(flagName);
-	if (search != excludedFlags.end()) {
-		return true;
-	}
-	return false;
+	return search != excludedFlags.end();
 }
 
 /*
