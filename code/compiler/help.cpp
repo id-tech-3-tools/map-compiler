@@ -221,6 +221,7 @@ void HelpLight()
 		{"-nofloodstyles", "Disable floodlighting on styled lightmaps"},
 		{"-nodeluxe, -nodeluxemap", "Disable deluxemapping"},
 		{"-nogrid", "Disable grid light calculation (makes all entities fullbright)"},
+		{"-nolightmap", "Disables lightmap generation for all surfaces, making them vertex lit"},
 		{"-nolightmapsearch", "Do not optimize lightmap packing for GPU memory usage (as doing so costs fps)"},
 		{"-nosRGB", "Disable sRGB color for lightmaps, textures and light colors"},
 		{"-nosRGBcolor", "Disable sRGB color for light colors"},
