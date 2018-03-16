@@ -18,6 +18,8 @@
 * Made all map compiler switches processing case insensitive [#46](https://github.com/isRyven/map-compiler/pull/46)
 * Added `-forceVertex` alias for `-cpma` [#47](https://github.com/isRyven/map-compiler/pull/47)
 * Added `-nolightmap` switch to disable lightmap generation for surfaces, forcing map to be vertex lit [#50](https://github.com/isRyven/map-compiler/pull/50)
+* Added `-invsqatten` and `-linearatten` aliases for `-q3` and `-wolf`, respectively [#51](https://github.com/isRyven/map-compiler/pull/51)
+* Added `-lightnudge` alias for `-extradist` [#52](https://github.com/isRyven/map-compiler/pull/52)
 
 # Version 0.0.1
 
