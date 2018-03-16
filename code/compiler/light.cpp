@@ -2617,11 +2617,6 @@ int LightMain( int argc, char **argv ){
 			}
 		}
 
-		else if ( !strcmp( argv[ i ], "-smooth" ) ) {
-			lightSamples = EXTRA_SCALE;
-			Sys_Printf( "The -smooth argument is deprecated, use \"-samples 2\" instead\n" );
-		}
-
 		else if ( !strcmp( argv[ i ], "-nofastpoint" ) ) {
 			fastpoint = qfalse;
 			Sys_Printf( "Automatic fast mode for point lights disabled\n" );
@@ -2721,15 +2716,6 @@ int LightMain( int argc, char **argv ){
 		else if ( !strcmp( argv[ i ], "-patchshadows" ) ) {
 			patchShadows = qtrue;
 			Sys_Printf( "Patch shadow casting enabled\n" );
-		}
-		else if ( !strcmp( argv[ i ], "-extra" ) ) {
-			superSample = EXTRA_SCALE;      /* ydnar */
-			Sys_Printf( "The -extra argument is deprecated, use \"-super 2\" instead\n" );
-		}
-		else if ( !strcmp( argv[ i ], "-extrawide" ) ) {
-			superSample = EXTRAWIDE_SCALE;  /* ydnar */
-			filter = qtrue;                 /* ydnar */
-			Sys_Printf( "The -extrawide argument is deprecated, use \"-filter [-super 2]\" instead\n" );
 		}
 		else if ( !strcmp( argv[ i ], "-samplesize" ) ) {
 			sampleSize = atoi( argv[ i + 1 ] );
