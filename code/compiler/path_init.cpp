@@ -430,103 +430,103 @@ void InitPaths( int *argc, char **argv ){
 		}
 
 		/* -game */
-		if ( strcmp( argv[ i ], "-game" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No game specified after %s", argv[ i - 1 ] );
+		if (_stricmp(argv[i], "-game") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No game specified after %s", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
-			game = GetGame( argv[ i ] );
-			if ( game == NULL ) {
-				game = &games[ 0 ];
+			argv[i - 1] = NULL;
+			game = GetGame(argv[i]);
+			if (game == NULL) {
+				game = &games[0];
 			}
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* -fs_forbiddenpath */
-		else if ( strcmp( argv[ i ], "-fs_forbiddenpath" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_forbiddenpath") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
-			if ( g_numForbiddenDirs < VFS_MAXDIRS ) {
-				strncpy( g_strForbiddenDirs[g_numForbiddenDirs], argv[i], PATH_MAX );
+			argv[i - 1] = NULL;
+			if (g_numForbiddenDirs < VFS_MAXDIRS) {
+				strncpy(g_strForbiddenDirs[g_numForbiddenDirs], argv[i], PATH_MAX);
 				g_strForbiddenDirs[g_numForbiddenDirs][PATH_MAX] = 0;
 				++g_numForbiddenDirs;
 			}
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* -fs_nobasepath */
-		else if ( strcmp( argv[ i ], "-fs_nobasepath" ) == 0 ) {
+		else if (_stricmp(argv[i], "-fs_nobasepath") == 0) {
 			noBasePath = 1;
-			argv[ i ] = NULL;
-		}		
+			argv[i] = NULL;
+		}
 
 		/* -fs_basepath */
-		else if ( strcmp( argv[ i ], "-fs_basepath" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_basepath") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
-			AddBasePath( argv[ i ] );
-			argv[ i ] = NULL;
+			argv[i - 1] = NULL;
+			AddBasePath(argv[i]);
+			argv[i] = NULL;
 		}
 
 		/* -fs_game */
-		else if ( strcmp( argv[ i ], "-fs_game" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_game") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
-			AddGamePath( argv[ i ] );
-			argv[ i ] = NULL;
+			argv[i - 1] = NULL;
+			AddGamePath(argv[i]);
+			argv[i] = NULL;
 		}
 
 		/* -fs_home */
-		else if ( strcmp( argv[ i ], "-fs_home" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_home") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
+			argv[i - 1] = NULL;
 			homePath = argv[i];
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* -fs_nohomepath */
-		else if ( strcmp( argv[ i ], "-fs_nohomepath" ) == 0 ) {
+		else if (_stricmp(argv[i], "-fs_nohomepath") == 0) {
 			noHomePath = 1;
-			argv[ i ] = NULL;
-		}		
+			argv[i] = NULL;
+		}
 
 		/* -fs_homebase */
-		else if ( strcmp( argv[ i ], "-fs_homebase" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_homebase") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
+			argv[i - 1] = NULL;
 			homeBasePath = argv[i];
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* -fs_homepath - sets both of them */
-		else if ( strcmp( argv[ i ], "-fs_homepath" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_homepath") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
+			argv[i - 1] = NULL;
 			homePath = argv[i];
 			homeBasePath = ".";
-			argv[ i ] = NULL;
+			argv[i] = NULL;
 		}
 
 		/* -fs_pakpath */
-		else if ( strcmp( argv[ i ], "-fs_pakpath" ) == 0 ) {
-			if ( ++i >= *argc ) {
-				Error( "Out of arguments: No path specified after %s.", argv[ i - 1 ] );
+		else if (_stricmp(argv[i], "-fs_pakpath") == 0) {
+			if (++i >= *argc) {
+				Error("Out of arguments: No path specified after %s.", argv[i - 1]);
 			}
-			argv[ i - 1 ] = NULL;
-			AddPakPath( argv[ i ] );
-			argv[ i ] = NULL;
+			argv[i - 1] = NULL;
+			AddPakPath(argv[i]);
+			argv[i] = NULL;
 		}
 
 	}
