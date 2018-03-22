@@ -5,4 +5,4 @@ This project aims to be an all-in app for compiling maps for games based on id T
 You are free to make feature requests/bug reports under issues, as well as pull requests of course.
 
 ## Compiling
-As of now, the project doesn't have any external dependencies. It's built on Windows using MSVC toolset v140. The project is x64 only.
+As of now, all required dependencies are shipped with the project. It's built on Windows using MSVC toolset v140. The project is x64 only.
