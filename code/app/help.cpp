@@ -9,7 +9,7 @@ CompilerHelpPrinter::~CompilerHelpPrinter() {}
 void CompilerHelpPrinter::print(const std::string &argument)
 {
 	std::cout << std::endl;
-		 if (argument == "analyze") printBspAnalyze();
+	     if (argument == "analyze") printBspAnalyze();
 	else if (argument == "bsp") printBspCompile();
 	else if (argument == "convert") printConverter();
 	else if (argument == "export") printExportLightmaps();
