@@ -1481,9 +1481,6 @@ char                        *Q_strncpyz( char *dst, const char *src, size_t len 
 char                        *Q_strcat( char *dst, size_t dlen, const char *src );
 char                        *Q_strncat( char *dst, size_t dlen, const char *src, size_t slen );
 
-/* help.c */
-void                        HelpMain(const char* arg);
-
 /* path_init.c */
 game_t                      *GetGame( char *arg );
 void                        InitPaths( int *argc, char **argv );

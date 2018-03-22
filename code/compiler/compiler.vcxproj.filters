@@ -66,9 +66,6 @@
     <ClInclude Include="includes\bspfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\compiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\l_net.h">
       <Filter>Header Files\libs</Filter>
     </ClInclude>
@@ -176,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="..\..\ext\msdirent\msdirent.h">
       <Filter>Header Files\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\compiler_api.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -348,9 +348,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="help.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="image.cpp">

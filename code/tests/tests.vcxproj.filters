@@ -13,41 +13,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\classes">
+      <UniqueIdentifier>{1a8740bd-0ae4-463e-a7fc-17d0ee1ba3f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compiler.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\app\table_builder.cpp">
+      <Filter>Source Files\classes</Filter>
     </ClCompile>
-    <ClCompile Include="help.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="table_builder.cpp">
+    <ClCompile Include="table_builder_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ext\argh\argh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common\compiler_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ext\tinyformat\tinyformat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ext\filesystem\path.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\compiler.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\help.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\table_builder.hpp">
+    <ClInclude Include="..\ext\catch2\catch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

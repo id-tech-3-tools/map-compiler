@@ -1,8 +1,7 @@
 #include <iostream>
-#include "compiler.h"
+#include "compiler.hpp"
 
-int main(int argc, char *argv[])
+int main(int argc, char** argv)
 {
-	std::cout << "Starting up compiler...\n";
-	return compilerMain(argc, argv);
+	return setupCompiler(argc, argv);
 }

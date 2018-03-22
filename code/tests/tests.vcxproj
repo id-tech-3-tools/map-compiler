@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{71314041-390B-4ABF-B765-F18BCF0E85D4}</ProjectGuid>
-    <RootNamespace>app</RootNamespace>
+    <ProjectGuid>{1ADE08AC-CC9C-4142-BB72-D3AABAE14A8F}</ProjectGuid>
+    <RootNamespace>tests</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,14 +70,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
-    <TargetName>mapcompiler</TargetName>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>mapcompiler</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,25 +88,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)code\common;$(SolutionDir)ext\lua;$(SolutionDir)ext\argh;$(SolutionDir)ext\tinyformat;$(SolutionDir)ext\filesystem;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\catch2;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform)\;$(SolutionDir)ext\libxml2-2.9.2\win32\bin.msvc\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Ws2_32.lib;picomodel.lib;compiler.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>
-      </SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OptimizeReferences>false</OptimizeReferences>
-      <EnableCOMDATFolding>false</EnableCOMDATFolding>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <StackReserveSize>8000000</StackReserveSize>
-    </Link>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
-    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,43 +111,20 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)code\common;$(SolutionDir)ext\lua;$(SolutionDir)ext\argh;$(SolutionDir)ext\tinyformat;$(SolutionDir)ext\filesystem;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <DebugInformationFormat>None</DebugInformationFormat>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\catch2;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(Configuration)\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Ws2_32.lib;picomodel.lib;compiler.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>
-      </SubSystem>
-      <StackReserveSize>8000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compiler.cpp" />
-    <ClCompile Include="help.cpp" />
+    <ClCompile Include="..\app\table_builder.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="table_builder.cpp" />
+    <ClCompile Include="table_builder_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ext\lua\lua.vcxproj">
-      <Project>{43082637-0d8f-4ece-a649-d3354d714950}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\compiler\compiler.vcxproj">
-      <Project>{0625eb54-41e0-4a37-845c-835babb1a891}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\ext\argh\argh.h" />
-    <ClInclude Include="..\..\ext\filesystem\path.h" />
-    <ClInclude Include="..\..\ext\tinyformat\tinyformat.h" />
-    <ClInclude Include="..\common\compiler_api.h" />
-    <ClInclude Include="includes\compiler.hpp" />
-    <ClInclude Include="includes\help.hpp" />
-    <ClInclude Include="includes\table_builder.hpp" />
+    <ClInclude Include="..\ext\catch2\catch.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
