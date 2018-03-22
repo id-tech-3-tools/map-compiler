@@ -28,7 +28,7 @@
     <ClInclude Include="..\..\ext\lodepng\lodepng.h" />
     <ClInclude Include="..\..\ext\msdirent\msdirent.h" />
     <ClInclude Include="..\common\bytebool.h" />
-    <ClInclude Include="..\common\compiler.h" />
+    <ClInclude Include="..\common\compiler_api.h" />
     <ClInclude Include="..\common\globaldefs.h" />
     <ClInclude Include="..\common\picomodel.h" />
     <ClInclude Include="includes\bspfile.h" />
@@ -101,7 +101,6 @@
     <ClCompile Include="filematch.cpp" />
     <ClCompile Include="fixaas.cpp" />
     <ClCompile Include="fog.cpp" />
-    <ClCompile Include="help.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imagelib.cpp" />
     <ClCompile Include="inout.cpp" />

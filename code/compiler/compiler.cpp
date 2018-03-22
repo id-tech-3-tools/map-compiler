@@ -35,7 +35,7 @@
 
 /* dependencies */
 #include "q3map2.h"
-#include "compiler.h"
+#include "compiler_api.h"
 
 /*
    Random()
@@ -116,13 +116,6 @@ int compilerMain(int argc, char **argv) {
 	/* read general options first */
 	for ( i = 1; i < argc; i++ )
 	{
-		/* -help */
-		if (!_stricmp(argv[i], "-h") || !_stricmp(argv[i], "--help")
-			|| !_stricmp(argv[i], "-help")) {
-			HelpMain(argv[i + 1]);
-			return 0;
-		}
-
 		/* -connect */
 		if (!_stricmp(argv[i], "-connect")) {
 			argv[i] = NULL;
