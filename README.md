@@ -6,3 +6,6 @@ You are free to make feature requests/bug reports under issues, as well as pull 
 
 ## Compiling
 As of now, all required dependencies are shipped with the project. It's built on Windows using MSVC toolset v140. The project is x64 only.
+
+## Wiki
+The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed information about all options map compiler currently supports.
