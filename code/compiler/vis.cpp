@@ -36,7 +36,12 @@
 /* dependencies */
 #include "q3map2.h"
 
+#undef min
+#undef max
 
+#include <vector>
+#include <string>
+#include "tinyformat.h"
 
 
 void PlaneFromWinding( fixedWinding_t *w, visPlane_t *plane ){
@@ -1093,8 +1098,6 @@ void LoadPortals( char *name ){
 	fclose( f );
 }
 
-
-
 /*
    ===========
    VisMain
@@ -1104,7 +1107,8 @@ int VisMain( int argc, char **argv ){
 	int i;
 	char portalFilePath[ 1024 ];
 	portalFilePath[0] = 0;
-
+	std::vector<OptionResult> options;
+	options.push_back({ "-vis" });
 
 	/* note it */
 	Sys_Printf( "--- Vis ---\n" );
@@ -1113,36 +1117,36 @@ int VisMain( int argc, char **argv ){
 	for ( i = 1 ; i < ( argc - 1 ) ; i++ )
 	{
 		if (!_stricmp(argv[i], "-fast")) {
-			Sys_Printf("fastvis = true\n");
 			fastvis = qtrue;
+			options.push_back({ argv[i], "", "fastvis = true" });
 		}
 		else if (!_stricmp(argv[i], "-merge")) {
-			Sys_Printf("merge = true\n");
 			mergevis = qtrue;
+			options.push_back({ argv[i], "", "merge = true" });
 		}
 		else if (!_stricmp(argv[i], "-mergeportals")) {
-			Sys_Printf("mergeportals = true\n");
 			mergevisportals = qtrue;
+			options.push_back({ argv[i], "", "mergeportals = true" });
 		}
 		else if (!_stricmp(argv[i], "-nopassage")) {
-			Sys_Printf("nopassage = true\n");
 			noPassageVis = qtrue;
+			options.push_back({ argv[i], "", "nopassage = true" });
 		}
 		else if (!_stricmp(argv[i], "-passageOnly")) {
-			Sys_Printf("passageOnly = true\n");
 			passageVisOnly = qtrue;
+			options.push_back({ argv[i], "", "passageOnly = true" });
 		}
 		else if (!_stricmp(argv[i], "-nosort")) {
-			Sys_Printf("nosort = true\n");
 			nosort = qtrue;
+			options.push_back({ argv[i], "", "nosort = true" });
 		}
 		else if (!_stricmp(argv[i], "-saveprt")) {
-			Sys_Printf("saveprt = true\n");
 			saveprt = qtrue;
+			options.push_back({ argv[i], "", "saveprt = true" });
 		}
 		else if (!_stricmp(argv[i], "-v")) {
 			debugCluster = qtrue;
-			Sys_Printf("Extra verbous mode enabled\n");
+			options.push_back({ argv[i], "", "extra verbous mode enabled" });
 		}
 		else if (!_stricmp(argv[i], "-tmpin")) {
 			strcpy(inbase, "/tmp");
@@ -1153,26 +1157,24 @@ int VisMain( int argc, char **argv ){
 
 		/* ydnar: -hint to merge all but hint portals */
 		else if (!_stricmp(argv[i], "-hint")) {
-			Sys_Printf("hint = true\n");
 			hint = qtrue;
 			mergevis = qtrue;
+			options.push_back({ argv[i], "", "hint = true" });
 		}
 		else if (!_stricmp(argv[i], "-prtfile"))
 		{
 			strcpy(portalFilePath, argv[i + 1]);
+			options.push_back({ 
+				argv[i], argv[i + 1], tfm::format("use %s as portal file", portalFilePath) 
+			});
 			i++;
-			Sys_Printf("Use %s as portal file\n", portalFilePath);
-		}
 
-		else{
-			Sys_FPrintf( SYS_WRN, "WARNING: Unknown option \"%s\"\n", argv[ i ] );
 		}
 	}
 
-	if ( i != argc - 1 ) {
-		Error( "usage: vis [-threads #] [-level 0-4] [-fast] [-v] BSPFilePath" );
-	}
-
+	Sys_Printf("Vis Options:\n");
+	printOptions(options);
+	Sys_Printf("--------------------------\n");
 
 	/* load the bsp */
 	sprintf( source, "%s%s", inbase, ExpandArg( argv[ i ] ) );
@@ -1200,7 +1202,7 @@ int VisMain( int argc, char **argv ){
 	ParseEntities();
 
 	/* inject command line parameters */
-	InjectCommandLine( argv, 0, argc - 1 );
+	InjectCommandLine(options);
 	UnparseEntities();
 
 	if ( mergevis ) {

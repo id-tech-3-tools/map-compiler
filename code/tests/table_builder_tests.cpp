@@ -325,3 +325,30 @@ TEST_CASE("test should allow adding multiple type rows using addRows")
 
 	delete table;
 }
+
+TEST_CASE("test should allow adding strings in the row")
+{
+	const int colA = 20;
+	const int colB = 30;
+	const int width = colA + colB;
+
+	auto table = new TableBuilder{ colA, colB };
+	std::string val1{ "Deserunt, suscipit." };
+	std::string val2{ "Quam pariatur quo." };
+
+	table->addRow({val1, val2});
+	table->addRow(val1.c_str());
+	auto rows = table->build();
+
+	std::stringstream ss1;
+	ss1 << std::left << std::setfill(' ');
+	ss1 << std::setw(colA) << "Deserunt, suscipit." << std::setw(colB) << "Quam pariatur quo.";
+	REQUIRE(ss1.str() == rows[0]);
+
+	std::stringstream ss2;
+	ss2 << std::left << std::setfill(' ');
+	ss2 << std::setw(width) << "Deserunt, suscipit.";
+	REQUIRE(ss2.str() == rows[1]);
+
+	delete table;
+}

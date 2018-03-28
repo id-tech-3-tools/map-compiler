@@ -274,7 +274,7 @@ image_t *ImageLoad( const char *filename ){
 	/* attempt to load tga */
 	StripExtension( name );
 	strcat( name, ".tga" );
-	size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+	size = g_vfs.load(name, (void**) &buffer);
 	if ( size > 0 ) {
 		LoadTGABuffer( buffer, buffer + size, &image->pixels, &image->width, &image->height );
 	}
@@ -283,7 +283,7 @@ image_t *ImageLoad( const char *filename ){
 		/* attempt to load png */
 		StripExtension( name );
 		strcat( name, ".png" );
-		size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+		size = g_vfs.load(name, (void**) &buffer);
 		if ( size > 0 ) {
 			LoadPNGBuffer( buffer, size, &image->pixels, &image->width, &image->height );
 		}
@@ -292,7 +292,7 @@ image_t *ImageLoad( const char *filename ){
 			/* attempt to load jpg */
 			StripExtension( name );
 			strcat( name, ".jpg" );
-			size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+			size = g_vfs.load(name, (void**)&buffer);
 			if ( size > 0 ) {
 				if ( LoadJPGBuff( buffer, size, &image->pixels, &image->width, &image->height ) == -1 && image->pixels != NULL ) {
 					// On error, LoadJPGBuff might store a pointer to the error message in image->pixels
@@ -305,7 +305,7 @@ image_t *ImageLoad( const char *filename ){
 				/* attempt to load dds */
 				StripExtension( name );
 				strcat( name, ".dds" );
-				size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+				size = g_vfs.load(name, (void**)&buffer);
 				if ( size > 0 ) {
 					LoadDDSBuffer( buffer, size, &image->pixels, &image->width, &image->height );
 
@@ -328,7 +328,7 @@ image_t *ImageLoad( const char *filename ){
 					/* attempt to load ktx */
 					StripExtension( name );
 					strcat( name, ".ktx" );
-					size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+					size = g_vfs.load(name, (void**)&buffer);
 					if ( size > 0 ) {
 						LoadKTXBufferFirstImage( buffer, size, &image->pixels, &image->width, &image->height );
 					}
@@ -360,7 +360,7 @@ image_t *ImageLoad( const char *filename ){
 	if ( alphaHack ) {
 		StripExtension( name );
 		strcat( name, "_alpha.jpg" );
-		size = vfsLoadFile( (const char*) name, (void**) &buffer, 0 );
+		size = g_vfs.load(name, (void**)&buffer);
 		if ( size > 0 ) {
 			unsigned char *pixels;
 			int width, height;

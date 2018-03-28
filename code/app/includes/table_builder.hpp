@@ -65,8 +65,8 @@ public:
 	{
 		std::vector<Column> columns;
 		explicit Row() {}
-		explicit Row(const std::string& col);
-		explicit Row(const std::initializer_list<std::string>& cols);
+		Row(const std::string& col);
+		Row(const std::initializer_list<std::string>& cols);
 		Row(const char* col);
 		Row(const std::initializer_list<char*>& cols);
 		void push(const Column& col);

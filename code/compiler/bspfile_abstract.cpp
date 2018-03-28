@@ -39,6 +39,7 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <sstream>
 
 
 /* -------------------------------------------------------------------------------
@@ -596,9 +597,14 @@ std::set<std::string> excludedFlags {
 	"-bspfile", "-linfile", "-srffile", "-prtfile", "-tempname", "-lightmapdir"
 };
 
-static bool shouldSkipFlag(const char *flagName)
+static bool shouldSkipFlag(const std::string &optionName)
 {
-	auto lowFlagName = stringToLower(flagName);
+	if (optionName.empty())
+	{
+		return true;
+	}
+
+	auto lowFlagName = stringToLower(optionName);
 	auto search = excludedFlags.find(lowFlagName);
 	return search != excludedFlags.end();
 }
@@ -606,52 +612,32 @@ static bool shouldSkipFlag(const char *flagName)
 /*
  * must be called before UnparseEntities
  */
-void InjectCommandLine( char **argv, int beginArgs, int endArgs ){
-	const char *previousCommandLine;
-	char newCommandLine[1024];
-	const char *inpos;
-	char *outpos = newCommandLine;
-	char *sentinel = newCommandLine + sizeof( newCommandLine ) - 1;
-	int i;
+void InjectCommandLine(const std::vector<OptionResult> &options)
+{
+	std::stringstream newCommandLine;
 
-	previousCommandLine = ValueForKey( &entities[0], "_q3map2_cmdline" );
-	if ( previousCommandLine && *previousCommandLine ) {
-		inpos = previousCommandLine;
-		while ( outpos != sentinel && *inpos )
-			*outpos++ = *inpos++;
-		if ( outpos != sentinel ) {
-			*outpos++ = ';';
-		}
-		if ( outpos != sentinel ) {
-			*outpos++ = ' ';
-		}
+	newCommandLine << ValueForKey(&entities[0], "_q3map2_cmdline");
+	if (newCommandLine.tellp() != std::streampos(0))
+	{
+		newCommandLine << "; ";
 	}
 
-	for ( i = beginArgs; i < endArgs; ++i )
+	for (const auto &option : options)
 	{
-		inpos = argv[i];
-
-		if (shouldSkipFlag(inpos)) {
-			i++;
+		if (option.option.empty() || shouldSkipFlag(option.option))
+		{
 			continue;
 		}
+		newCommandLine << option.option << " ";
 
-		if ( outpos != sentinel && i != beginArgs ) {
-			*outpos++ = ' ';
+		if (option.value.empty())
+		{
+			continue;
 		}
-		
-		while ( outpos != sentinel && *inpos )
-			if ( *inpos != '\\' && *inpos != '"' && *inpos != ';' && (unsigned char) *inpos >= ' ' ) {
-				*outpos++ = *inpos++;
-			} else
-			{
-				Sys_Printf("Warning! Arguments injection failed due to containing forbidden character.");
-				return;
-			}
+		newCommandLine << option.value << " ";
 	}
 
-	*outpos = 0;
-	SetKeyValue( &entities[0], "_q3map2_cmdline", newCommandLine );
+	SetKeyValue( &entities[0], "_q3map2_cmdline", newCommandLine.str().c_str() );
 	SetKeyValue( &entities[0], "_q3map2_version", Q3MAP_VERSION );
 }
 

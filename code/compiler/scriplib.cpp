@@ -25,7 +25,10 @@
 #include "mathlib.h"
 #include "inout.h"
 #include "scriplib.h"
-#include "vfs.h"
+#include "assets_loader.hpp"
+#include <fstream>
+
+extern AssetsLoader g_vfs;
 
 /*
    =============================================================================
@@ -56,8 +59,8 @@ qboolean tokenready;                     // only qtrue if UnGetToken was just ca
    AddScriptToStack
    ==============
  */
-void AddScriptToStack( const char *filename, int index ){
-	int size;
+bool AddScriptToStack( const char *filename, int index ){
+	int size = -1;
 
 	script++;
 	if ( script == &scriptstack[MAX_INCLUDES] ) {
@@ -65,26 +68,29 @@ void AddScriptToStack( const char *filename, int index ){
 	}
 	strcpy( script->filename, ExpandPath( filename ) );
 
-	size = vfsLoadFile( script->filename, (void **)&script->buffer, index );
-
-	if ( size == -1 ) {
-		Sys_Printf( "Script file %s was not found\n", script->filename );
-	}
+	if (index == -1)
+	{
+		std::ifstream lmfile{ filename, std::ios::binary | std::ios::ate };
+		if (lmfile.is_open()) {
+			size = lmfile.tellg();
+			script->buffer = new char[size + 1];
+			lmfile.seekg(0, std::ios::beg);
+			lmfile.read(script->buffer, size);
+			lmfile.close();
+			script->buffer[size] = 0;
+		}
+	} 
 	else
 	{
-		if ( index > 0 ) {
-			Sys_Printf( "entering %s (%d)\n", script->filename, index + 1 );
-		}
-		else{
-			Sys_Printf( "entering %s\n", script->filename );
-		}
+		size = g_vfs.load(script->filename, (void **)&script->buffer, index);
 	}
 
 	script->line = 1;
 	script->script_p = script->buffer;
 	script->end_p = script->buffer + size;
-}
 
+	return size > -1;
+}
 
 /*
    ==============
@@ -93,12 +99,48 @@ void AddScriptToStack( const char *filename, int index ){
  */
 void LoadScriptFile( const char *filename, int index ){
 	script = scriptstack;
-	AddScriptToStack( filename, index );
+	bool success = AddScriptToStack( filename, index );
+
+	if (success) {
+		if (index > 0) {
+			Sys_Printf("Entering %s (%d)\n", script->filename, index + 1);
+		}
+		else {
+			Sys_Printf("Entering %s\n", script->filename);
+		}
+	}
+	else
+	{
+		Sys_Printf("Script file %s was not found\n", script->filename);
+	}
 
 	endofscript = qfalse;
 	tokenready = qfalse;
 }
 
+void LoadScriptFileQuietly(const char *filename, int index) {
+	script = scriptstack;
+
+	bool success = AddScriptToStack(filename, index);
+	if (!success) {
+		Sys_Printf("Script file %s was not found\n", script->filename);
+	}
+
+	endofscript = qfalse;
+	tokenready = qfalse;
+}
+
+void LoadScriptFileInCurrentScript(const char *filename)
+{
+	bool success = AddScriptToStack(filename, 0);
+	if (success) {
+		Sys_Printf("Entering %s\n", script->filename);
+	}
+	else
+	{
+		Sys_Printf("Script file %s was not found\n", script->filename);
+	}
+}
 
 /*
    ==============
@@ -287,7 +329,7 @@ skipspace:
 
 	if ( !strcmp( token, "$include" ) ) {
 		GetToken( qfalse );
-		AddScriptToStack( token, 0 );
+		LoadScriptFileInCurrentScript(token);
 		return GetToken( crossline );
 	}
 

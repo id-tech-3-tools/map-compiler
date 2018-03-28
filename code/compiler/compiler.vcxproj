@@ -24,6 +24,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ext\assetsys\assetsys.h" />
+    <ClInclude Include="..\..\ext\assetsys\strpool.h" />
+    <ClInclude Include="..\..\ext\filesystem\path.h" />
     <ClInclude Include="..\..\ext\jpeg-compressor\jpgd.h" />
     <ClInclude Include="..\..\ext\lodepng\lodepng.h" />
     <ClInclude Include="..\..\ext\msdirent\msdirent.h" />
@@ -31,6 +34,7 @@
     <ClInclude Include="..\common\compiler_api.h" />
     <ClInclude Include="..\common\globaldefs.h" />
     <ClInclude Include="..\common\picomodel.h" />
+    <ClInclude Include="includes\assets_loader.hpp" />
     <ClInclude Include="includes\bspfile.h" />
     <ClInclude Include="includes\cmdlib.h" />
     <ClInclude Include="includes\ddslib.h" />
@@ -71,12 +75,11 @@
     <ClInclude Include="includes\scriplib.h" />
     <ClInclude Include="includes\surfaceflags.h" />
     <ClInclude Include="includes\trilib.h" />
-    <ClInclude Include="includes\unzip.h" />
-    <ClInclude Include="includes\vfs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ext\jpeg-compressor\jpgd.cpp" />
     <ClCompile Include="..\..\ext\lodepng\lodepng.cpp" />
+    <ClCompile Include="assets_loader.cpp" />
     <ClCompile Include="bbox.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="brush_primit.cpp" />
@@ -138,8 +141,6 @@
     <ClCompile Include="tjunction.cpp" />
     <ClCompile Include="tree.cpp" />
     <ClCompile Include="trilib.cpp" />
-    <ClCompile Include="unzip.cpp" />
-    <ClCompile Include="vfs.cpp" />
     <ClCompile Include="vis.cpp" />
     <ClCompile Include="visflow.cpp" />
     <ClCompile Include="writebsp.cpp" />
@@ -215,7 +216,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;$(SolutionDir)ext\assetsys;$(SolutionDir)ext\filesystem;$(SolutionDir)ext\argh;$(SolutionDir)ext\tinyformat;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
@@ -251,7 +252,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ext\lodepng;$(SolutionDir)ext\jpeg-compressor;$(ProjectDir)..\common;$(ProjectDir)includes;$(SolutionDir)ext\msdirent;$(SolutionDir)ext\assetsys;$(SolutionDir)ext\filesystem;$(SolutionDir)ext\argh;$(SolutionDir)ext\tinyformat;$(SolutionDir)code\app\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4703;4996;4267;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>

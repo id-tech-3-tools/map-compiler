@@ -31,12 +31,15 @@
 /* marker */
 #define BSP_C
 
-
-
 /* dependencies */
 #include "q3map2.h"
 
+#undef min
+#undef max
 
+#include <vector>
+#include <string>
+#include "tinyformat.h"
 
 /* -------------------------------------------------------------------------------
 
@@ -714,6 +717,8 @@ int BSPMain( int argc, char **argv ){
 	portalFilePath[0] = 0;
 	surfaceFilePath[0] = 0;
 
+	std::vector<OptionResult> options;
+	options.push_back({ "-bsp" });
 
 	/* note it */
 	Sys_Printf( "--- BSP ---\n" );
@@ -737,7 +742,7 @@ int BSPMain( int argc, char **argv ){
 	for ( i = 1; i < ( argc - 1 ); i++ )
 	{
 		if (!_stricmp(argv[i], "-onlyents")) {
-			Sys_Printf("Running entity-only compile\n");
+			options.push_back({ argv[i], "", "running entity-only compile" });
 			onlyents = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-tempname")) {
@@ -747,154 +752,143 @@ int BSPMain( int argc, char **argv ){
 			strcpy(outbase, "/tmp");
 		}
 		else if (!_stricmp(argv[i], "-nowater")) {
-			Sys_Printf("Disabling water\n");
+			options.push_back({ argv[i], "", "disabling water" });
 			nowater = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-keeplights")) {
+			options.push_back({ argv[i], "", "leaving light entities on map after compile" });
 			keepLights = qtrue;
-			Sys_Printf("Leaving light entities on map after compile\n");
 		}
 		else if (!_stricmp(argv[i], "-nodetail")) {
-			Sys_Printf("Ignoring detail brushes\n");
+			options.push_back({ argv[i], "", "ignoring detail brushes" });
 			nodetail = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-fulldetail")) {
-			Sys_Printf("Turning detail brushes into structural brushes\n");
+			options.push_back({ argv[i], "", "turning detail brushes into structural brushes" });
 			fulldetail = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-nofog")) {
-			Sys_Printf("Fog volumes disabled\n");
+			options.push_back({ argv[i], "", "fog volumes disabled" });
 			nofog = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-nosubdivide")) {
-			Sys_Printf("Disabling brush face subdivision\n");
+			options.push_back({ argv[i], "", "disabling brush face subdivision" });
 			nosubdivide = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-leaktest")) {
-			Sys_Printf("Leaktest enabled\n");
+			options.push_back({ argv[i], "", "leaktest enabled" });
 			leaktest = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-verboseentities")) {
-			Sys_Printf("Verbose entities enabled\n");
+			options.push_back({ argv[i], "", "verbose entities enabled" });
 			verboseEntities = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-nocurves")) {
-			Sys_Printf("Ignoring curved surfaces (patches)\n");
+			options.push_back({ argv[i], "", "ignoring curved surfaces (patches)" });
 			noCurveBrushes = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-notjunc")) {
-			Sys_Printf("T-junction fixing disabled\n");
+			options.push_back({ argv[i], "", "t-junction fixing disabled" });
 			notjunc = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-fakemap")) {
-			Sys_Printf("Generating fakemap.map\n");
+			options.push_back({ argv[i], "", "generating fakemap.map" });
 			fakemap = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-samplesize")) {
-			sampleSize = atoi(argv[i + 1]);
-			if (sampleSize < 1) {
-				sampleSize = 1;
-			}
+			sampleSize = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({ 
+				argv[i], argv[i + 1], 
+				tfm::format("lightmap sample size set to %dx%d units", sampleSize, sampleSize) 
+			});
 			i++;
-			Sys_Printf("Lightmap sample size set to %dx%d units\n", sampleSize, sampleSize);
 		}
 		else if (!_stricmp(argv[i], "-minsamplesize")) {
-			minSampleSize = atoi(argv[i + 1]);
-			if (minSampleSize < 1) {
-				minSampleSize = 1;
-			}
+			minSampleSize = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("minimum lightmap sample size set to %dx%d units", minSampleSize, minSampleSize)
+			});
 			i++;
-			Sys_Printf("Minimum lightmap sample size set to %dx%d units\n", minSampleSize, minSampleSize);
 		}
 		else if (!_stricmp(argv[i], "-custinfoparms")) {
-			Sys_Printf("Custom info parms enabled\n");
+			options.push_back({ argv[i], "", "custom info parms enabled" });
 			useCustomInfoParms = qtrue;
 		}
 
 		/* sof2 args */
 		else if (!_stricmp(argv[i], "-rename")) {
-			Sys_Printf("Appending _bsp suffix to misc_model shaders (SOF2)\n");
+			options.push_back({ argv[i], "", "appending _bsp suffix to misc_model shaders (SOF2)" });
 			renameModelShaders = qtrue;
 		}
 
 		/* ydnar args */
 		else if (!_stricmp(argv[i], "-ne")) {
 			normalEpsilon = atof(argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("normal epsilon set to %f", normalEpsilon) });
 			i++;
-			Sys_Printf("Normal epsilon set to %f\n", normalEpsilon);
 		}
 		else if (!_stricmp(argv[i], "-de")) {
 			distanceEpsilon = atof(argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("distance epsilon set to %f", distanceEpsilon) });
 			i++;
-			Sys_Printf("Distance epsilon set to %f\n", distanceEpsilon);
 		}
 		else if (!_stricmp(argv[i], "-mv")) {
-			maxLMSurfaceVerts = atoi(argv[i + 1]);
-			if (maxLMSurfaceVerts < 3) {
-				maxLMSurfaceVerts = 3;
-			}
-			if (maxLMSurfaceVerts > maxSurfaceVerts) {
-				maxSurfaceVerts = maxLMSurfaceVerts;
-			}
+			maxLMSurfaceVerts = std::max(atoi(argv[i + 1]), 3);
+			maxSurfaceVerts = std::max(maxLMSurfaceVerts, maxSurfaceVerts);
+			options.push_back({ 
+				argv[i], argv[i + 1], 
+				tfm::format("maximum lightmapped surface vertex count set to %d", maxLMSurfaceVerts)
+			});
 			i++;
-			Sys_Printf("Maximum lightmapped surface vertex count set to %d\n", maxLMSurfaceVerts);
 		}
 		else if (!_stricmp(argv[i], "-mi")) {
-			maxSurfaceIndexes = atoi(argv[i + 1]);
-			if (maxSurfaceIndexes < 3) {
-				maxSurfaceIndexes = 3;
-			}
+			maxSurfaceIndexes = std::max(atoi(argv[i + 1]), 3);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("maximum per-surface index count set to %d", maxSurfaceIndexes)
+			});
 			i++;
-			Sys_Printf("Maximum per-surface index count set to %d\n", maxSurfaceIndexes);
 		}
 		else if (!_stricmp(argv[i], "-np")) {
-			npDegrees = atof(argv[i + 1]);
-			if (npDegrees < 0.0f) {
-				npDegrees = 0.0f;
-			}
-			else if (npDegrees > 0.0f) {
-				Sys_Printf("Forcing nonplanar surfaces with a breaking angle of %f degrees\n", npDegrees);
-			}
+			npDegrees = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("forcing nonplanar surfaces with a breaking angle of %f degrees", npDegrees)
+			});
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-snap")) {
-			bevelSnap = atoi(argv[i + 1]);
-			if (bevelSnap < 0) {
-				bevelSnap = 0;
-			}
+			bevelSnap = std::max(atoi(argv[i + 1]), 0);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("snapping brush bevel planes to %d units", bevelSnap)
+			});
 			i++;
-			if (bevelSnap > 0) {
-				Sys_Printf("Snapping brush bevel planes to %d units\n", bevelSnap);
-			}
 		}
 		else if (!_stricmp(argv[i], "-texrange")) {
-			texRange = atoi(argv[i + 1]);
-			if (texRange < 0) {
-				texRange = 0;
-			}
+			texRange = std::max(atoi(argv[i + 1]), 0);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("limiting per-surface texture range to %d texels", texRange)
+			});
 			i++;
-			Sys_Printf("Limiting per-surface texture range to %d texels\n", texRange);
 		}
 		else if (!_stricmp(argv[i], "-nohint")) {
-			Sys_Printf("Hint brushes disabled\n");
+			options.push_back({ argv[i], "", "hint brushes disabled" });
 			noHint = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-flat")) {
-			Sys_Printf("Flatshading enabled\n");
+			options.push_back({ argv[i], "", "flatshading enabled" });
 			flat = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-celshader")) {
-			++i;
-			if (argv[i][0]) {
-				sprintf(globalCelShader, "textures/%s", argv[i]);
-			}
-			else {
-				*globalCelShader = 0;
-			}
-			Sys_Printf("Global cel shader set to \"%s\"\n", globalCelShader);
+			sprintf(globalCelShader, "textures/%s", argv[i + 1]);
+			options.push_back({ 
+				argv[i], argv[i + 1], tfm::format("global cel shader set to \"%s\"", globalCelShader)
+			});
+			i++;
 		}
 		else if (!_stricmp(argv[i], "-meta")) {
-			Sys_Printf("Creating meta surfaces from brush faces\n");
+			options.push_back({ argv[i], "", "creating meta surfaces from brush faces" });
 			meta = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-metaadequatescore")) {
@@ -902,140 +896,138 @@ int BSPMain( int argc, char **argv ){
 			if (metaAdequateScore < 0) {
 				metaAdequateScore = -1;
 			}
+			options.push_back({ 
+				argv[i], argv[i + 1], 
+				tfm::format("setting ADEQUATE meta score to %d (see surface_meta.c)", metaAdequateScore)
+			});
 			i++;
-			if (metaAdequateScore >= 0) {
-				Sys_Printf("Setting ADEQUATE meta score to %d (see surface_meta.c)\n", metaAdequateScore);
-			}
 		}
 		else if (!_stricmp(argv[i], "-metagoodscore")) {
 			metaGoodScore = atoi(argv[i + 1]);
 			if (metaGoodScore < 0) {
 				metaGoodScore = -1;
 			}
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("setting GOOD meta score to %d (see surface_meta.c)", metaGoodScore)
+			});
 			i++;
-			if (metaGoodScore >= 0) {
-				Sys_Printf("Setting GOOD meta score to %d (see surface_meta.c)\n", metaGoodScore);
-			}
 		}
 		else if (!_stricmp(argv[i], "-metamaxbboxdistance")) {
 			metaMaxBBoxDistance = atof(argv[i + 1]);
 			if (metaMaxBBoxDistance < 0) {
 				metaMaxBBoxDistance = -1;
 			}
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("setting meta maximum bounding box distance to %f", metaMaxBBoxDistance)
+			});
 			i++;
-			if (metaMaxBBoxDistance >= 0) {
-				Sys_Printf("Setting meta maximum bounding box distance to %f\n", metaMaxBBoxDistance);
-			}
 		}
 		else if (!_stricmp(argv[i], "-patchmeta")) {
-			Sys_Printf("Creating meta surfaces from patches\n");
+			options.push_back({ argv[i], "", "creating meta surfaces from patches" });
 			patchMeta = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-flares")) {
-			Sys_Printf("Flare surfaces enabled\n");
+			options.push_back({ argv[i], "", "flare surfaces enabled" });
 			emitFlares = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-noflares")) {
-			Sys_Printf("Flare surfaces disabled\n");
+			options.push_back({ argv[i], "", "flare surfaces disabled" });
 			emitFlares = qfalse;
 		}
 		else if (!_stricmp(argv[i], "-skyfix")) {
-			Sys_Printf("GL_CLAMP sky fix/hack/workaround enabled\n");
+			options.push_back({ argv[i], "", "GL_CLAMP sky fix/hack/workaround enabled" });
 			skyFixHack = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-debugsurfaces")) {
-			Sys_Printf("emitting debug surfaces\n");
+			options.push_back({ argv[i], "", "emitting debug surfaces" });
 			debugSurfaces = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-debuginset")) {
-			Sys_Printf("Debug surface triangle insetting enabled\n");
+			options.push_back({ argv[i], "", "debug surface triangle insetting enabled" });
 			debugInset = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-debugportals")) {
-			Sys_Printf("Debug portal surfaces enabled\n");
+			options.push_back({ argv[i], "", "debug portal surfaces enabled" });
 			debugPortals = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-sRGBtex")) {
+			options.push_back({ argv[i], "", "textures are in sRGB" });
 			texturesRGB = qtrue;
-			Sys_Printf("Textures are in sRGB\n");
 		}
 		else if (!_stricmp(argv[i], "-nosRGBtex")) {
+			options.push_back({ argv[i], "", "textures are linear" });
 			texturesRGB = qfalse;
-			Sys_Printf("Textures are linear\n");
 		}
 		else if (!_stricmp(argv[i], "-sRGBcolor")) {
+			options.push_back({ argv[i], "", "colors are in sRGB" });
 			colorsRGB = qtrue;
-			Sys_Printf("Colors are in sRGB\n");
 		}
 		else if (!_stricmp(argv[i], "-nosRGBcolor")) {
+			options.push_back({ argv[i], "", "colors are linear" });
 			colorsRGB = qfalse;
-			Sys_Printf("Colors are linear\n");
 		}
 		else if (!_stricmp(argv[i], "-nosRGB")) {
+			options.push_back({ argv[i], "", "textures are linear, colors are linear" });
 			texturesRGB = qfalse;
-			Sys_Printf("Textures are linear\n");
 			colorsRGB = qfalse;
-			Sys_Printf("Colors are linear\n");
 		}
 		else if (!_stricmp(argv[i], "-altsplit")) {
-			Sys_Printf("Alternate BSP splitting (by 27) enabled\n");
+			options.push_back({ argv[i], "", "alternate BSP splitting enabled" });
 			bspAlternateSplitWeights = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-deep")) {
-			Sys_Printf("Deep BSP tree generation enabled\n");
+			options.push_back({ argv[i], "", "deep BSP tree generation enabled" });
 			deepBSP = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-maxarea")) {
-			Sys_Printf("Max Area face surface generation enabled\n");
+			options.push_back({ argv[i], "", "max Area face surface generation enabled" });
 			maxAreaFaceSurface = qtrue;
 		}
 		else if (!_stricmp(argv[i], "-bspfile"))
 		{
 			strcpy(BSPFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as bsp file", BSPFilePath) });
 			i++;
-			Sys_Printf("Use %s as bsp file\n", BSPFilePath);
 		}
 		else if (!_stricmp(argv[i], "-linfile"))
 		{
 			strcpy(lineFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as line file", lineFilePath) });
 			i++;
-			Sys_Printf("Use %s as line file\n", lineFilePath);
 		}
 		else if (!_stricmp(argv[i], "-prtfile"))
 		{
 			strcpy(portalFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as portal file", portalFilePath) });
 			i++;
-			Sys_Printf("Use %s as portal file\n", portalFilePath);
 		}
 		else if (!_stricmp(argv[i], "-srffile"))
 		{
 			strcpy(surfaceFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as surface file", surfaceFilePath) });
 			i++;
-			Sys_Printf("Use %s as surface file\n", surfaceFilePath);
-		}
-		else if (!_stricmp(argv[i], "-bsp")) {
-			Sys_Printf("-bsp argument unnecessary\n");
 		}
 		else if (!_stricmp(argv[i], "-automapcoords"))
 		{
+			options.push_back({ argv[i], "", "map coords will be set automatically" });
 			g_autoMapCoords = true;
-			Sys_Printf("Map coords will be set automatically\n");
 		}
 		else if (!_stricmp(argv[i], "-automapcoordspad"))
 		{
 			g_autoMapCoordsPad = atof(argv[i + 1]);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("map coords padding is set to %.3f%%\n", g_autoMapCoordsPad * 100.f)
+			});
 			i++;
-			Sys_Printf("Map coords padding is set to %.3f%%\n", g_autoMapCoordsPad * 100.f);
-		}
-		else{
-			Sys_FPrintf( SYS_WRN, "WARNING: Unknown option \"%s\"\n", argv[ i ] );
 		}
 	}
 
-	/* fixme: print more useful usage here */
-	if ( i != ( argc - 1 ) ) {
-		Error( "usage: q3map [options] mapfile" );
-	}
+	Sys_Printf("BSP Options:\n");
+	printOptions(options);
+	Sys_Printf("--------------------------\n");
 
 	/* copy source name */
 	strcpy( source, ExpandArg( argv[ i ] ) );
@@ -1089,7 +1081,7 @@ int BSPMain( int argc, char **argv ){
 	}
 
 	/* div0: inject command line parameters */
-	InjectCommandLine( argv, 1, argc - 1 );
+	InjectCommandLine(options);
 
 	/* ydnar: decal setup */
 	ProcessDecals();

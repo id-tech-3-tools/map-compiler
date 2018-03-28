@@ -68,10 +68,11 @@
 #include "imagelib.h"
 #include "qthreads.h"
 #include "inout.h"
-#include "vfs.h"
 #include "md4.h"
 #include <stdlib.h>
-
+#include "assets_loader.hpp"
+#include <vector>
+#include <string>
 
 /* -------------------------------------------------------------------------------
 
@@ -1483,7 +1484,7 @@ char                        *Q_strncat( char *dst, size_t dlen, const char *src,
 
 /* path_init.c */
 game_t                      *GetGame( char *arg );
-void                        InitPaths( int *argc, char **argv );
+void                        InitPaths( int argc, char **argv );
 
 /* fixaas.c */
 int                         FixAASMain( int argc, char **argv );
@@ -1879,7 +1880,15 @@ vec_t                       FloatForKey( const entity_t *ent, const char *key );
 qboolean                    GetVectorForKey( const entity_t *ent, const char *key, vec3_t vec );
 entity_t                    *FindTargetEntity( const char *target );
 void                        GetEntityShadowFlags( const entity_t *ent, const entity_t *ent2, int *castShadows, int *recvShadows );
-void InjectCommandLine( char **argv, int beginArgs, int endArgs );
+
+struct OptionResult
+{
+	std::string option;
+	std::string value;
+	std::string desc;
+};
+
+void InjectCommandLine( const std::vector<OptionResult> &options);
 
 
 
@@ -2459,6 +2468,7 @@ Q_EXTERN bool g_autoMapCoords Q_ASSIGN(false);
 Q_EXTERN float g_autoMapCoordsPad Q_ASSIGN(0.0f);
 Q_EXTERN bool g_fastAllocate Q_ASSIGN(true);
 Q_EXTERN bool g_bakeLightmap Q_ASSIGN(true);
+Q_EXTERN AssetsLoader g_vfs Q_ASSIGN(AssetsLoader());
 
 /* -------------------------------------------------------------------------------
 
@@ -2566,5 +2576,4 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 #define Q_max( x, y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
 #define Q_min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
 
-// this be gone
-unsigned char *decompress_jpeg_image_from_memory(const unsigned char *pSrc_data, int src_data_size, int *width, int *height, int *actual_comps, int req_comps);
+void printOptions(const std::vector<OptionResult> &options);

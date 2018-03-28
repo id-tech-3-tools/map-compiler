@@ -980,8 +980,8 @@ static void ParseShaderFile( const char *filename ){
 	shaderText[ 0 ] = '\0';
 
 	/* load the shader */
-	LoadScriptFile( filename, 0 );
-
+	LoadScriptFileQuietly( filename, 0 );
+	
 	/* tokenize it */
 	while ( 1 )
 	{
@@ -2021,15 +2021,16 @@ static void ParseShaderFile( const char *filename ){
 
 static void ParseCustomInfoParms( void ){
 	qboolean parsedContent, parsedSurface;
+	char filename[1024];
 
-
+	sprintf(filename, "%s/custinfoparms.txt", game->shaderPath);
 	/* file exists? */
-	if ( vfsGetFileCount( "scripts/custinfoparms.txt" ) == 0 ) {
+	if (!g_vfs.exists(filename)) {
 		return;
 	}
 
 	/* load it */
-	LoadScriptFile( "scripts/custinfoparms.txt", 0 );
+	LoadScriptFile(filename, 0 );
 
 	/* clear the array */
 	memset( custSurfaceParms, 0, sizeof( custSurfaceParms ) );
@@ -2115,7 +2116,7 @@ void LoadShaderInfo( void ){
 
 	/* we can pile up several shader files, the one in baseq3 and ones in the mod dir or other spots */
 	sprintf( filename, "%s/shaderlist.txt", game->shaderPath );
-	count = vfsGetFileCount( filename );
+	count = g_vfs.refCount(filename);
 
 	/* load them all */
 	for ( i = 0; i < count; i++ )
@@ -2123,7 +2124,7 @@ void LoadShaderInfo( void ){
 		/* load shader list */
 		sprintf( filename, "%s/shaderlist.txt", game->shaderPath );
 		LoadScriptFile( filename, i );
-
+		int shaderEntryCount = 0;
 		/* parse it */
 		while ( GetToken( qtrue ) )
 		{
@@ -2140,11 +2141,14 @@ void LoadShaderInfo( void ){
 
 			/* new shader file */
 			if ( j == numShaderFiles ) {
+				shaderEntryCount++;
 				shaderFiles[ numShaderFiles ] = static_cast<char*>(safe_malloc(MAX_OS_PATH));
 				strcpy( shaderFiles[ numShaderFiles ], token );
 				numShaderFiles++;
 			}
 		}
+
+		Sys_Printf("Found shader entries: %i\n", shaderEntryCount);
 	}
 
 	/* parse the shader files */

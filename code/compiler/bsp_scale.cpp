@@ -124,17 +124,14 @@ int ScaleBSPMain( int argc, char **argv ){
 	}
 
 	texscale = qfalse;
-	for ( i = 1; i < argc - 2; ++i )
+	for (i = 1; i < argc - 2; i++)
 	{
 		if ( !_stricmp( argv[i], "-tex" ) ) {
 			texscale = qtrue;
 		}
 		else if ( !_stricmp( argv[i], "-spawn_ref" ) ) {
 			spawn_ref = atof( argv[i + 1] );
-			++i;
-		}
-		else{
-			break;
+			i++;
 		}
 	}
 
@@ -339,9 +336,6 @@ int ScaleBSPMain( int argc, char **argv ){
 	vec[2] *= scale[2];
 	sprintf( str, "%f %f %f", vec[ 0 ], vec[ 1 ], vec[ 2 ] );
 	SetKeyValue( &entities[ 0 ], "gridsize", str );
-
-	/* inject command line parameters */
-	InjectCommandLine( argv, 0, argc - 1 );
 
 	/* write the bsp */
 	UnparseEntities();
