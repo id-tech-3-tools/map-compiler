@@ -25,7 +25,9 @@
 #include "cmdlib.h"
 #include "etclib.h"
 #include "imagelib.h"
-#include "vfs.h"
+#include "assets_loader.hpp"
+
+extern AssetsLoader g_vfs;
 
 int fgetLittleShort( FILE *f ){
 	byte b1, b2;
@@ -474,7 +476,7 @@ void LoadPCX( const char *filename, byte **pic, byte **palette, int *width, int 
 
 
 	/* load the file */
-	len = vfsLoadFile( filename, (void **)&raw, 0 );
+	len = g_vfs.load(filename, (void **)&raw);
 	if ( len == -1 ) {
 		Error( "LoadPCX: Couldn't read %s", filename );
 	}
@@ -695,7 +697,7 @@ void LoadBMP( const char *filename, byte **pic, byte **palette, int *width, int 
 	byte *in;
 	int len, pos = 0;
 
-	len = vfsLoadFile( filename, (void **)&in, 0 );
+	len = g_vfs.load(filename, (void **)&in);
 	if ( len == -1 ) {
 		Error( "Couldn't read %s", filename );
 	}
@@ -1123,7 +1125,7 @@ void LoadTGA( const char *name, byte **pixels, int *width, int *height ){
 	//
 	// load the file
 	//
-	nLen = vfsLoadFile( name, (void **)&buffer, 0 );
+	nLen = g_vfs.load(name, (void **)&buffer);
 	if ( nLen == -1 ) {
 		Error( "Couldn't read %s", name );
 	}

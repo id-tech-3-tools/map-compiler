@@ -31,12 +31,15 @@
 /* marker */
 #define LIGHT_C
 
-
-
 /* dependencies */
 #include "q3map2.h"
 
+#undef min
+#undef max
 
+#include <vector>
+#include <string>
+#include "tinyformat.h"
 
 /*
    CreateSunLight() - ydnar
@@ -2109,8 +2112,6 @@ void LightWorld( const char *BSPFilePath){
 	StoreSurfaceLightmaps();
 }
 
-
-
 /*
    LightMain()
    main routine for light processing
@@ -2126,6 +2127,8 @@ int LightMain( int argc, char **argv ){
 	const char  *value;
 	int lightmapMergeSize = 0;
 	qboolean lightSamplesInsist = qfalse;
+	std::vector<OptionResult> options;
+	options.push_back({ "-light" });
 
 	/* note it */
 	Sys_Printf( "--- Light ---\n" );
@@ -2227,43 +2230,54 @@ int LightMain( int argc, char **argv ){
 			f = atof(argv[i + 1]);
 			pointScale *= f;
 			spotScale *= f;
-			Sys_Printf("Spherical point (entity) light scaled by %f to %f\n", f, pointScale);
-			Sys_Printf("Spot point (entity) light scaled by %f to %f\n", f, spotScale);
+			options.push_back({ argv[i], argv[i + 1] });
+			options.push_back({ "", "", tfm::format("spherical point (entity) light scaled by %f to %f", f, pointScale) });
+			options.push_back({ "", "", tfm::format("spot point (entity) light scaled by %f to %f", f, spotScale) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-spherical") || !_stricmp(argv[i], "-sphericalscale")) {
 			f = atof(argv[i + 1]);
 			pointScale *= f;
-			Sys_Printf("Spherical point (entity) light scaled by %f to %f\n", f, pointScale);
+			options.push_back({ 
+				argv[i], argv[i + 1], tfm::format("spherical point (entity) light scaled by %f to %f", f, pointScale) 
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-spot") || !_stricmp(argv[i], "-spotscale")) {
 			f = atof(argv[i + 1]);
 			spotScale *= f;
-			Sys_Printf("Spot point (entity) light scaled by %f to %f\n", f, spotScale);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("spot point (entity) light scaled by %f to %f", f, spotScale)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-area") || !_stricmp(argv[i], "-areascale")) {
 			f = atof(argv[i + 1]);
 			areaScale *= f;
-			Sys_Printf("Area (shader) light scaled by %f to %f\n", f, areaScale);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("area (shader) light scaled by %f to %f", f, areaScale)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-sky") || !_stricmp(argv[i], "-skyscale")) {
 			f = atof(argv[i + 1]);
 			skyScale *= f;
-			Sys_Printf("Sky/sun light scaled by %f to %f\n", f, skyScale);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("sky/sun light scaled by %f to %f", f, skyScale)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-bouncescale")) {
 			f = atof(argv[i + 1]);
 			bounceScale *= f;
-			Sys_Printf("Bounce (radiosity) light scaled by %f to %f\n", f, bounceScale);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("bounce (radiosity) light scaled by %f to %f", f, bounceScale)
+			});
 			i++;
 		}
 
@@ -2274,362 +2288,340 @@ int LightMain( int argc, char **argv ){
 			areaScale *= f;
 			skyScale *= f;
 			bounceScale *= f;
-			Sys_Printf("All light scaled by %f\n", f);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("all light scaled by %f", f) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-gridscale")) {
 			f = atof(argv[i + 1]);
-			Sys_Printf("Grid lightning scaled by %f\n", f);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("grid lightning scaled by %f", f) });
 			gridScale *= f;
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-gridambientscale")) {
 			f = atof(argv[i + 1]);
-			Sys_Printf("Grid ambient lightning scaled by %f\n", f);
 			gridAmbientScale *= f;
+			options.push_back({ argv[i], argv[i + 1], tfm::format("grid ambient lightning scaled by %f", f) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-griddirectionality")) {
-			f = atof(argv[i + 1]);
-			if (f > 1) {
-				f = 1;
-			}
+			f = std::min(atof(argv[i + 1]), 1.0);
 			if (f < gridAmbientDirectionality) {
 				gridAmbientDirectionality = f;
 			}
-			Sys_Printf("Grid directionality is %f\n", f);
 			gridDirectionality = f;
+			options.push_back({ argv[i], argv[i + 1], tfm::format("grid directionality is %f", f) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-gridambientdirectionality")) {
-			f = atof(argv[i + 1]);
-			if (f < -1) {
-				f = -1;
-			}
+			f = std::max(atof(argv[i + 1]), -1.0);
 			if (f > gridDirectionality) {
 				gridDirectionality = f;
 			}
-			Sys_Printf("Grid ambient directionality is %f\n", f);
 			gridAmbientDirectionality = f;
+			options.push_back({ argv[i], argv[i + 1], tfm::format("grid ambient directionality is %f", f) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-gamma")) {
-			f = atof(argv[i + 1]);
-			lightmapGamma = f;
-			Sys_Printf("Lighting gamma set to %f\n", lightmapGamma);
+			lightmapGamma = atof(argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("lighting gamma set to %f", lightmapGamma) });
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-sRGBlight")) {
 			lightmapsRGB = qtrue;
-			Sys_Printf("Lighting is in sRGB\n");
+			options.push_back({ argv[i], "", "lighting is in sRGB" });
 		}
 
 		else if (!_stricmp(argv[i], "-nosRGBlight")) {
 			lightmapsRGB = qfalse;
-			Sys_Printf("Lighting is linear\n");
+			options.push_back({ argv[i], "", "lighting is linear" });
 		}
 
 		else if (!_stricmp(argv[i], "-sRGBtex")) {
 			texturesRGB = qtrue;
-			Sys_Printf("Textures are in sRGB\n");
+			options.push_back({ argv[i], "", "textures are in sRGB" });
 		}
 
 		else if (!_stricmp(argv[i], "-nosRGBtex")) {
 			texturesRGB = qfalse;
-			Sys_Printf("Textures are linear\n");
+			options.push_back({ argv[i], "", "textures are linear" });
 		}
 
 		else if (!_stricmp(argv[i], "-sRGBcolor")) {
 			colorsRGB = qtrue;
-			Sys_Printf("Colors are in sRGB\n");
+			options.push_back({ argv[i], "", "colors are in sRGB" });
 		}
 
 		else if (!_stricmp(argv[i], "-nosRGBcolor")) {
 			colorsRGB = qfalse;
-			Sys_Printf("Colors are linear\n");
+			options.push_back({ argv[i], "", "colors are linear" });
 		}
 
 		else if (!_stricmp(argv[i], "-sRGB")) {
 			lightmapsRGB = qtrue;
-			Sys_Printf("Lighting is in sRGB\n");
 			texturesRGB = qtrue;
-			Sys_Printf("Textures are in sRGB\n");
 			colorsRGB = qtrue;
-			Sys_Printf("Colors are in sRGB\n");
+			options.push_back({ argv[i], "", "sRGB lighting, sRGB textures, sRGB colors" });
 		}
 
 		else if (!_stricmp(argv[i], "-nosRGB")) {
 			lightmapsRGB = qfalse;
-			Sys_Printf("Lighting is linear\n");
 			texturesRGB = qfalse;
-			Sys_Printf("Textures are linear\n");
 			colorsRGB = qfalse;
-			Sys_Printf("Colors are linear\n");
+			options.push_back({ argv[i], "", "linear lighting, linear textures, linear colors" });
 		}
 
 		else if (!_stricmp(argv[i], "-exposure")) {
-			f = atof(argv[i + 1]);
-			lightmapExposure = f;
-			Sys_Printf("Lighting exposure set to %f\n", lightmapExposure);
+			lightmapExposure = atof(argv[i + 1]);
+			options.push_back({ 
+				argv[i], argv[i + 1], tfm::format("lighting exposure set to %f", lightmapExposure) 
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-compensate")) {
-			f = atof(argv[i + 1]);
-			if (f <= 0.0f) {
-				f = 1.0f;
-			}
-			lightmapCompensate = f;
-			Sys_Printf("Lighting compensation set to 1/%f\n", lightmapCompensate);
+			lightmapCompensate = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("lighting compensation set to 1/%f", lightmapCompensate)
+			});
 			i++;
 		}
 
 		/* ydnar switches */
 		else if (!_stricmp(argv[i], "-bounce")) {
-			bounce = atoi(argv[i + 1]);
-			if (bounce < 0) {
-				bounce = 0;
-			}
-			else if (bounce > 0) {
-				Sys_Printf("Radiosity enabled with %d bounce(s)\n", bounce);
-			}
+			bounce = std::max(atoi(argv[i + 1]), 0);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("radiosity enabled with %d bounce(s)", bounce)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-supersample") || !_stricmp(argv[i], "-super")) {
-			superSample = atoi(argv[i + 1]);
-			if (superSample < 1) {
-				superSample = 1;
-			}
-			else if (superSample > 1) {
-				Sys_Printf("Ordered-grid supersampling enabled with %d sample(s) per lightmap texel\n", (superSample * superSample));
-			}
+			superSample = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({
+				argv[i], argv[i + 1], 
+				tfm::format(
+					"ordered-grid supersampling enabled with %d sample(s) per lightmap texel", (superSample * superSample)
+				)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-randomsamples")) {
 			lightRandomSamples = qtrue;
-			Sys_Printf("Random sampling enabled\n", lightRandomSamples);
+			options.push_back({ argv[i], "", "random sampling enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-samples")) {
-			if (*argv[i + 1] == '+') {
-				lightSamplesInsist = qtrue;
-			}
-			else {
-				lightSamplesInsist = qfalse;
-			}
-			lightSamples = atoi(argv[i + 1]);
-			if (lightSamples < 1) {
-				lightSamples = 1;
-			}
-			else if (lightSamples > 1) {
-				Sys_Printf("Adaptive supersampling enabled with %d sample(s) per lightmap texel\n", lightSamples);
-			}
+			lightSamplesInsist = *argv[i + 1] == '+' ? qtrue : qfalse;			
+			lightSamples = std::max(atoi(argv[i + 1]), 1);			
+			options.push_back({
+				argv[i], argv[i + 1], 
+				tfm::format("adaptive supersampling enabled with %d sample(s) per lightmap texel", lightSamples)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-samplessearchboxsize")) {
-			lightSamplesSearchBoxSize = atoi(argv[i + 1]);
-			if (lightSamplesSearchBoxSize <= 0) {
-				lightSamplesSearchBoxSize = 1;
-			}
-			if (lightSamplesSearchBoxSize > 4) {
-				lightSamplesSearchBoxSize = 4; /* more makes no sense */
-			}
-			else if (lightSamplesSearchBoxSize != 1) {
-				Sys_Printf("Adaptive supersampling uses %f times the normal search box size\n", lightSamplesSearchBoxSize);
-			}
+			lightSamplesSearchBoxSize = std::max(std::min(atoi(argv[i + 1]), 4), 1);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("adaptive supersampling uses %f times the normal search box size", lightSamplesSearchBoxSize)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-filter")) {
 			filter = qtrue;
-			Sys_Printf("Lightmap filtering enabled\n");
+			options.push_back({ argv[i], "", "lightmap filtering enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-dark")) {
 			dark = qtrue;
-			Sys_Printf("Dark lightmap seams enabled\n");
+			options.push_back({ argv[i], "", "dark lightmap seams enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-shadeangle")) {
-			shadeAngleDegrees = atof(argv[i + 1]);
-			if (shadeAngleDegrees < 0.0f) {
-				shadeAngleDegrees = 0.0f;
-			}
-			else if (shadeAngleDegrees > 0.0f) {
-				shade = qtrue;
-				Sys_Printf("Phong shading enabled with a breaking angle of %f degrees\n", shadeAngleDegrees);
-			}
+			shade = qtrue;
+			shadeAngleDegrees = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("phong shading enabled with a breaking angle of %f degrees", shadeAngleDegrees)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-thresh")) {
-			subdivideThreshold = atof(argv[i + 1]);
-			if (subdivideThreshold < 0) {
-				subdivideThreshold = DEFAULT_SUBDIVIDE_THRESHOLD;
-			}
-			else {
-				Sys_Printf("Subdivision threshold set at %.3f\n", subdivideThreshold);
-			}
+			subdivideThreshold = std::max(atof(argv[i + 1]), 0.0);			
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("subdivision threshold set at %.3f", subdivideThreshold)
+			});
 			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-approx")) {
-			approximateTolerance = atoi(argv[i + 1]);
-			if (approximateTolerance < 0) {
-				approximateTolerance = 0;
-			}
-			else if (approximateTolerance > 0) {
-				Sys_Printf("Approximating lightmaps within a byte tolerance of %d\n", approximateTolerance);
-			}
+			approximateTolerance = std::max(atoi(argv[i + 1]), 0);
+			options.push_back({
+				argv[i], argv[i + 1], 
+				tfm::format("approximating lightmaps within a byte tolerance of %d", approximateTolerance)
+			});
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-deluxe") || !_stricmp(argv[i], "-deluxemap")) {
 			deluxemap = qtrue;
-			Sys_Printf("Generating deluxemaps for average light direction\n");
+			options.push_back({ argv[i], "", "generating deluxemaps for average light direction" });
 		}
 		else if (!_stricmp(argv[i], "-deluxemode")) {
-			deluxemode = atoi(argv[i + 1]);
-			if (deluxemode == 0 || deluxemode > 1 || deluxemode < 0) {
-				Sys_Printf("Generating modelspace deluxemaps\n");
-				deluxemode = 0;
-			}
-			else {
-				Sys_Printf("Generating tangentspace deluxemaps\n");
-			}
+			deluxemode = atoi(argv[i + 1]) > 0 ? 1 : 0;
+			options.push_back({ 
+				argv[i], argv[i + 1], 
+				deluxemode ? "fenerating tangentspace deluxemaps" : "fenerating modelspace deluxemaps"
+			});
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-nodeluxe") || !_stricmp(argv[i], "-nodeluxemap")) {
 			deluxemap = qfalse;
-			Sys_Printf("Disabling generating of deluxemaps for average light direction\n");
+			options.push_back({ argv[i], "", "disabling generating of deluxemaps for average light direction" });
 		}
 		else if (!_stricmp(argv[i], "-external")) {
 			externalLightmaps = qtrue;
-			Sys_Printf("Storing all lightmaps externally\n");
+			options.push_back({ argv[i], "", "storing all lightmaps externally" });
 		}
 
 		else if (!_stricmp(argv[i], "-lightmapsize")) {
 			lmCustomSize = atoi(argv[i + 1]);
 
+			// TODO: find nearest power of 2 size
 			/* must be a power of 2 and greater than 2 */
 			if (((lmCustomSize - 1) & lmCustomSize) || lmCustomSize < 2) {
 				Sys_FPrintf(SYS_WRN, "WARNING: Lightmap size must be a power of 2, greater or equal to 2 pixels.\n");
 				lmCustomSize = game->lightmapSize;
 			}
+
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("default lightmap size set to %d x %d pixels", lmCustomSize, lmCustomSize)
+			});
 			i++;
-			Sys_Printf("Default lightmap size set to %d x %d pixels\n", lmCustomSize, lmCustomSize);
 
 			/* enable external lightmaps */
 			if (lmCustomSize != game->lightmapSize) {
 				externalLightmaps = qtrue;
-				Sys_Printf("Storing all lightmaps externally\n");
+				options.push_back({ "", "", "storing all lightmaps externally" });
 			}
 		}
 
 		else if (!_stricmp(argv[i], "-rawlightmapsizelimit")) {
 			lmLimitSize = atoi(argv[i + 1]);
-
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("raw lightmap size limit set to %d x %d pixels", lmLimitSize, lmLimitSize)
+			});
 			i++;
-			Sys_Printf("Raw lightmap size limit set to %d x %d pixels\n", lmLimitSize, lmLimitSize);
 		}
 
 		else if (!_stricmp(argv[i], "-lightmapdir")) {
 			lmCustomDir = argv[i + 1];
-			i++;
-			Sys_Printf("Lightmap directory set to %s\n", lmCustomDir);
 			externalLightmaps = qtrue;
-			Sys_Printf("Storing all lightmaps externally\n");
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("lightmap directory set to %s", lmCustomDir)
+			});
+			options.push_back({ "", "", "storing all lightmaps externally" });
+			i++;
 		}
 
 		/* ydnar: add this to suppress warnings */
 		else if (!_stricmp(argv[i], "-custinfoparms")) {
-			Sys_Printf("Custom info parms enabled\n");
 			useCustomInfoParms = qtrue;
+			options.push_back({ argv[i], "", "custom info parms enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-wolf") || !_stricmp(argv[i], "-linearatten")) {
 			/* -game should already be set */
 			wolfLight = qtrue;
-			Sys_Printf("Enabling Wolf lighting model (linear default)\n");
+			options.push_back({ argv[i], "", "enabling Wolf lighting model (linear)" });
 		}
 
 		else if (!_stricmp(argv[i], "-q3") || !_stricmp(argv[i], "-invsqatten")) {
 			/* -game should already be set */
 			wolfLight = qfalse;
-			Sys_Printf("Enabling Quake 3 lighting model (nonlinear default)\n");
+			options.push_back({ argv[i], "", "enabling Quake 3 lighting model (inverse square)" });
 		}
 
 		else if (!_stricmp(argv[i], "-extradist") || !_stricmp(argv[i], "-lightnudge")) {
-			extraDist = atof(argv[i + 1]);
-			if (extraDist < 0) {
-				extraDist = 0;
-			}
+			extraDist = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({
+				argv[i], argv[i + 1], tfm::format("extra light nudge is set to %f units", extraDist)
+			});
 			i++;
-			Sys_Printf("Default extra radius set to %f units\n", extraDist);
 		}
 
 		else if (!_stricmp(argv[i], "-sunonly")) {
 			sunOnly = qtrue;
-			Sys_Printf("Only computing sunlight\n");
+			options.push_back({ argv[i], "", "only computing sunlight" });
 		}
 
 		else if (!_stricmp(argv[i], "-bounceonly")) {
 			bounceOnly = qtrue;
-			Sys_Printf("Storing bounced light (radiosity) only\n");
+			options.push_back({ argv[i], "", "storing bounced light (radiosity) only" });
 		}
 
 		else if (!_stricmp(argv[i], "-nocollapse")) {
 			noCollapse = qtrue;
-			Sys_Printf("Identical lightmap collapsing disabled\n");
+			options.push_back({ argv[i], "", "identical lightmap collapsing disabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-nolightmapsearch")) {
 			lightmapSearchBlockSize = 1;
-			Sys_Printf("No lightmap searching - all lightmaps will be sequential\n");
+			options.push_back({ argv[i], "", "no lightmap searching - all lightmaps will be sequential" });
 		}
 
 		else if (!_stricmp(argv[i], "-lightmapsearchpower")) {
 			lightmapMergeSize = (game->lightmapSize << atoi(argv[i + 1]));
-			++i;
-			Sys_Printf("Restricted lightmap searching enabled - optimize for lightmap merge power %d (size %d)\n", atoi(argv[i]), lightmapMergeSize);
+			options.push_back({
+				argv[i], argv[i + 1], 
+				tfm::format(
+					"restricted lightmap searching enabled - optimize for lightmap merge power %d (size %d)", 
+					atoi(argv[i]), lightmapMergeSize
+				)
+			});
+			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-lightmapsearchblocksize")) {
 			lightmapSearchBlockSize = atoi(argv[i + 1]);
-			++i;
-			Sys_Printf("Restricted lightmap searching enabled - block size set to %d\n", lightmapSearchBlockSize);
+			options.push_back({
+				argv[i], argv[i + 1], 
+				tfm::format("restricted lightmap searching enabled - block size set to %d", lightmapSearchBlockSize)
+			});
+			i++;
 		}
 
 		else if (!_stricmp(argv[i], "-shade")) {
-			shade = qtrue;
-			Sys_Printf("Phong shading enabled\n");
+			shade = qtrue;;
+			options.push_back({ argv[i], "", "phong shading enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-bouncegrid")) {
 			bouncegrid = qtrue;
-			if (bounce > 0) {
-				Sys_Printf("Grid lighting with radiosity enabled\n");
-			}
+			options.push_back({ argv[i], "", "grid lighting with radiosity enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-nofastpoint")) {
 			fastpoint = qfalse;
-			Sys_Printf("Automatic fast mode for point lights disabled\n");
+			options.push_back({ argv[i], "", "fast mode for point lights disabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-fast")) {
 			fast = qtrue;
 			fastgrid = qtrue;
 			fastbounce = qtrue;
-			Sys_Printf("Fast mode enabled for all area lights\n");
+			options.push_back({ argv[i], "", "fast mode enabled for all area lights" });
 		}
 
 		else if (!_stricmp(argv[i], "-faster")) {
@@ -2637,256 +2629,237 @@ int LightMain( int argc, char **argv ){
 			fast = qtrue;
 			fastgrid = qtrue;
 			fastbounce = qtrue;
-			Sys_Printf("Faster mode enabled\n");
+			options.push_back({ argv[i], "", "faster mode enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-fastgrid")) {
 			fastgrid = qtrue;
-			Sys_Printf("Fast grid lighting enabled\n");
+			options.push_back({ argv[i], "", "fast grid lighting enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-fastbounce")) {
 			fastbounce = qtrue;
-			Sys_Printf("Fast bounce mode enabled\n");
+			options.push_back({ argv[i], "", "fast bounce mode enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-cheap")) {
 			cheap = qtrue;
 			cheapgrid = qtrue;
-			Sys_Printf("Cheap mode enabled\n");
+			options.push_back({ argv[i], "", "cheap mode enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-cheapgrid")) {
 			cheapgrid = qtrue;
-			Sys_Printf("Cheap grid mode enabled\n");
+			options.push_back({ argv[i], "", "cheap grid mode enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-normalmap")) {
 			normalmap = qtrue;
-			Sys_Printf("Storing normal map instead of lightmap\n");
+			options.push_back({ argv[i], "", "storing normal map instead of lightmap" });
 		}
 
 		else if (!_stricmp(argv[i], "-trisoup")) {
 			trisoup = qtrue;
-			Sys_Printf("Converting brush faces to triangle soup\n");
+			options.push_back({ argv[i], "", "converting brush faces to triangle soup" });
 		}
 
 		else if (!_stricmp(argv[i], "-debug")) {
 			debug = qtrue;
-			Sys_Printf("Lightmap debugging enabled\n");
+			options.push_back({ argv[i], "", "lightmap debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugsurfaces") || !_stricmp(argv[i], "-debugsurface")) {
 			debugSurfaces = qtrue;
-			Sys_Printf("Lightmap surface debugging enabled\n");
+			options.push_back({ argv[i], "", "lightmap surface debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugunused")) {
 			debugUnused = qtrue;
-			Sys_Printf("Unused luxel debugging enabled\n");
+			options.push_back({ argv[i], "", "unused luxel debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugaxis")) {
 			debugAxis = qtrue;
-			Sys_Printf("Lightmap axis debugging enabled\n");
+			options.push_back({ argv[i], "", "lightmap axis debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugcluster")) {
 			debugCluster = qtrue;
-			Sys_Printf("Luxel cluster debugging enabled\n");
+			options.push_back({ argv[i], "", "luxel cluster debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugorigin")) {
 			debugOrigin = qtrue;
-			Sys_Printf("Luxel origin debugging enabled\n");
+			options.push_back({ argv[i], "", "luxel origin debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-debugdeluxe")) {
 			deluxemap = qtrue;
 			debugDeluxemap = qtrue;
-			Sys_Printf("Deluxemap debugging enabled\n");
+			options.push_back({ argv[i], "", "deluxemap debugging enabled" });
 		}
 
 		else if (!_stricmp(argv[i], "-export")) {
 			exportLightmaps = qtrue;
-			Sys_Printf("Exporting lightmaps\n");
+			options.push_back({ argv[i], "", "exporting lightmaps" });
 		}
 
 		else if (!_stricmp(argv[i], "-notrace")) {
 			noTrace = qtrue;
-			Sys_Printf("Shadow occlusion disabled\n");
+			options.push_back({ argv[i], "", "shadow occlusion disabled" });
 		}
 		else if (!_stricmp(argv[i], "-patchshadows")) {
 			patchShadows = qtrue;
-			Sys_Printf("Patch shadow casting enabled\n");
+			options.push_back({ argv[i], "", "patch shadow casting enabled" });
 		}
 		else if (!_stricmp(argv[i], "-samplesize")) {
-			sampleSize = atoi(argv[i + 1]);
-			if (sampleSize < 1) {
-				sampleSize = 1;
-			}
+			sampleSize = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("lightmap sample size set to %dx%d units", sampleSize, sampleSize)
+			});
 			i++;
-			Sys_Printf("Default lightmap sample size set to %dx%d units\n", sampleSize, sampleSize);
 		}
 		else if (!_stricmp(argv[i], "-minsamplesize")) {
-			minSampleSize = atoi(argv[i + 1]);
-			if (minSampleSize < 1) {
-				minSampleSize = 1;
-			}
+			minSampleSize = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("minimum lightmap sample size set to %dx%d units", minSampleSize, minSampleSize)
+			});
 			i++;
-			Sys_Printf("Minimum lightmap sample size set to %dx%d units\n", minSampleSize, minSampleSize);
 		}
 		else if (!_stricmp(argv[i], "-samplescale")) {
 			sampleScale = atoi(argv[i + 1]);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("lightmaps sample scale set to %d", sampleScale)
+			});
 			i++;
-			Sys_Printf("Lightmaps sample scale set to %d\n", sampleScale);
 		}
 		else if (!_stricmp(argv[i], "-nogrid")) {
 			noGridLighting = qtrue;
-			Sys_Printf("Disabling grid lighting\n");
+			options.push_back({ argv[i], "", "disabling grid lighting" });
 		}
 		else if (!_stricmp(argv[i], "-border")) {
 			lightmapBorder = qtrue;
-			Sys_Printf("Adding debug border to lightmaps\n");
+			options.push_back({ argv[i], "", "adding debug border to lightmaps" });
 		}
 		else if (!_stricmp(argv[i], "-nosurf")) {
 			noSurfaces = qtrue;
-			Sys_Printf("Not tracing against surfaces\n");
+			options.push_back({ argv[i], "", "not tracing against surfaces" });
 		}
 		else if (!_stricmp(argv[i], "-dump")) {
 			dump = qtrue;
-			Sys_Printf("Dumping radiosity lights into numbered prefabs\n");
+			options.push_back({ argv[i], "", "dumping radiosity lights into numbered prefabs" });
 		}
 		else if (!_stricmp(argv[i], "-lomem")) {
 			loMem = qtrue;
-			Sys_Printf("Enabling low-memory (potentially slower) lighting mode\n");
+			options.push_back({ argv[i], "", "enabling low-memory (potentially slower) lighting mode" });
 		}
 		else if (!_stricmp(argv[i], "-lightsubdiv")) {
-			defaultLightSubdivide = atoi(argv[i + 1]);
-			if (defaultLightSubdivide < 1) {
-				defaultLightSubdivide = 1;
-			}
+			defaultLightSubdivide = std::max(atoi(argv[i + 1]), 1);
+			options.push_back({
+				argv[i], argv[i + 1],
+				tfm::format("light subdivision set to %d", defaultLightSubdivide)
+			});
 			i++;
-			Sys_Printf("Default light subdivision set to %d\n", defaultLightSubdivide);
 		}
 		else if (!_stricmp(argv[i], "-lightanglehl")) {
-			Sys_Printf("Enabling half lambert light angle attenuation\n");
 			lightAngleHL = qtrue;
+			options.push_back({ argv[i], "", "enabling half lambert light angle attenuation" });
 		}
 		else if (!_stricmp(argv[i], "-nostyle") || !_stricmp(argv[i], "-nostyles")) {
 			noStyles = qtrue;
-			Sys_Printf("Disabling lightstyles\n");
+			options.push_back({ argv[i], "", "disabling lightstyles" });
 		}
 		else if (!_stricmp(argv[i], "-style") || !_stricmp(argv[i], "-styles")) {
 			noStyles = qfalse;
-			Sys_Printf("Enabling lightstyles\n");
+			options.push_back({ argv[i], "", "enabling lightstyles" });
 		}
 		else if (!_stricmp(argv[i], "-forcevertex") || !_stricmp(argv[i], "-cpma")) {
 			g_forceVertex = qtrue;
-			Sys_Printf("Enabling Challenge Pro Mode Asstacular Vertex Lighting Mode (tm)\n");
+			options.push_back({ argv[i], "", "enabling Challenge Pro Mode Asstacular Vertex Lighting Mode (tm)" });
 		}
 		else if (!_stricmp(argv[i], "-floodlight")) {
 			g_floodlight = qtrue;
-			Sys_Printf("FloodLighting enabled\n");
+			options.push_back({ argv[i], "", "floodLighting enabled" });
 		}
 		else if (!_stricmp(argv[i], "-nofloodlight")) {
 			g_noFloodLight = qtrue;
-			Sys_Printf("FloodLighting disabled\n");
+			options.push_back({ argv[i], "", "floodLighting disabled" });
 		}
 		else if (!_stricmp(argv[i], "-nofloodstyles")) {
 			g_noFloodStyles = qtrue;
-			Sys_Printf("Floodlights won't affect styled lightmaps\n");
+			options.push_back({ argv[i], "", "floodlights won't affect styled lightmaps" });
 		}
 		else if (!_stricmp(argv[i], "-debugnormals")) {
 			debugnormals = qtrue;
-			Sys_Printf("DebugNormals enabled\n");
+			options.push_back({ argv[i], "", "debugNormals enabled" });
 		}
 		else if (!_stricmp(argv[i], "-lowquality")) {
 			floodlight_lowquality = qtrue;
-			Sys_Printf("Low Quality FloodLighting enabled\n");
+			options.push_back({ argv[i], "", "low quality floodlighting enabled" });
 		}
-
-		/* r7: dirtmapping */
 		else if (!_stricmp(argv[i], "-dirty")) {
 			dirty = qtrue;
-			Sys_Printf("Dirtmapping enabled\n");
+			options.push_back({ argv[i], "", "dirtmapping enabled" });
 		}
 		else if (!_stricmp(argv[i], "-dirtdebug") || !_stricmp(argv[i], "-debugdirt")) {
 			dirtDebug = qtrue;
-			Sys_Printf("Dirtmap debugging enabled\n");
+			options.push_back({ argv[i], "", "dirtmap debugging enabled" });
 		}
 		else if (!_stricmp(argv[i], "-dirtmode")) {
-			dirtMode = atoi(argv[i + 1]);
-			if (dirtMode != 0 && dirtMode != 1) {
-				dirtMode = 0;
-			}
-			if (dirtMode == 1) {
-				Sys_Printf("Enabling randomized dirtmapping\n");
-			}
-			else {
-				Sys_Printf("Enabling ordered dir mapping\n");
-			}
+			dirtMode = atoi(argv[i + 1]) > 0 ? 1 : 0;
+			options.push_back({
+				argv[i], argv[i + 1],
+				dirtMode ? "enabling randomized dirtmapping" : "enabling ordered dir mapping"
+			});
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-dirtdepth")) {
-			dirtDepth = atof(argv[i + 1]);
-			if (dirtDepth <= 0.0f) {
-				dirtDepth = 128.0f;
-			}
-			Sys_Printf("Dirtmapping depth set to %.1f\n", dirtDepth);
+			dirtDepth = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("dirtmapping depth set to %.1f", dirtDepth) });
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-dirtscale")) {
-			dirtScale = atof(argv[i + 1]);
-			if (dirtScale <= 0.0f) {
-				dirtScale = 1.0f;
-			}
-			Sys_Printf("Dirtmapping scale set to %.1f\n", dirtScale);
+			dirtScale = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("dirtmapping scale set to %.1f", dirtScale) });
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-dirtgain")) {
-			dirtGain = atof(argv[i + 1]);
-			if (dirtGain <= 0.0f) {
-				dirtGain = 1.0f;
-			}
-			Sys_Printf("Dirtmapping gain set to %.1f\n", dirtGain);
+			dirtGain = std::max(atof(argv[i + 1]), 0.0);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("dirtmapping gain set to %.1f", dirtGain) });
 			i++;
 		}
 		else if (!_stricmp(argv[i], "-trianglecheck")) {
-			Sys_Printf("Luxel nudging to its original triangle enabled\n");
 			lightmapTriangleCheck = qtrue;
+			options.push_back({ argv[i], "", "luxel nudging to its original triangle enabled" });
 		}
 		else if (!_stricmp(argv[i], "-extravisnudge")) {
-			Sys_Printf("Luxel origin nudging to a better VIS cluster enabled\n");
 			lightmapExtraVisClusterNudge = qtrue;
+			options.push_back({ argv[i], "", "luxel origin nudging to a better VIS cluster enabled" });
 		}
 		else if (!_stricmp(argv[i], "-fill")) {
 			lightmapFill = qtrue;
-			Sys_Printf("Filling lightmap colors from surrounding pixels to improve JPEG compression\n");
+			options.push_back({ argv[i], "", "filling lightmap colors from surrounding pixels to improve JPEG compression" });
 		}
 		else if (!_stricmp(argv[i], "-bspfile"))
 		{
 			strcpy(BSPFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as bsp file", BSPFilePath) });
 			i++;
-			Sys_Printf("Use %s as bsp file\n", BSPFilePath);
 		}
 		else if (!_stricmp(argv[i], "-srffile"))
 		{
 			strcpy(surfaceFilePath, argv[i + 1]);
+			options.push_back({ argv[i], argv[i + 1], tfm::format("use %s as surface file", surfaceFilePath) });
 			i++;
-			Sys_Printf("Use %s as surface file\n", surfaceFilePath);
 		}
 		else if (!_stricmp(argv[i], "-nolightmap"))
 		{
 			g_bakeLightmap = false;
-			Sys_Printf("Lightmap baking is disabled, map is lit by vertex lighting\n");
+			options.push_back({ argv[i], "", "lightmap baking is disabled, vertex lighting is forced" });
 		}
-		/* unhandled args */
-		else
-		{
-			Sys_FPrintf( SYS_WRN, "WARNING: Unknown argument \"%s\"\n", argv[ i ] );
-		}
-
 	}
 
 	/* fix up falloff tolerance for sRGB */
@@ -2934,6 +2907,10 @@ int LightMain( int argc, char **argv ){
 		Sys_Printf( "Restricted lightmap searching enabled - block size adjusted to %d\n", lightmapSearchBlockSize );
 	}
 
+	Sys_Printf("Light Options:\n");
+	printOptions(options);
+	Sys_Printf("--------------------------\n");
+
 	strcpy( source, ExpandArg( argv[ i ] ) );
 	StripExtension( source );
 	DefaultExtension( source, ".map" );
@@ -2970,7 +2947,7 @@ int LightMain( int argc, char **argv ){
 	ParseEntities();
 
 	/* inject command line parameters */
-	InjectCommandLine( argv, 0, argc - 1 );
+	InjectCommandLine(options);
 
 	if (GetVectorForKey(&entities[0], "_bounceColor", g_customBounceColor))
 	{

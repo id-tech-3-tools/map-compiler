@@ -36,6 +36,7 @@
 /* dependencies */
 #include "q3map2.h"
 #include "compiler_api.h"
+#include "table_builder.hpp"
 
 /*
    Random()
@@ -91,6 +92,27 @@ static void ExitQ3Map( void ){
 	}
 }
 
+void printOptions(const std::vector<OptionResult> &options)
+{
+	TableBuilder table{ 20, 60 };
+	for (const auto &option : options)
+	{
+		if (!option.option.empty())
+		{
+			table.addRow(option.option + " " + option.value);
+		}
+		if (!option.desc.empty())
+		{
+			table.addRow(" " + option.desc);
+		}
+	}
+	auto rows = table.build();
+	for (const auto &row : rows)
+	{
+		Sys_Printf("%s\n", row.c_str());
+	}
+}
+
 /*
    main()
    q3map mojo...
@@ -113,37 +135,34 @@ int compilerMain(int argc, char **argv) {
 	/* set exit call */
 	atexit( ExitQ3Map );
 
+	/* set game to default (q3a) */
+	game = &games[0];
+
 	/* read general options first */
 	for ( i = 1; i < argc; i++ )
 	{
 		/* -connect */
 		if (!_stricmp(argv[i], "-connect")) {
-			argv[i] = NULL;
 			i++;
 			Broadcast_Setup(argv[i]);
-			argv[i] = NULL;
 		}
 
 		/* verbose */
 		else if (!_stricmp(argv[i], "-v")) {
 			if (!verbose) {
 				verbose = qtrue;
-				argv[i] = NULL;
 			}
 		}
 
 		/* force */
 		else if (!_stricmp(argv[i], "-force")) {
 			force = qtrue;
-			argv[i] = NULL;
 		}
 
 		/* patch subdivisions */
 		else if (!_stricmp(argv[i], "-subdivisions")) {
-			argv[i] = NULL;
 			i++;
 			patchSubdivisions = atoi(argv[i]);
-			argv[i] = NULL;
 			if (patchSubdivisions <= 0) {
 				patchSubdivisions = 1;
 			}
@@ -151,10 +170,18 @@ int compilerMain(int argc, char **argv) {
 
 		/* threads */
 		else if (!_stricmp(argv[i], "-threads")) {
-			argv[i] = NULL;
 			i++;
 			numthreads = atoi(argv[i]);
-			argv[i] = NULL;
+		}
+
+		else if (_stricmp(argv[i], "-game") == 0) {
+			if (++i >= argc) {
+				Error("Out of arguments: No game specified after %s", argv[i - 1]);
+			}
+			game = GetGame(argv[i]);
+			if (game == NULL) {
+				game = &games[0];
+			}
 		}
 	}
 
@@ -185,8 +212,10 @@ int compilerMain(int argc, char **argv) {
 	Sys_Printf( "Q3Map (ryven)      - v" Q3MAP_VERSION  " " __DATE__ " " __TIME__ "\n" );
 	Sys_Printf( "%s\n", Q3MAP_MOTD );
 
+
+
 	/* ydnar: new path initialization */
-	InitPaths( &argc, argv );
+	InitPaths( argc, argv );
 
 	/* set game options */
 	if ( !patchSubdivisions ) {

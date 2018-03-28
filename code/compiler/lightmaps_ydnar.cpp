@@ -35,7 +35,7 @@
 
 /* dependencies */
 #include "q3map2.h"
-
+#include <fstream>
 
 /* -------------------------------------------------------------------------------
 
@@ -182,8 +182,8 @@ int ExportLightmapsMain( int argc, char **argv ){
 int ImportLightmapsMain( int argc, char **argv ){
 	int i, x, y, len, width, height;
 	char dirname[ 1024 ], filename[ 1024 ];
-	byte        *lightmap, *buffer, *pixels, *in, *out;
-
+	byte        *lightmap, *pixels, *in, *out;
+	char *buffer;
 
 	/* arg checking */
 	if ( argc < 1 ) {
@@ -222,16 +222,25 @@ int ImportLightmapsMain( int argc, char **argv ){
 		sprintf( filename, "%s/lightmap_%04d.tga", dirname, i );
 		Sys_Printf( "Loading %s\n", filename );
 		buffer = NULL;
-		len = vfsLoadFile( filename, reinterpret_cast<void**>(&buffer), -1 );
-		if ( len < 0 ) {
-			Sys_FPrintf( SYS_WRN, "WARNING: Unable to load image %s\n", filename );
+		std::ifstream lmfile{ filename, std::ios::binary | std::ios::ate };
+		if (lmfile.is_open()) {
+			len = lmfile.tellg();
+			buffer = new char[len + 1];
+			lmfile.seekg(0, std::ios::beg);
+			lmfile.read(buffer, len);
+			lmfile.close();
+			buffer[len] = 0;
+		} 
+		else
+		{
+			Sys_FPrintf(SYS_WRN, "WARNING: Unable to load image %s\n", filename);
 			continue;
 		}
 
 		/* parse file into an image */
 		pixels = NULL;
-		LoadTGABuffer( buffer, buffer + len, &pixels, &width, &height );
-		free( buffer );
+		LoadTGABuffer( reinterpret_cast<byte*>(buffer), reinterpret_cast<byte*>(buffer) + len, &pixels, &width, &height );
+		delete[] buffer;
 
 		/* sanity check it */
 		if ( pixels == NULL ) {

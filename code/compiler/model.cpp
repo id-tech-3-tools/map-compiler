@@ -79,7 +79,7 @@ void PicoPrintFunc( int level, const char *str ){
  */
 
 void PicoLoadFileFunc( const char *name, byte **buffer, int *bufSize ){
-	*bufSize = vfsLoadFile( name, (void**) buffer, 0 );
+	*bufSize = g_vfs.load(name, (void**)buffer);
 }
 
 
@@ -243,12 +243,12 @@ void InsertModel( const char *name, int skin, int frame, m4x4_t transform, remap
 	/* load skin file */
 	snprintf( skinfilename, sizeof( skinfilename ), "%s_%d.skin", name, skin );
 	skinfilename[sizeof( skinfilename ) - 1] = 0;
-	skinfilesize = vfsLoadFile( skinfilename, (void**) &skinfilecontent, 0 );
+	skinfilesize = g_vfs.load(skinfilename, (void**)&skinfilecontent);
 	if ( skinfilesize < 0 && skin != 0 ) {
 		/* fallback to skin 0 if invalid */
 		snprintf( skinfilename, sizeof( skinfilename ), "%s_0.skin", name );
 		skinfilename[sizeof( skinfilename ) - 1] = 0;
-		skinfilesize = vfsLoadFile( skinfilename, (void**) &skinfilecontent, 0 );
+		skinfilesize = g_vfs.load(skinfilename, (void**)&skinfilecontent);
 		if ( skinfilesize >= 0 ) {
 			Sys_Printf( "Skin %d of %s does not exist, using 0 instead\n", skin, name );
 		}
