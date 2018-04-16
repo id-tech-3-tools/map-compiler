@@ -14,7 +14,7 @@ All API changes and new features can be found in our [changelog](changelog.md).
 You are free to make feature requests/bug reports under issues, as well as pull requests of course. More information can be found [here](CONTRIBUTING.md).
 
 ## External dependencies 
-All required dependencies are shipped with the project.
+All required dependencies are shipped with the project.  
 [Argh!](https://github.com/adishavit/argh) a minimalist argument handler. BSD-3 License.  
 [assetsys](https://github.com/mattiasgustavsson/libs/blob/master/docs/assetsys.md) loads binary assets into virtual file system.  
 The library used in a project contains [custom changes](https://github.com/isRyven/libs). MIT License.  
