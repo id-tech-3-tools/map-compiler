@@ -1,6 +1,8 @@
-# Version 0.1.0
+# Version 0.2.0
 
-### Q3map2
+* Replaced old VFS with the new one, to fix the bug where assets were loading in the opposite order. This also possibly increases the load speed.
+
+# Version 0.1.0
 
 * Fixed `surfaceparm donotenterlarge` being misspelled as `surfaceparm nonotenterlarge` 
 * Fixed `odd lump size in lump 17` error whilst trying to decompile a bsp [#21](https://github.com/isRyven/map-compiler/pull/21)
@@ -23,8 +25,6 @@
 * Added `_lightNudge` key for light entities as `_extraDist` alias [#53](https://github.com/isRyven/map-compiler/pull/53)
 
 # Version 0.0.1
-
-### Q3map2
 
 * Increased `MAX_IMAGES` to __2048__ 
 * Fix BSP compile on leaked maps
