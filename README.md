@@ -1,5 +1,6 @@
 # id Tech 3 Map Compiler
-This project aims to be an all-in app for compiling maps for games based on id Tech 3 engine. For now, the development is focused towards W:ET and q3map2. At it's current state, the project is just a modified version of [q3map2](http://q3map2.robotrenegade.com/), forked from [NetRadiant's q3map2 2.5.17n](https://gitlab.com/xonotic/netradiant/tree/225d4bba22a409bc1c375a2029d2162d336f0070).
+This project is a modified version of [Q3Map2](http://q3map2.robotrenegade.com/), which is a map compiler for games based on id Tech 3 engine, forked from [NetRadiant's q3map2 2.5.17n](https://gitlab.com/xonotic/netradiant/tree/225d4bba22a409bc1c375a2029d2162d336f0070).
+All API changes, bug fixes and new features are listed in the [changelog](changelog.md).
 
 ## Wiki
 The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed information about all options map compiler currently supports.
@@ -7,32 +8,74 @@ The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed infor
 ## Precompiled binaries
 Windows binaries can be found under [releases](https://github.com/isRyven/map-compiler/releases/) page. 
 
-## Changelog
-All API changes and new features can be found in our [changelog](changelog.md).
-
 ## Contributing
 You are free to make feature requests/bug reports under issues, as well as pull requests of course. More information can be found [here](CONTRIBUTING.md).
 
 ## External dependencies 
 All required dependencies are shipped with the project.  
-[Argh!](https://github.com/adishavit/argh) a minimalist argument handler. BSD-3 License.  
 [assetsys](https://github.com/mattiasgustavsson/libs/blob/master/docs/assetsys.md) loads binary assets into virtual file system.  
 The library used in a project contains [custom changes](https://github.com/isRyven/libs). MIT License.  
 [Catch2](https://github.com/catchorg/Catch2) test framework for unit-tests, TDD and BDD. Boost Software License.  
 [filesystem](https://github.com/wjakob/filesystem) a simple class for manipulating paths on Linux/Windows/Mac OS. BSD-3 License.  
 [jpeg-compressor](https://github.com/richgel999/jpeg-compressor) jpeg compression/decompression lib. Public domain.  
 [lodepng](https://github.com/lvandeve/lodepng) PNG encoder and decoder. zlib License.  
-[Lua](https://github.com/lua/lua) efficient, lightweight, embeddable scripting language. MIT License.  
 [msdirent.h](https://svn.apache.org/repos/asf/avro/trunk/lang/c/tests/msdirent.h) dirent API for MS Windows. MIT License.  
 [tinyformat](https://github.com/c42f/tinyformat) type safe printf replacement library. Boost Software License.
 
-## Compiling
-The project currently only compiles under Windows x64 using Visual Studio 2015+.
-### Requirements
-* [Visual Studio](https://www.visualstudio.com/vs/community/), community edition is sufficient.
-* [git](https://git-scm.com/) version control system.
-### Instructions
-1. [Git clone](https://help.github.com/articles/cloning-a-repository/) the project.
-2. Open up `map-compiler.sln` in Visual Studio.
-3. [Compile Solution](https://msdn.microsoft.com/en-us/library/5tdasz7h.aspx).
-4. Compiled binaries can be found in `build` directory of the project root.
+## Compiling binaries
+
+### Compiling on linux
+```
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=RELEASE .. && make
+```
+
+### Compiling on Windows
+Several options are available.
+
+#### Visual Studio 2017
+In VS2017 you can natively open up the CMake project folder: `File > Open > CMake`, and compile the project using CMake menu.
+
+#### Compile from command line
+```
+mkdir build
+cd build
+cmake ..
+cmake --build . --target mapcompiler --config Release
+```
+
+#### Generate Visual Studio solution
+```
+mkdir build
+cd build
+cmake .. -G "Visual Studio 15 2017"
+```
+Open up `sln` in Visual Studio and build solution from there.
+
+# Original Q3Map2 License 
+```
+Copyright (C) 1999-2007 id Software, Inc. and contributors.
+For a list of contributors, see the accompanying CONTRIBUTORS file.
+
+This file is part of GtkRadiant.
+
+GtkRadiant is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+GtkRadiant is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with GtkRadiant; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+----------------------------------------------------------------------------------
+
+This code has been altered significantly from its original form, to support
+several games based on the Quake III Arena engine, in the form of "Q3Map2."
+```
+
