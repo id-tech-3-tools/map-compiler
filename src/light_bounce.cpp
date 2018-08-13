@@ -928,41 +928,12 @@ void RadCreateDiffuseLights( void ){
 	/* hit every surface (threaded) */
 	RunThreadsOnIndividual( numBSPDrawSurfaces, qtrue, RadLight );
 
+
 	/* dump the lights generated to a file */
 	if ( dump ) {
-		char dumpName[ 1024 ], ext[ 64 ];
-		FILE    *file;
-		light_t *light;
-
-		strcpy( dumpName, source );
-		StripExtension( dumpName );
+		char ext[ 64 ];
 		sprintf( ext, "_bounce_%03d.map", iterations );
-		strcat( dumpName, ext );
-		file = fopen( dumpName, "wb" );
-		Sys_Printf( "Writing %s...\n", dumpName );
-		if ( file ) {
-			for ( light = lights; light; light = light->next )
-			{
-				fprintf( file,
-						 "{\n"
-						 "\"classname\" \"light\"\n"
-						 "\"light\" \"%d\"\n"
-						 "\"origin\" \"%.0f %.0f %.0f\"\n"
-						 "\"_color\" \"%.3f %.3f %.3f\"\n"
-						 "}\n",
-
-						 (int) light->add,
-
-						 light->origin[ 0 ],
-						 light->origin[ 1 ],
-						 light->origin[ 2 ],
-
-						 light->color[ 0 ],
-						 light->color[ 1 ],
-						 light->color[ 2 ] );
-			}
-			fclose( file );
-		}
+		dumpLightsIntoPrefab(ext);
 	}
 
 	/* increment */

@@ -1894,7 +1894,41 @@ void SetupGrid( void ){
 	Sys_Printf( "%9d grid points\n", numRawGridPoints );
 }
 
+void dumpLightsIntoPrefab(const char *prefix) {
+	char dumpName[1024], ext[64];
+	FILE    *file;
+	light_t *light;
 
+	strcpy(dumpName, source);
+	StripExtension(dumpName);
+	sprintf(ext, prefix);
+	strcat(dumpName, ext);
+	file = fopen(dumpName, "wb");
+	Sys_Printf("Writing %s...\n", dumpName);
+	if (file) {
+		for (light = lights; light; light = light->next)
+		{
+			fprintf(file,
+	            "{\n"
+	            "\"classname\" \"light\"\n"
+	            "\"light\" \"%d\"\n"
+	            "\"origin\" \"%.0f %.0f %.0f\"\n"
+	            "\"_color\" \"%.3f %.3f %.3f\"\n"
+	            "}\n",
+
+	            (int)light->add,
+
+	            light->origin[0],
+	            light->origin[1],
+	            light->origin[2],
+
+	            light->color[0],
+	            light->color[1],
+	            light->color[2]);
+	    }
+	    fclose(file);
+	}
+}
 
 /*
    LightWorld()
@@ -2108,6 +2142,11 @@ void LightWorld( const char *BSPFilePath){
 		bounce--;
 		b++;
 	}
+
+	if (dumpLights) {
+		dumpLightsIntoPrefab("_lightsdump.map");
+	}
+
 	/* ydnar: store off lightmaps */
 	StoreSurfaceLightmaps();
 }
@@ -2751,6 +2790,10 @@ int LightMain( int argc, char **argv ){
 		else if (!Q_stricmp(argv[i], "-dump")) {
 			dump = qtrue;
 			options.push_back({ argv[i], "", "dumping radiosity lights into numbered prefabs" });
+		}
+		else if (!Q_stricmp(argv[i], "-dumplights")) {
+			dumpLights = qtrue;
+			options.push_back({ argv[i], "", "dumping all lights into numbered prefabs" });
 		}
 		else if (!Q_stricmp(argv[i], "-lomem")) {
 			loMem = qtrue;

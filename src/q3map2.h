@@ -1904,6 +1904,7 @@ void                        WriteIBSPFile( const char *filename );
 void                        LoadRBSPFile( const char *filename );
 void                        WriteRBSPFile( const char *filename );
 
+void dumpLightsIntoPrefab(const char *prefix);
 
 
 /* -------------------------------------------------------------------------------
@@ -2292,6 +2293,7 @@ Q_EXTERN qboolean g_noFloodLight Q_ASSIGN(qfalse);
 Q_EXTERN qboolean g_noFloodStyles Q_ASSIGN(qfalse);
 
 Q_EXTERN qboolean dump Q_ASSIGN( qfalse );
+Q_EXTERN qboolean dumpLights Q_ASSIGN(qfalse);
 Q_EXTERN qboolean debug Q_ASSIGN( qfalse );
 Q_EXTERN qboolean debugUnused Q_ASSIGN( qfalse );
 Q_EXTERN qboolean debugAxis Q_ASSIGN( qfalse );
