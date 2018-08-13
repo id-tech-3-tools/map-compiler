@@ -1,6 +1,7 @@
 # Version 0.2.0
 
-* Replaced old VFS with the new one, to fix the bug where assets were loading in the opposite order. This also possibly increases the load speed.
+* Replaced old VFS with the new one, to fix the bug where assets were loading in the opposite order. This also possibly increases the load speed. [#55](https://github.com/isRyven/map-compiler/pull/55)
+* Added new `-dumplights` switch to write all surface lights into map prefab. [#57](https://github.com/isRyven/map-compiler/pull/57)
 
 # Version 0.1.0
 
