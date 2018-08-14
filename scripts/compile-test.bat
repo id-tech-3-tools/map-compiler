@@ -94,9 +94,8 @@ echo. & echo BSP was written in %OutputPath%
 
 :printHelp
     echo Basic usage:
-    echo    bsp-to-obj.bat mapname [output relative path]
-    echo    bsp-to-obj.bat castle.bsp
-    echo    bsp-to-obj.bat castle.bsp models/castle
+    echo    compile-test.bat mapname
+    echo    compile-test.bat castle.map
     goto atExit
 
 :printMissingQ3MapPath
