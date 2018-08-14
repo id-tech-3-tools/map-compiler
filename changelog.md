@@ -2,8 +2,8 @@
 
 * Replaced old VFS with the new one, to fix the bug where assets were loading in the opposite order. This also possibly increases the load speed. [#55](https://github.com/isRyven/map-compiler/pull/55)
 * Added new `-dumplights` switch to write all surface lights into map prefab. [#57](https://github.com/isRyven/map-compiler/pull/57)
-* added `-onlymodels` switch for `-convert` stage, that extracts only triangle surfaces from the bsp, which are baked `misc_models`.
-* added `-onlyshaders` switch for `-convert` stage that filters out surfaces by shader names, supports up to 10 shader names. [#58](https://github.com/isRyven/map-compiler/pull/58)
+* added `-onlymodels` switch for `-convert` stage, that extracts only triangle surfaces from the bsp, which are baked `misc_models`. Works only for ase and obj formats.
+* added `-onlyshaders` switch for `-convert` stage that filters out surfaces by shader names, supports up to 10 shader names. Works only for ase and obj formats. [#58](https://github.com/isRyven/map-compiler/pull/58)
 
 # Version 0.1.0
 
