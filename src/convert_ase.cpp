@@ -36,8 +36,6 @@
 /* dependencies */
 #include "q3map2.h"
 
-
-
 /*
    ConvertSurface()
    converts a bsp drawsurface to an ase chunk
@@ -51,8 +49,11 @@ static void ConvertSurface( FILE *f, bspModel_t *model, int modelNum, bspDrawSur
 	char name[ 1024 ];
 
 
-	/* ignore patches for now */
-	if ( ds->surfaceType != MST_PLANAR && ds->surfaceType != MST_TRIANGLE_SOUP ) {
+	if (!BSPConverter::isValidSurfaceType(static_cast<bspSurfaceType_t>(ds->surfaceType))) {
+		return;
+	}
+
+	if (!BSPConverter::isValidShaderName(bspShaders[ds->shaderNum].shader)) {
 		return;
 	}
 
@@ -249,6 +250,9 @@ static void ConvertShader( FILE *f, bspShader_t *shader, int shaderNum ){
 	shaderInfo_t    *si;
 	char            *c, filename[ 1024 ];
 
+	if (!BSPConverter::isValidShaderName(shader->shader)) {
+		return;
+	}
 
 	/* get shader */
 	si = ShaderInfoForShader( shader->shader );

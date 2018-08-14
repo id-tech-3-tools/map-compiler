@@ -31,7 +31,27 @@
 /* dependencies */
 #include "q3map2.h"
 
+namespace BSPConverter {
+	bool isValidSurfaceType(bspSurfaceType_t type) {
+		/* ignore patches for now */
+		if (!g_onlyModels && type == MST_PLANAR || type == MST_TRIANGLE_SOUP) {
+			return true;
+		}
+		return false;
+	}
 
+	bool isValidShaderName(const char *shaderName) {
+		if (g_onlyShaders[0][0] != 0) {
+			for (int i = 0; i < 10 && g_onlyShaders[i][0]; i++) {
+				if (Q_stricmp(g_onlyShaders[i], shaderName) == 0) {
+					return true;
+				}
+			}
+			return false;
+		}
+		return true;
+	}
+}
 
 /*
    PseudoCompileBSP()
@@ -223,6 +243,20 @@ int ConvertBSPMain( int argc, char **argv ){
 		else if (!Q_stricmp(argv[i], "-patchmeta")) {
 			meta = qtrue;
 			patchMeta = qtrue;
+		}
+		else if (!Q_stricmp(argv[i], "-onlymodels")) {
+			g_onlyModels = true;
+			Sys_Printf("Only models are going to be extracted\n");
+		}
+		else if (!Q_stricmp(argv[i], "-onlyshaders")) {
+			int k = i, finalIndex = argc - 1;
+			while (i + 1 < finalIndex && Q_strncasecmp(argv[i + 1], "-", 1)) {
+				strncpy(g_onlyShaders[i - k], argv[i + 1], 64);
+				i++;
+			}
+			if (g_onlyShaders[0][0] == 0) {
+				Sys_Printf("Warning: -onlyshaders switch expects shader names to be set, but none was found\n");
+			}
 		}
 		else if (!Q_stricmp(argv[i], "-outfile"))
 		{
