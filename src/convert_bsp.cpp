@@ -224,6 +224,19 @@ int ConvertBSPMain( int argc, char **argv ){
 			meta = qtrue;
 			patchMeta = qtrue;
 		}
+		else if (!Q_stricmp(argv[i], "-onlymodels")) {
+			g_onlyModels = true;
+			Sys_Printf("Only models are going to be extracted\n");
+		}
+		else if (!Q_stricmp(argv[i], "-onlyshader")) {
+			if (i + 1 == argc || Q_strncasecmp(argv[i + 1], "-", 1) == 0) {
+				Sys_Printf("Warning: -onlyshader switch expects shader name to be set, but found none\n");
+			}
+			else {
+				strncpy(g_onlyShader, argv[i + 1], 64);
+				i++;
+			}
+		}
 		else if (!Q_stricmp(argv[i], "-outfile"))
 		{
 			if (i + 1 < argc - 1)

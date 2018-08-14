@@ -36,7 +36,20 @@
 /* dependencies */
 #include "q3map2.h"
 
+static bool isValidSurfaceType(bspSurfaceType_t type) {
+	/* ignore patches for now */
+	if (!g_onlyModels && type == MST_PLANAR || type == MST_TRIANGLE_SOUP) {
+		return true;
+	}
+	return false;
+}
 
+static bool isValidShaderName(const char *shaderName) {
+	if (g_onlyShader[0] != 0) {
+		return Q_stricmp(g_onlyShader, shaderName) == 0;
+	}
+	return true;
+}
 
 /*
    ConvertSurface()
@@ -51,8 +64,11 @@ static void ConvertSurface( FILE *f, bspModel_t *model, int modelNum, bspDrawSur
 	char name[ 1024 ];
 
 
-	/* ignore patches for now */
-	if ( ds->surfaceType != MST_PLANAR && ds->surfaceType != MST_TRIANGLE_SOUP ) {
+	if (!isValidSurfaceType(static_cast<bspSurfaceType_t>(ds->surfaceType))) {
+		return;
+	}
+
+	if (!isValidShaderName(bspShaders[ds->shaderNum].shader)) {
 		return;
 	}
 
