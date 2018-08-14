@@ -1906,6 +1906,10 @@ void                        WriteRBSPFile( const char *filename );
 
 void dumpLightsIntoPrefab(const char *prefix);
 
+namespace BSPConverter {
+	bool isValidSurfaceType(bspSurfaceType_t type);
+	bool isValidShaderName(const char *shaderName);
+}
 
 /* -------------------------------------------------------------------------------
 
@@ -2059,7 +2063,7 @@ Q_EXTERN int metaAdequateScore Q_ASSIGN( -1 );
 Q_EXTERN int metaGoodScore Q_ASSIGN( -1 );
 Q_EXTERN float metaMaxBBoxDistance Q_ASSIGN( -1 );
 Q_EXTERN bool g_onlyModels Q_ASSIGN(false);
-Q_EXTERN char g_onlyShader[64] Q_ASSIGN("");
+Q_EXTERN char g_onlyShaders[10][64] Q_ASSIGN({});
 
 #if Q3MAP2_EXPERIMENTAL_SNAP_NORMAL_FIX
 // Increasing the normalEpsilon to compensate for new logic in SnapNormal(), where

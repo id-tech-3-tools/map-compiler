@@ -36,22 +36,6 @@
 /* dependencies */
 #include "q3map2.h"
 
-
-static bool isValidSurfaceType(bspSurfaceType_t type) {
-	/* ignore patches for now */
-	if ( !g_onlyModels && type == MST_PLANAR || type == MST_TRIANGLE_SOUP) {
-		return true;
-	}
-	return false;
-}
-
-static bool isValidShaderName(const char *shaderName) {
-	if (g_onlyShader[0] != 0) {
-		return Q_stricmp(g_onlyShader, shaderName) == 0;
-	}
-	return true;
-}
-
 /*
    ConvertSurface()
    converts a bsp drawsurface to an obj chunk
@@ -67,11 +51,11 @@ static void ConvertSurfaceToOBJ( FILE *f, bspModel_t *model, int modelNum, bspDr
 	int i, v, a, b, c;
 	bspDrawVert_t   *dv;
 
-	if (!isValidSurfaceType(static_cast<bspSurfaceType_t>(ds->surfaceType))) {
+	if (!BSPConverter::isValidSurfaceType(static_cast<bspSurfaceType_t>(ds->surfaceType))) {
 		return;
 	}
 
-	if (!isValidShaderName(bspShaders[ds->shaderNum].shader)) {
+	if (!BSPConverter::isValidShaderName(bspShaders[ds->shaderNum].shader)) {
 		return;
 	}
 
@@ -173,6 +157,9 @@ static void ConvertShaderToMTL( FILE *f, bspShader_t *shader, int shaderNum ){
 	shaderInfo_t    *si;
 	char filename[ 1024 ];
 
+	if (!BSPConverter::isValidShaderName(shader->shader)) {
+		return;
+	}
 
 	/* get shader */
 	si = ShaderInfoForShader( shader->shader );
