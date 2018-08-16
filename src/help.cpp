@@ -190,6 +190,7 @@ void HelpLight()
         {"-dirtscale <F>", "Dirtmapping scaling factor"},
         {"-dirty", "Enable dirtmapping"},
         {"-dump", "Dump radiosity from `-bounce` into numbered MAP file prefabs"},
+        {"-dumplights", "Dump all lights into numbered MAP file prefabs"},
         {"-export", "Export lightmaps when compile finished (like `-export` mode)"},
         {"-exposure <F>", "Lightmap exposure to better support overbright spots"},
         {"-external", "Force external lightmaps even if at size of internal lightmaps"},
@@ -299,6 +300,8 @@ void HelpConvert()
         {"-readmap", "Force MAP reading even when not supported by conversion"},
         {"-meta", "Create meta surfaces during conversion (for models)"},
         {"-patchmeta", "Create meta surfaces from patches during conversion (for models)"},
+        {"-onlymodels", "Extract only trianglesurfs (mainly used in misc_models) (ase/obj only)"},
+        {"-onlyshaders <shader>", "Extract surfaces with specified shader(s) (up to 10 shaders, ase/obj only)"},
     };
 
     HelpOptions("Converting & Decompiling", 0, 100, convert, sizeof(convert)/sizeof(struct HelpOption));
