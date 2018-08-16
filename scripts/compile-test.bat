@@ -1,6 +1,7 @@
 @echo off
 set parent=%~dp0
 cd %parent%
+set scriptName=%~n0%~x0
 
 :: ================== SETTINGS ==================
 
@@ -94,8 +95,7 @@ echo. & echo BSP was written in %OutputPath%
 
 :printHelp
     echo Basic usage:
-    echo    compile-test.bat mapname
-    echo    compile-test.bat castle.map
+    echo    %scriptName% castle.map
     goto atExit
 
 :printMissingQ3MapPath
