@@ -236,64 +236,76 @@ int main(int argc, char **argv) {
 		Error( "Usage: %s [general options] [options] mapfile", argv[ 0 ] );
 	}
 
-	/* fixaas */
-	if (!Q_stricmp(argv[1], "-fixaas")) {
-		r = FixAASMain(argc - 1, argv + 1);
-	}
+	for (int i = 0; i < argc; i++) {
+		/* fixaas */
+		if (!Q_stricmp(argv[i], "-fixaas")) {
+			r = FixAASMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* analyze */
-	else if (!Q_stricmp(argv[1], "-analyze")) {
-		r = AnalyzeBSPMain(argc - 1, argv + 1);
-	}
+		/* analyze */
+		else if (!Q_stricmp(argv[i], "-analyze")) {
+			r = AnalyzeBSPMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* info */
-	else if (!Q_stricmp(argv[1], "-info")) {
-		r = BSPInfoMain(argc - 2, argv + 2);
-	}
+		/* info */
+		else if (!Q_stricmp(argv[i], "-info")) {
+			r = BSPInfoMain(argc - 2, argv + 2);
+			break;
+		}
 
-	/* vis */
-	else if (!Q_stricmp(argv[1], "-vis")) {
-		r = VisMain(argc - 1, argv + 1);
-	}
+		/* vis */
+		else if (!Q_stricmp(argv[i], "-vis")) {
+			r = VisMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* light */
-	else if (!Q_stricmp(argv[1], "-light")) {
-		r = LightMain(argc - 1, argv + 1);
-	}
+		/* light */
+		else if (!Q_stricmp(argv[i], "-light")) {
+			r = LightMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* QBall: export entities */
-	else if (!Q_stricmp(argv[1], "-exportents")) {
-		r = ExportEntitiesMain(argc - 1, argv + 1);
-	}
+		/* QBall: export entities */
+		else if (!Q_stricmp(argv[i], "-exportents")) {
+			r = ExportEntitiesMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* ydnar: lightmap export */
-	else if (!Q_stricmp(argv[1], "-export")) {
-		r = ExportLightmapsMain(argc - 1, argv + 1);
-	}
+		/* ydnar: lightmap export */
+		else if (!Q_stricmp(argv[i], "-export")) {
+			r = ExportLightmapsMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* ydnar: lightmap import */
-	else if (!Q_stricmp(argv[1], "-import")) {
-		r = ImportLightmapsMain(argc - 1, argv + 1);
-	}
+		/* ydnar: lightmap import */
+		else if (!Q_stricmp(argv[i], "-import")) {
+			r = ImportLightmapsMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* ydnar: bsp scaling */
-	else if (!Q_stricmp(argv[1], "-scale")) {
-		r = ScaleBSPMain(argc - 1, argv + 1);
-	}
+		/* ydnar: bsp scaling */
+		else if (!Q_stricmp(argv[i], "-scale")) {
+			r = ScaleBSPMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* ydnar: bsp conversion */
-	else if (!Q_stricmp(argv[1], "-convert")) {
-		r = ConvertBSPMain(argc - 1, argv + 1);
-	}
+		/* ydnar: bsp conversion */
+		else if (!Q_stricmp(argv[i], "-convert")) {
+			r = ConvertBSPMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* div0: minimap */
-	else if (!Q_stricmp(argv[1], "-minimap")) {
-		r = MiniMapBSPMain(argc - 1, argv + 1);
-	}
+		/* div0: minimap */
+		else if (!Q_stricmp(argv[i], "-minimap")) {
+			r = MiniMapBSPMain(argc - 1, argv + 1);
+			break;
+		}
 
-	/* ydnar: otherwise create a bsp */
-	else{
-		r = BSPMain( argc, argv );
+		if (i + 1 == argc) {
+			r = BSPMain(argc, argv);
+		}
 	}
 
 	/* emit time */
