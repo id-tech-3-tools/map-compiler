@@ -85,15 +85,12 @@ echo    GAME NAME:          %GameName%
 echo    GAME DIRECTORY:     %GameDirectory%
 echo    BASE DIRECTORY:     %BaseDirectoryName%
 echo    MAP PATH:           %MapPath%
-echo    OUTPUT PATH:        %OutputPath%
 echo    EXTRA SWITCHES:     %ExtraSwitches%
 echo    COMPILER ARGUMENTS: %CompilerArguments%
 
 :: Do work
 echo. & echo [Convert BSP to MAP]
 %Q3MapPath% %CompilerArguments% -outfile "%OutputPath%" "%MapPath%"
-
-echo. & echo Model was written in %OutputPath%
 
 :atExit
     echo. & pause

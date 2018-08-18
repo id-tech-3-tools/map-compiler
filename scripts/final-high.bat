@@ -61,9 +61,9 @@ if %MapPath% == "" (
 )
 
 :: Compile stages
-set BSPStage=-bsp -game %GameName% -fs_basepath "%GameDirectory%" -v -meta
-set VisStage=-vis -game %GameName% -fs_basepath "%GameDirectory%" -v -fast
-set LightStage=-light -game %GameName% -fs_basepath "%GameDirectory%" -v -fast -filter
+set BSPStage=-bsp -game %GameName% -fs_basepath "%GameDirectory%" -v -meta -samplesize 4
+set VisStage=-vis -game %GameName% -fs_basepath "%GameDirectory%" -v -saveprt
+set LightStage=-light -game %GameName% -fs_basepath "%GameDirectory%" -v -fast -fastallocate -samples 3 -samplesize 4 -shade -patchshadows -lightmapsize 2048
 
 :: Print info
 echo. & echo.[Settings]

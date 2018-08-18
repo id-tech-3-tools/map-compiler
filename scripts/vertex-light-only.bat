@@ -61,9 +61,7 @@ if %MapPath% == "" (
 )
 
 :: Compile stages
-set BSPStage=-bsp -game %GameName% -fs_basepath "%GameDirectory%" -v -meta
-set VisStage=-vis -game %GameName% -fs_basepath "%GameDirectory%" -v -fast
-set LightStage=-light -game %GameName% -fs_basepath "%GameDirectory%" -v -fast -filter
+set LightStage=-light -game %GameName% -fs_basepath "%GameDirectory%" -v -fast -nolightmap
 
 :: Print info
 echo. & echo.[Settings]
@@ -72,17 +70,9 @@ echo    GAME NAME:          %GameName%
 echo    GAME DIRECTORY:     %GameDirectory%
 echo    BASE DIRECTORY:     %BaseDirectoryName%
 echo    MAP PATH:           %MapPath%
-echo    BSP STAGE:          %BSPStage%
-echo    VIS STAGE:          %VisStage%
 echo    LIGHT STAGE:        %LightStage%
 
 :: Do work
-echo. & echo [Convert MAP to BSP]
-%Q3MapPath% %BSPStage% "%MapPath%"
-
-echo. & echo [Calculate VIS]
-%Q3MapPath% %VisStage% "%MapPath%"
-
 echo. & echo [Bake lights]
 %Q3MapPath% %LightStage% "%MapPath%"
 
