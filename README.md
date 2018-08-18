@@ -3,7 +3,10 @@ This project is a modified version of [Q3Map2](http://q3map2.robotrenegade.com/)
 All API changes, bug fixes and new features are listed in the [changelog](changelog.md).
 
 ## Wiki
-The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed information about all options map compiler currently supports.
+The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed information about all switches map compiler currently supports.
+
+## Scripts
+The [scripts](https://github.com/isRyven/map-compiler/tree/master/scripts) director contains fully functional batch scripts to do compiling, decompiling and model conversion work.
 
 ## Precompiled binaries
 Windows binaries can be found under [releases](https://github.com/isRyven/map-compiler/releases/) page. 
