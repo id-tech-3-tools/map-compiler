@@ -6,7 +6,7 @@ All API changes, bug fixes and new features are listed in the [changelog](change
 The [wiki](https://github.com/isRyven/map-compiler/wiki) page has detailed information about all switches map compiler currently supports.
 
 ## Scripts
-The [scripts](https://github.com/isRyven/map-compiler/tree/master/scripts) director contains fully functional batch scripts to do compiling, decompiling and model conversion work.
+The [scripts](https://github.com/isRyven/map-compiler/tree/master/scripts) directory contains fully functional batch scripts to do compiling, decompiling and model conversion work.
 
 ## Precompiled binaries
 Windows binaries can be found under [releases](https://github.com/isRyven/map-compiler/releases/) page. 
