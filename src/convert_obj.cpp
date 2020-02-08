@@ -223,8 +223,8 @@ int ConvertBSPToOBJ(const char *bspName, const char* outPath){
 	vec3_t origin;
 	const char      *key;
 	char name[ 1024 ], base[ 1024 ], mtlname[ 1024 ], dirname[ 1024 ], mtlPathBuffer[1024];
-	const char *filePath = outPath ? outPath : name;
-	char *mtlFilePath = outPath ? mtlPathBuffer : mtlname;
+	const char *filePath = UT_TEST_STRING(outPath) ? outPath : name;
+	char *mtlFilePath = UT_TEST_STRING(outPath) ? mtlPathBuffer : mtlname;
 	
 	strcpy(mtlPathBuffer, outPath);
 

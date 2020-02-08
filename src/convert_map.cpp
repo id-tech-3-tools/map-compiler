@@ -785,7 +785,7 @@ int ConvertBSPToMap_Ext( const char *bspName, const char *outPath, qboolean brus
 	vec3_t origin;
 	const char      *value;
 	char name[1024], base[1024], nameBuffer[1024];
-	char *filePath = outPath ? nameBuffer : name;
+	char *filePath = UT_TEST_STRING(outPath) ? nameBuffer : name;
 	strcpy(nameBuffer, outPath);
 
 	/* note it */

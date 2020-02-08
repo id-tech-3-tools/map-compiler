@@ -338,7 +338,7 @@ int ConvertBSPToASE(const char *bspName, const char* outPath) {
 	vec3_t origin;
 	const char      *key;
 	char name[ 1024 ], base[ 1024 ], dirname[ 1024 ];
-	const char *filePath = outPath ? outPath : name;
+	const char *filePath = UT_TEST_STRING(outPath) ? outPath : name;
 
 	/* note it */
 	Sys_Printf( "--- Convert BSP to ASE ---\n" );

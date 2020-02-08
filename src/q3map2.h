@@ -2588,3 +2588,5 @@ Q_EXTERN bspAdvertisement_t bspAds[ MAX_MAP_ADVERTISEMENTS ];
 #define Q_min( x, y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
 
 void printOptions(const std::vector<OptionResult> &options);
+
+#define UT_TEST_STRING(cstr) (cstr ? cstr[0] ? 1 : 0 : 0)
